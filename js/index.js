@@ -49,13 +49,13 @@ function csvToSeries(text) {
 
 
 function csvToSeries2(text) {
-	const y = 'ISM_Manufacturing_Index';
-	const x = 'Date';
+	const ism_y = 'ISM_Manufacturing_Index';
+	const date_x = 'Date';
 	let dataAsJson = JSC.csv2Json(text);
 	let black = [];
 	dataAsJson.forEach(function (row) {
 		//add either to Black, White arrays, or discard.
-		black.push({x: row[x], y: row[y]});
+		black.push({x: row[date_x], y: row[ism_y]});
 
 	});
 	return [
@@ -81,15 +81,17 @@ function renderChart(series) {
 
 function renderChart2(series) {
 	JSC.Chart('chartDiv2', {
-		title_label_text: 'Life Expectancy in the United States',
+		title_label_text: 'ISM PMI',
 		annotations: [{
 			label_text: 'Source: National Center for Health Statistics',
 			position: 'bottom left'
 		}],
-		legend_visible: true,
+		legend_visible: false,
 		xAxis_crosshair_enabled: true,
+		xAxis: { crosshair_enabled: true, scale: { type: "time" } },
 		defaultSeries_firstPoint_label_text: '<b>%seriesName</b>',
 		defaultPoint_tooltip: '%seriesName <b>%yValue</b> years',
+
 		series: series
 	});
 }
