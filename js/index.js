@@ -1,4 +1,4 @@
-/fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv')
+fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv')
 	.then(function (response) {
 		return response.text();
 	})
@@ -9,20 +9,23 @@
 	.catch(function (error) {
 		//Something went wrong
 		console.log(error);
-	}); /
+	}); 
 
-fetch('ism_pmi.csv')
+
+fetch('https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/ism_pmi.csv')
 	.then(function (response) {
 		return response.text();
 	})
 	.then(function (text) {
-		let series2 = csvToSeries2(text);
-		renderChart2(series2);
+		let series = csvToSeries2(text);
+		renderChart2(series);
 	})
 	.catch(function (error) {
 		//Something went wrong
 		console.log(error);
-	});
+	}); 
+
+
 
 function csvToSeries(text) {
 	const lifeExp = 'average_life_expectancy';
@@ -44,21 +47,16 @@ function csvToSeries(text) {
 	];
 }
 
+
 function csvToSeries2(text) {
-	const ismpmi = 'ISM Manufacturing Index';
+	const y = 'ISM_Manufacturing_Index';
+	const x = 'Date';
 	let dataAsJson = JSC.csv2Json(text);
 	let black = [];
 	dataAsJson.forEach(function (row) {
-		
-		black.push({x: row.Date, y: row[ismpmi]});
 		//add either to Black, White arrays, or discard.
-		//if (row.sex === 'Both Sexes') {
-		//	if (row.race === 'Black') {
-		//		black.push({x: row.year, y: row[lifeExp]});
-		//	} else if (row.race === 'White') {
-		//		white.push({x: row.year, y: row[lifeExp]});
-		//	}
-		}
+		black.push({x: row[x], y: row[y]});
+
 	});
 	return [
 		{name: 'Black', points: black},
@@ -81,7 +79,7 @@ function renderChart(series) {
 	});
 }
 
-function renderChart2(series2) {
+function renderChart2(series) {
 	JSC.Chart('chartDiv2', {
 		title_label_text: 'Life Expectancy in the United States',
 		annotations: [{
@@ -92,7 +90,6 @@ function renderChart2(series2) {
 		xAxis_crosshair_enabled: true,
 		defaultSeries_firstPoint_label_text: '<b>%seriesName</b>',
 		defaultPoint_tooltip: '%seriesName <b>%yValue</b> years',
-		series: series2
+		series: series
 	});
 }
-
