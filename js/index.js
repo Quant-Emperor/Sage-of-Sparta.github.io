@@ -89,8 +89,6 @@ function renderChart2(series) {
 		legend_visible: false,
 		xAxis_crosshair_enabled: true,
 		xAxis: { crosshair_enabled: true, scale: { type: "time" } },
-		//defaultSeries_firstPoint_label_text: '<b>%seriesName</b>',
-		//defaultPoint_tooltip: '%seriesName <b>%yValue</b> years',
 
 		series: series
 	});
