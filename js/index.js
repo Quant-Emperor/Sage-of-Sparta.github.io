@@ -22,7 +22,7 @@ JSC.fetch(
 	  return response.text(); 
 	}) 
 	.then(function(text) { 
-	  series = JSC.csvToSeries2(text); 
+	  series = csvToSeries2(text); 
 	  renderCharts(series); 
 	}); 
 
