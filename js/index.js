@@ -22,8 +22,8 @@ JSC.fetch(
 	  return response.text(); 
 	}) 
 	.then(function(text) { 
-	  series = csvToSeries2(text); 
-	  renderCharts(series); 
+		let series = csvToSeries2(text); 
+	  	renderCharts(series); 
 	}); 
 
 
