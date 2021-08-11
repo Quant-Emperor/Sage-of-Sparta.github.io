@@ -22,11 +22,26 @@ JSC.fetch(
 	  return response.text(); 
 	}) 
 	.then(function(text) { 
-	  data = JSC.csv2Json(text); 
-	  renderCharts(); 
+	  series = JSC.csvToSeries2(text); 
+	  renderCharts(series); 
 	}); 
 
 
+
+function csvToSeries2(text) {
+	const lifeExp = 'ISM_Manufacturing_Index';
+	let dataAsJson = JSC.csv2Json(text);
+	let white = [], black = [];
+	dataAsJson.forEach(function (row) {
+		//add either to Black, White arrays, or discard.
+		
+		black.push({x: row.Date, y: row[lifeExp]});
+
+	});
+	return [
+		{name: 'Black', points: black},
+	];
+}
 
 
 function csvToSeries(text) {
@@ -67,7 +82,7 @@ function renderChart(series) {
 }
 
 
-function renderCharts() { 
+function renderCharts(series) { 
 	chart = JSC.chart('chartDiv2', { 
 	  debug: true, 
 	  title_label_text: 
@@ -81,7 +96,7 @@ function renderCharts() {
 		label_text: 'Date', 
 		scale_minInterval: 1 
 	  }, 
-	  series: getSeries(), 
+	  series: series, 
 	  toolbar_items_label: { 
 		type: 'label', 
 		label_text: 
@@ -105,15 +120,15 @@ function renderCharts() {
   } 
 	
 	
-  function getSeries() { 
+  //function getSeries() { 
 	
 	 // Group entries by age_group, map year and birth_numbers to point x,y values. 
 	 
-	return JSC.nest() 
-	  .key('Date'.getTime())  
-	  .rollup('ISM_Manufacturing_Index') 
-	  .series(data); 
-  } 
+//	return JSC.nest() 
+//	  .key('Date')  
+//	  .rollup('ISM_Manufacturing_Index') 
+//	  .series(data); 
+ // } 
 	
   function toDateNum(d) { 
 	return new Date(d).getTime(); 
