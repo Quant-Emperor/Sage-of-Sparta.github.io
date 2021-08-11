@@ -1,3 +1,6 @@
+
+var data, series, chart; 
+
 fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv')
 	.then(function (response) {
 		return response.text();
@@ -11,19 +14,18 @@ fetch('https://data.cdc.gov/resource/w9j2-ggv5.csv')
 		console.log(error);
 	}); 
 
-
-fetch('https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/ism_pmi.csv')
-	.then(function (response) {
-		return response.text();
-	})
-	.then(function (text) {
-		let series = csvToSeries2(text);
-		renderChart2(series);
-	})
-	.catch(function (error) {
-		//Something went wrong
-		console.log(error);
+// Load CSV data and convert to JSON 
+JSC.fetch( 
+	'https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/ism_pmi.csv'
+  ) 
+	.then(function(response) { 
+	  return response.text(); 
+	}) 
+	.then(function(text) { 
+	  data = JSC.csv2Json(text); 
+	  renderCharts(); 
 	}); 
+
 
 
 
@@ -48,21 +50,6 @@ function csvToSeries(text) {
 }
 
 
-function csvToSeries2(text) {
-	const ism_y = 'ISM_Manufacturing_Index';
-	const date_x = 'Date';
-	let dataAsJson = JSC.csv2Json(text);
-	let black = [];
-	dataAsJson.forEach(function (row) {
-		//add either to Black, White arrays, or discard.
-		black.push({x: row[date_x], y: row[ism_y]});
-
-	});
-	return [
-		{name: 'Black', points: black},
-	];
-}
-
 
 function renderChart(series) {
 	JSC.Chart('chartDiv', {
@@ -79,6 +66,71 @@ function renderChart(series) {
 	});
 }
 
+
+function renderCharts() { 
+	chart = JSC.chart('chartDiv2', { 
+	  debug: true, 
+	  title_label_text: 
+		'ISM Manufacturing Index PMI', 
+	  animation: false, 
+	  legend_template: '%icon %name', 
+	  defaultPoint_marker_type: 'none', 
+	  yAxis: { label_text: 'Number' }, 
+	  xAxis: { 
+		formatString: 'd', 
+		label_text: 'Date', 
+		scale_minInterval: 1 
+	  }, 
+	  series: getSeries(), 
+	  toolbar_items_label: { 
+		type: 'label', 
+		label_text: 
+		  '<chart scale width=500 min=1940 max=2022 interval=5>', 
+		boxVisible: false, 
+		position: 'bottom', 
+		itemsBox: { 
+		  visible: true, 
+		  boxVisible: false
+		}, 
+		items_slider: { 
+		  type: 'range', 
+		  width: 500, 
+		  value: [1940, 2022], 
+		  min: 1940, 
+		  max: 2022, 
+		  events_change: applyZoom 
+		} 
+	  } 
+	}); 
+  } 
+	
+	
+  function getSeries() { 
+	
+	 // Group entries by age_group, map year and birth_numbers to point x,y values. 
+	 
+	return JSC.nest() 
+	  .key('Date')  
+	  .rollup('ISM_Manufacturing_Index') 
+	  .series(data); 
+  } 
+	
+  function toDateNum(d) { 
+	return new Date(d).getTime(); 
+  } 
+	
+  function applyZoom(range) { 
+	chart.axes('x').zoom(range); 
+  } 
+
+
+
+
+// JS 
+  
+
+  
+/*
 function renderChart2(series) {
 	JSC.Chart('chartDiv2', {
 		title_label_text: 'ISM PMI',
@@ -92,4 +144,62 @@ function renderChart2(series) {
 
 		series: series
 	});
-}
+} 
+
+
+function renderCharts() { 
+  chart = JSC.chart('chartDiv', { 
+    debug: true, 
+    title_label_text: 
+      'Births to Unmarried Women by Age Group', 
+    animation: false, 
+    legend_template: '%icon %name', 
+    defaultPoint_marker_type: 'none', 
+    yAxis: { label_text: 'Number of births' }, 
+    xAxis: { 
+      formatString: 'd', 
+      label_text: 'Year', 
+      scale_minInterval: 1 
+    }, 
+    series: getSeries(), 
+    toolbar_items_label: { 
+      type: 'label', 
+      label_text: 
+        '<chart scale width=500 min=1940 max=2015 interval=15>', 
+      boxVisible: false, 
+      position: 'bottom', 
+      itemsBox: { 
+        visible: true, 
+        boxVisible: false
+      }, 
+      items_slider: { 
+        type: 'range', 
+        width: 500, 
+        value: [1940, 2015], 
+        min: 1940, 
+        max: 2015, 
+        events_change: applyZoom 
+      } 
+    } 
+  }); 
+} 
+  
+function getSeries() { 
+  
+   // Group entries by age_group, map year and birth_numbers to point x,y values. 
+   
+  return JSC.nest() 
+    .key('age_group') 
+    .key('year') 
+    .rollup('birth_number') 
+    .series(data); 
+} 
+  
+function toDateNum(d) { 
+  return new Date(d).getTime(); 
+} 
+  
+function applyZoom(range) { 
+  chart.axes('x').zoom(range); 
+} 
+*/
