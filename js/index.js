@@ -110,7 +110,7 @@ function renderCharts() {
 	 // Group entries by age_group, map year and birth_numbers to point x,y values. 
 	 
 	return JSC.nest() 
-	  .key('Date')  
+	  .key('Date'.getTime())  
 	  .rollup('ISM_Manufacturing_Index') 
 	  .series(data); 
   } 
