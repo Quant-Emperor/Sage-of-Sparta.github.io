@@ -3,65 +3,35 @@
 
 var colors = JSC.getPalette(0);
 
-
-// const urls = [
-//   "https://www.quandl.com/api/v3/datasets/ISM/MAN_PMI?start_date=1948-01-01&end_date=2021-07-01&api_key=hQqbsfakqXiqavyb4SV9",
-//   "https://www.quandl.com/api/v3/datasets/ISM/MAN_NEWORDERS?start_date=1948-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
-// ]
-
-// const fetchData = async () => {
-//   try {
-//     const response = await Promise.all(
-//       urls.map(url => fetch(url).then(res => res.json()))
-//     )
-    
-//     var series = response[0].dataset.data
-//     console.log(series)
-//     var series = response[1].dataset.data
-//     console.log(series)
-    
-//   } catch (error) {
-//     console.log("Error", error)
-//   }
-// }
-// fetchData()
-
-
-function fetch_ISM_MAN_PMI(callback) {
-    fetch('https://www.quandl.com/api/v3/datasets/ISM/MAN_PMI?start_date=2000-01-01&end_date=2021-07-01&api_key=hQqbsfakqXiqavyb4SV9')
-       .then(response => response.json())
-       .then(json => callback(null, json.dataset))
-       .catch(error => callback(error, null))
-}
-
-fetch_ISM_MAN_PMI((error, ISM_MAN_PMI) => {
-    if (error) 
-        console.log(error)
-    else 
-       // console.log(ISM_MAN_EMPL.data)
-      var series = csvToSeries2(ISM_MAN_PMI.data)
-      renderChart2(series);
-});
-
-
+fetch('https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/ism_pmi.csv')
+  .then(function (response) {
+    return response.text();
+  })
+  .then(function (text) {
+    let series = csvToSeries2(text);
+    renderChart2(series);
+  })
+  .catch(function (error) {
+    //Something went wrong
+    console.log(error);
+  }); 
 
 function csvToSeries2(text) {
-  const ism_y = 'PMI';
+  const ism_y = 'ISM_Manufacturing_Index';
   const date_x = 'Date';
   const new_order_y = 'New_Orders';
-  let dataAsJson = text;
+  let dataAsJson = JSC.csv2Json(text);
   let PMI = [], areaPMI = [], newOrder =[];
-  
   dataAsJson.forEach(function (row) {
     //add either to Black, White arrays, or discard.
-    PMI.push({x: Date.parse(row[0]), y: row[1]});
-    areaPMI.push({x: Date.parse(row[0]), y: row[1]-50});
-    newOrder.push({x: Date.parse(row[0]), y: row[1]})
+    PMI.push({x: row[date_x], y: row[ism_y]});
+    areaPMI.push({x: row[date_x], y: row[ism_y]-50});
+    newOrder.push({x: row[date_x], y: row[new_order_y]})
 
   });
   return [
-    {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
-    {name: 'newOrder', points: PMI,yAxis: 'leftAxis'},
+    {name: 'PMI', points: PMI},
+    {name: 'newOrder', points: newOrder,yAxis: 'leftAxis'},
     {name: 'areaPMI', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
   ];
 }
