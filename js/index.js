@@ -3,16 +3,11 @@
 
 var colors = JSC.getPalette(0);
 
-
-
-
-
 JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/ism.csv")
   .then(response => response.text())
   .then(text => {
     let data = JSC.csv2Json(text);
     let PMI = [], areaPMI = [], newOrder = [], manEmpl = [], manProd = [], manDeliv = [], manInvent = [],manCustInv = [], manPrices = [], manBacklog = [], manExports=[], manImports=[];
-
 
     data.forEach((val,idx) => {
 
@@ -24,13 +19,6 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
       manInvent.push({x: val['Date'], y: val['MAN_INVENT']});
       areaPMI.push({x: val['Date'], y: val['MAN_PMI']-50});
       
-      //if (isNaN(val['MAN_CUSTINV'])) {
-      //  manCustInv.push({x: val['Date'], y: 0});
-      //}
-      //else {
-      //manCustInv.push({x: val['Date'], y: Number(val['MAN_CUSTINV'])});
-      //}
-
       manCustInv.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_CUSTINV'])});
       manPrices.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_PRICES'])});   
       manBacklog.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_BACKLOG'])});
@@ -47,21 +35,19 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
       {name: 'ISM Manufacturing Deliveries', points: manDeliv,yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
       {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
+    ];
+
+    var data_series2 = [
+      {name: 'ISM Manufacturing PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing Customer Inventories', points: manCustInv,type:'line',yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Prices', points: manPrices,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Prices', points: manPrices,yAxis: 'leftAxis',color:colors[15]},
       {name: 'ISM Manufacturing Backlog of Orders', points: manBacklog,yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing New Export Orders', points: manExports,yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing Imports', points: manImports,yAxis: 'leftAxis'},
-
     ];
 
-
-
-
-
-
     renderChart(data_series,'chartDiv2','ISM Manufacturing Index');
-
+    renderChart2(data_series2,'chartDiv3','ISM Manufacturing Index');
 
   });
 
@@ -209,7 +195,7 @@ function renderChart2(series,jscchartname,title) {
       {
         id: 'leftAxis',
         defaultTick_label_color: colors[15],
-        label_text: 'PMI',
+        label_text: 'Index',
         defaultTick_enabled: true,
       }
     ],
@@ -262,7 +248,7 @@ function renderChart(series,jscchartname,title) {
       {
         id: 'leftAxis',
         defaultTick_label_color: colors[15],
-        label_text: 'PMI',
+        label_text: 'Index',
         defaultTick_enabled: true,
 
         scale: {
