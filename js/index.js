@@ -4,6 +4,76 @@
 var colors = JSC.getPalette(0);
 
 
+
+
+
+JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/ism.csv")
+  .then(response => response.text())
+  .then(text => {
+    let data = JSC.csv2Json(text);
+    let PMI = [], areaPMI = [], newOrder = [], manEmpl = [], manProd = [], manDeliv = [], manInvent = [],manCustInv = [], manPrices = [], manBacklog = [], manExports=[], manImports=[];
+
+
+    data.forEach((val,idx) => {
+
+      PMI.push({x: val['Date'], y: val['MAN_PMI']});
+      newOrder.push({x: val['Date'], y: val['MAN_NEWORDERS']});
+      manEmpl.push({x: val['Date'], y: val['MAN_EMPL']});
+      manProd.push({x: val['Date'], y: val['MAN_PROD']});
+      manDeliv.push({x: val['Date'], y: val['MAN_DELIV']});
+      manInvent.push({x: val['Date'], y: val['MAN_INVENT']});
+      areaPMI.push({x: val['Date'], y: val['MAN_PMI']-50});
+      
+      //if (isNaN(val['MAN_CUSTINV'])) {
+      //  manCustInv.push({x: val['Date'], y: 0});
+      //}
+      //else {
+      //manCustInv.push({x: val['Date'], y: Number(val['MAN_CUSTINV'])});
+      //}
+
+      manCustInv.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_CUSTINV'])});
+      manPrices.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_PRICES'])});   
+      manBacklog.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_BACKLOG'])});
+      manExports.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_EXPORTS'])});
+      manImports.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_IMPORTS'])});
+
+    });
+
+    var data_series = [
+      {name: 'ISM Manufacturing PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing New Orders', points: newOrder,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
+      {name: 'ISM Manufacturing Production', points: manProd,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Deliveries', points: manDeliv,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
+      {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
+      {name: 'ISM Manufacturing Customer Inventories', points: manCustInv,type:'line',yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Prices', points: manPrices,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Backlog of Orders', points: manBacklog,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing New Export Orders', points: manExports,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Imports', points: manImports,yAxis: 'leftAxis'},
+
+    ];
+
+
+
+
+
+
+    renderChart(data_series,'chartDiv2','ISM Manufacturing Index');
+
+
+  });
+
+
+function checkNaNReturnNumber(x) {
+  if (isNaN(x)) {
+    return 0;
+  }
+  return Number(x);
+}
+
+
 const urls = [
   "https://www.quandl.com/api/v3/datasets/ISM/MAN_PMI?start_date=1948-01-01&end_date=2021-07-01&api_key=hQqbsfakqXiqavyb4SV9",
   "https://www.quandl.com/api/v3/datasets/ISM/MAN_NEWORDERS?start_date=1948-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
@@ -47,6 +117,7 @@ const fetchData = async () => {
       {name: 'ISM Manufacturing Production', points: manProd,yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing Deliveries', points: manDeliv,yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
+
       {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
 
@@ -67,7 +138,7 @@ const fetchData = async () => {
     console.log("Error", error)
   }
 }
-fetchData()
+//fetchData()
 
 
 const man_urls2 = [
