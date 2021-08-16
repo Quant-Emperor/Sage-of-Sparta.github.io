@@ -10,10 +10,15 @@ const urls = [
   "https://www.quandl.com/api/v3/datasets/ISM/MAN_EMPL?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
   "https://www.quandl.com/api/v3/datasets/ISM/MAN_PROD?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
   "https://www.quandl.com/api/v3/datasets/ISM/MAN_DELIV?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
-  //"https://www.quandl.com/api/v3/datasets/ISM/MAN_INVENT?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
+  "https://www.quandl.com/api/v3/datasets/ISM/MAN_INVENT?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
   //"https://www.quandl.com/api/v3/datasets/ISM/MAN_CUSTINV?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
-
 ]
+
+const man_urls2 = [
+  "https://www.quandl.com/api/v3/datasets/ISM/MAN_INVENT?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
+  "https://www.quandl.com/api/v3/datasets/ISM/MAN_CUSTINV?start_date=1989-01-01&end_date=2021-07-01&column_index=5&api_key=hQqbsfakqXiqavyb4SV9",
+]
+
 
 const fetchData = async () => {
   try {
@@ -26,7 +31,7 @@ const fetchData = async () => {
     var man_empl = response[2].dataset.data;
     var man_prod = response[3].dataset.data;
     var man_deliv = response[4].dataset.data;
-    //var man_invent = response[5].dataset.data;
+    var man_invent = response[5].dataset.data;
     //var man_custinv = response[6].dataset.data;
 
     let PMI = [], areaPMI = [], newOrder = [], manEmpl = [], manProd = [], manDeliv = [], manInvent = [], manCustInv = [];
@@ -37,7 +42,7 @@ const fetchData = async () => {
       manEmpl.push({x: Date.parse(ism_pmi_data[idx][0]), y: man_empl[idx][1]});
       manProd.push({x: Date.parse(ism_pmi_data[idx][0]), y: man_prod[idx][1]});
       manDeliv.push({x: Date.parse(ism_pmi_data[idx][0]), y: man_deliv[idx][1]});
-     // manInvent.push({x: Date.parse(ism_pmi_data[idx][0]), y: man_invent[idx][1]});
+      manInvent.push({x: Date.parse(ism_pmi_data[idx][0]), y: man_invent[idx][1]});
      // manCustInv.push({x: Date.parse(ism_pmi_data[idx][0]), y: man_custinv[idx][1]});
       areaPMI.push({x: Date.parse(ism_pmi_data[idx][0]), y: ism_pmi_data[idx][1]-50});
 
@@ -51,13 +56,13 @@ const fetchData = async () => {
       {name: 'Manufacturing Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
       {name: 'Manufacturing Production', points: manProd,yAxis: 'leftAxis'},
       {name: 'Manufacturing Deliveries', points: manDeliv,yAxis: 'leftAxis'},
-     // {name: 'Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
+      {name: 'Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
      // {name: 'Manufacturing Customers Inventories', points: manCustInv,yAxis: 'leftAxis'},
       {name: 'PMI Area', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
 
-    renderChart2(data_series);
-
+    renderChart(data_series,'chartDiv2','ISM Manufacturing Index');
+    renderChart(data_series,'chartDiv3','Clowns');
     
   } catch (error) {
     console.log("Error", error)
@@ -68,52 +73,9 @@ fetchData()
 
 
 
-
-
-
-// function fetch_ISM_MAN_PMI(callback) {
-//     fetch('https://www.quandl.com/api/v3/datasets/ISM/MAN_PMI?start_date=1948-01-01&end_date=2021-07-01&api_key=hQqbsfakqXiqavyb4SV9')
-//        .then(response => response.json())
-//        .then(json => callback(null, json.dataset))
-//        .catch(error => callback(error, null))
-// }
-
-// fetch_ISM_MAN_PMI((error, ISM_MAN_PMI) => {
-//     if (error) 
-//         console.log(error)
-//     else 
-//        // console.log(ISM_MAN_EMPL.data)
-//       var series = csvToSeries2(ISM_MAN_PMI.data)
-//       renderChart2(series);
-// });
-
-
-
-// function csvToSeries2(text) {
-//   const ism_y = 'PMI';
-//   const date_x = 'Date';
-//   const new_order_y = 'New_Orders';
-//   let dataAsJson = text;
-//   let PMI = [], areaPMI = [], newOrder =[];
-  
-//   dataAsJson.forEach(function (row) {
-//     //add either to Black, White arrays, or discard.
-//     PMI.push({x: Date.parse(row[0]), y: row[1]});
-//     areaPMI.push({x: Date.parse(row[0]), y: row[1]-50});
-//     newOrder.push({x: Date.parse(row[0]), y: row[1]})
-
-//   });
-//   return [
-//     {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
-//     {name: 'newOrder', points: PMI,yAxis: 'leftAxis'},
-//     {name: 'areaPMI', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
-//   ];
-// }
-
-
-function renderChart2(series) {
-  JSC.Chart('chartDiv2', {
-    title_label_text: 'ISM Manufacturing Index',
+function renderChart(series,jscchartname,title) {
+  JSC.Chart(jscchartname, {
+    title_label_text: title,
     yAxis: [
       {
         id: 'leftAxis',
@@ -126,8 +88,6 @@ function renderChart2(series) {
           //range: [30, 70]
           range: { min: 20, max: 90, padding: 0.1 }
         }
-
-
       },
       {
         id: 'rightAxis',
@@ -143,7 +103,6 @@ function renderChart2(series) {
 
       },
     ],
-
     chartArea: { 
         fill: colors[19]
       },
@@ -175,9 +134,6 @@ function renderChart2(series) {
       ], 
       xAxis_scale_type: 'time', 
       series: series
-
-
-
   });
 }
 
