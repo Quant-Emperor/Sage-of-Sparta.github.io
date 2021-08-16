@@ -7,7 +7,8 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
   .then(response => response.text())
   .then(text => {
     let data = JSC.csv2Json(text);
-    let PMI = [], areaPMI = [], newOrder = [], manEmpl = [], manProd = [], manDeliv = [], manInvent = [],manCustInv = [], manPrices = [], manBacklog = [], manExports=[], manImports=[];
+    let PMI = [], areaPMI = [], newOrder = [], manEmpl = [], manProd = [], manDeliv = [], manInvent = [],manCustInv = [], manPrices = [], manBacklog = [], manExports=[], manImports=[],
+    NMI = [], areaNMI = [], nonmanBusAct = [], nonmannewOrder = [], nonmanEmpl = [], nonmanDeliv=[], nonmanInvent=[],nonmanInvsent=[],nonmanBacklog=[],nonmanPrices=[],nonmanImports=[],nonmanExports=[];
 
     data.forEach((val,idx) => {
 
@@ -25,6 +26,21 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
       manExports.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_EXPORTS'])});
       manImports.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_IMPORTS'])});
 
+
+      NMI.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_NMI'])});
+      areaNMI.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_NMI']-50)});
+      nonmanBusAct.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_BUSACT'])});
+      nonmannewOrder.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_NEWORD'])});  
+        
+      nonmanEmpl.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_EMPL'])});  
+      nonmanDeliv.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_DELIV'])});  
+      nonmanInvent.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_INVENT'])});  
+      nonmanInvsent.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_INVSENT'])});  
+      nonmanBacklog.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_BACKLOG'])});  
+      nonmanPrices.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_PRICES'])});  
+      nonmanImports.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_IMPORTS'])});  
+      nonmanExports.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_EXPORTS'])});  
+
     });
 
     var data_series = [
@@ -32,7 +48,7 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
       {name: 'ISM Manufacturing New Orders', points: newOrder,yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
       {name: 'ISM Manufacturing Production', points: manProd,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Deliveries', points: manDeliv,yAxis: 'leftAxis'},
+      {name: 'ISM Manufacturing Supplier Deliveries', points: manDeliv,yAxis: 'leftAxis'},
       {name: 'ISM Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
       {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
@@ -46,8 +62,26 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
       {name: 'ISM Manufacturing Imports', points: manImports,yAxis: 'leftAxis'},
     ];
 
+    var data_series3 = [
+      {name: 'ISM Services PMI', points: NMI,type:'line',yAxis: 'leftAxis'},
+      {name: 'ISM Services PMI Business Activity', points: nonmanBusAct,type:'line',yAxis: 'leftAxis'},
+      {name: 'ISM Services PMI New Orders', points: nonmannewOrder,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI Employment', points: nonmanEmpl,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI Supplier Deliveries', points: nonmanDeliv,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI Inventories', points: nonmanInvent,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI Inventory Sentiment', points: nonmanInvsent,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI Backlog of Orders', points: nonmanBacklog,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI Prices', points: nonmanPrices,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI Imports', points: nonmanImports,type:'line',yAxis: 'leftAxis'},  
+      {name: 'ISM Services PMI New Export Orders', points: nonmanExports,type:'line',yAxis: 'leftAxis'},  
+      {name: '', points: areaNMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
+    ];
+
     renderChart(data_series,'chartDiv2','ISM Manufacturing Index');
     renderChart2(data_series2,'chartDiv3','ISM Manufacturing Index');
+
+    renderChart(data_series3,'chartDiv4','ISM Services PMI Index');
+   // renderChart2(data_series2,'chartDiv5','ISM Manufacturing Index');
 
   });
 
@@ -56,8 +90,13 @@ function checkNaNReturnNumber(x) {
   if (isNaN(x)) {
     return 0;
   }
+  if (x === -50) {
+    return 0;
+  }
+
   return Number(x);
 }
+
 
 
 const urls = [
