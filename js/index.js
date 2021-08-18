@@ -44,22 +44,22 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
     });
 
     var data_series = [
-      {name: 'ISM Manufacturing PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing New Orders', points: newOrder,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
-      {name: 'ISM Manufacturing Production', points: manProd,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Supplier Deliveries', points: manDeliv,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
+      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis',type:'line'},
+      {name: 'New Orders', points: newOrder,yAxis: 'leftAxis'},
+      {name: 'Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
+      {name: 'Production', points: manProd,yAxis: 'leftAxis'},
+      {name: 'Supplier Deliveries', points: manDeliv,yAxis: 'leftAxis'},
+      {name: 'Inventories', points: manInvent,yAxis: 'leftAxis'},
       {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
 
     var data_series2 = [
-      {name: 'ISM Manufacturing PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Customer Inventories', points: manCustInv,type:'line',yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Prices', points: manPrices,yAxis: 'leftAxis',color:colors[15]},
-      {name: 'ISM Manufacturing Backlog of Orders', points: manBacklog,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing New Export Orders', points: manExports,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Imports', points: manImports,yAxis: 'leftAxis'},
+      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
+      {name: 'Customer Inventories', points: manCustInv,type:'line',yAxis: 'leftAxis'},
+      {name: 'Prices', points: manPrices,yAxis: 'leftAxis',color:colors[15]},
+      {name: 'Backlog of Orders', points: manBacklog,yAxis: 'leftAxis'},
+      {name: 'New Export Orders', points: manExports,yAxis: 'leftAxis'},
+      {name: 'Imports', points: manImports,yAxis: 'leftAxis'},
     ];
 
     var data_series3 = [
@@ -136,12 +136,12 @@ const fetchData = async () => {
     });
 
     var data_series = [
-      {name: 'ISM Manufacturing PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing New Orders', points: newOrder,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
-      {name: 'ISM Manufacturing Production', points: manProd,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Deliveries', points: manDeliv,yAxis: 'leftAxis'},
-      {name: 'ISM Manufacturing Inventories', points: manInvent,yAxis: 'leftAxis'},
+      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
+      {name: 'New Orders', points: newOrder,yAxis: 'leftAxis'},
+      {name: 'Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
+      {name: 'Production', points: manProd,yAxis: 'leftAxis'},
+      {name: 'Deliveries', points: manDeliv,yAxis: 'leftAxis'},
+      {name: 'Inventories', points: manInvent,yAxis: 'leftAxis'},
 
       {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
@@ -267,6 +267,32 @@ function renderChart2(series,jscchartname,title) {
             'Click-Drag the chart area to zoom.'
         } 
       ], 
+      legend: {
+            position: 'right top',
+            fill: '#f7f7f0',
+            boxVisible: false,
+            corners: 'round',
+            radius: 5,
+            margin_left: 30,
+            outline: { color: '#FFFFFF', width: 3 },
+            defaultEntry: {
+              iconWidth: 25,
+              padding: 4,
+              style: {
+                color: '#3A5254',
+                fontSize: '10pt',
+                fontStyle: 'italic',
+                fontFamily: 'Arial',
+                fontWeight: 'normal',
+              },
+              states: {
+                hover_style: { color: '#FF5254' },
+                hidden_style: { color: '#c2bec1' },
+              },
+            },
+          },
+
+      
       xAxis_scale_type: 'time', 
       series: series
   });
@@ -328,7 +354,7 @@ function renderChart(series,jscchartname,title) {
           multiplier: 5 
         },
         label_text: 'Date',
-        defaultTick_label_color: colors[15]
+        defaultTick_label_color: colors[14]
 
       }, 
       annotations: [ 
@@ -340,6 +366,30 @@ function renderChart(series,jscchartname,title) {
         } 
       ], 
       xAxis_scale_type: 'time', 
+      legend: {
+            position: 'right top',
+            fill: '#f7f7f0',
+            boxVisible: false,
+            corners: 'round',
+            radius: 5,
+            margin_left: 30,
+            outline: { color: '#FFFFFF', width: 3 },
+            defaultEntry: {
+              iconWidth: 25,
+              padding: 4,
+              style: {
+                color: '#3A5254',
+                fontSize: '10pt',
+                fontStyle: 'italic',
+                fontFamily: 'Arial',
+                fontWeight: 'normal',
+              },
+              states: {
+                hover_style: { color: '#FF5254' },
+                hidden_style: { color: '#c2bec1' },
+              },
+            },
+          },
       series: series
   });
 }
