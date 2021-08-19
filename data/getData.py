@@ -106,6 +106,15 @@ def get_building_permits_starts_comp():
         df.to_csv("usa_building.csv")
 
 
+def get_quarterly_gdp():
+        df = quandl.get("FRED/GDP")
+        df = df.rename(columns={'Value':'gdp'})
+        df['gdp_growth'] = df['gdp'].pct_change()
+        
+        df.to_csv("quarterly_gdp.csv")
+        
+
+
 # UNCOMMENT TO GET ISM DATA
 #df = get_ism_data(api_url,api_url_2)
 # df.to_csv("ism.csv")
@@ -113,23 +122,72 @@ def get_building_permits_starts_comp():
 # UNCOMMENT TO GET UMCSI DATA
 #get_umsci_data()
 
-# get_gdp_data
+# get_gdp_data()
 
-
-
-# Total Building Authorized by Building Permits for USA   FRED/M0255CUSM398NNBR
-# Housing starts  FRED/HOUST
+get_quarterly_gdp()
 
 
 
 #Durable goods:
-#FRED/DGORDER
+
+# new orders  FRED/DGORDER
+# new orders ex transp    FRED/ADXTNO
+# new orders ex defense FRED/ADXDNO
+# comp and elec products FRED/A34SNO
+# elec equip applicance components
+# machinery  FRED/A33SNO
+# fabricated metals  FRED/A35SNO
+# primary metals  FRED/A31SNO
+# transportation FRED/A36SNO
+# furniture & related prods  FRED/A37SNO
 
 
 
 
 
+# Industrial production index - FRED/INDPRO
+# Manufacturing  - FRED/IPGMFN
+# Food,bev,Tob - FRED/IPG311A2S
+# textiles - FRED/IPG313A4N
+#Chemical - FRED/IPG325S
+# plastic, rubber - FRED/IPG326N
+# apparel, leather - FRED/IPG315A6N
+# wood - FRED/IPG321S
+# paper - FRED/IPG322N
+# printing&Rel - FRED/IPG323SQ
+# Petrol&Coal - FRED/IPG324N
+# Nonmetallic Minerals - FRED/IPG327S
+# Primary Metals - FRED/IPG331N
+# Fabricted Metals - FRED/IPG332N
+# Machinery - FRED/IPG333N
+# Comp&Elect - FRED/IPG334N
+# Elecequip,app,components - FRED/IPG335N
+# Motor - FRED/IPG3361T3S
+# Aero&Misc - FRED/IPG3364T9N
+# Furniture - FRED/IPG337S
+# Misc - FRED/IPG339S
 
+
+# Initial Claims (weekly) ,  FRED/ICNSA
+#Continuing claims (weekly)   FRED/CCNSA
+
+
+
+#Employment situation report
+# unemployment rate
+# Total NFPs
+# Government
+# Private
+# Goods-producing
+# Service-Providing
+# Construction
+# Manufacturing
+# Trade,trans,util
+#, Financial
+# Business
+
+# Covid data
+# john hopkins
 
 
 
