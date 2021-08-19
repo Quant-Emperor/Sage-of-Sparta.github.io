@@ -1,6 +1,7 @@
 
 import quandl
 import csv
+import pandas as pd
 
 quandl.ApiConfig.api_key = "hQqbsfakqXiqavyb4SV9"
 #mydata = quandl.get("FRED/GDP")
@@ -55,7 +56,85 @@ def get_ism_data(api_url,api_url_2):
 
 	return(df)
 
+def get_umsci_data():
+        df = quandl.get("UMICH/SOC1")
+        df = df.rename(columns={'Index':'UMCSI'})
+        tmp = quandl.get("UMICH/SOC5")
+        print(tmp.columns)
+
+        tmp = tmp[['Current Index','Expected Index']]
+
+        df = df.merge(tmp, on='Date', how='left')
+        df.to_csv("umcsi.csv")
+
+def get_gdp_data():
+        ### CHECK LATEST YEARS HAVE DATA. Last time run JAPAN had no 2020 GDP
+        usa_gdp = quandl.get_table('WB/DATA',series_id='NY.GDP.MKTP.CD',country_code='USA', qopts={'columns': ['year', 'value']})
+        usa_gdp_yoy = quandl.get_table('WB/DATA',series_id='NY.GDP.MKTP.KD.ZG',country_code='USA', qopts={'columns': ['year', 'value']})
+        usa_gdp_yoy = usa_gdp_yoy.rename(columns={'value':'USA_gdp_growth'})
+        usa_gdp = usa_gdp.rename(columns={'value':'USA_gdp'})
+        df = usa_gdp
+        df = df.merge(usa_gdp_yoy, on='year', how='left')
+
+        for country in ['EUU','CHN','EMU','JPN','DEU','IND','SAU','AUS','KOR','BRA','ITA','MEX','RUS','HKG','SGP']:
+                gdp = quandl.get_table('WB/DATA',series_id='NY.GDP.MKTP.CD',country_code=country, qopts={'columns': ['year', 'value']})
+                gdp_yoy = quandl.get_table('WB/DATA',series_id='NY.GDP.MKTP.KD.ZG',country_code=country, qopts={'columns': ['year', 'value']})
+
+                gdp = gdp.rename(columns={'value':country+'_gdp'})
+                gdp_yoy = gdp_yoy.rename(columns={'value':country+'_gdp_growth'})
+                
+                df = df.merge(gdp, on='year', how='left')
+                df = df.merge(gdp_yoy, on='year', how='left')
+
+        df.to_csv("gdp.csv")
+
+def get_building_permits_starts_comp():
+        tmp = quandl.get("FRED/PERMIT")
+        tmp = tmp.rename(columns={'Value':'building_permits'})
+
+        print(tmp.head())
+        df = tmp
+        tmp = quandl.get("FRED/HOUST")
+        tmp = tmp.rename(columns={'Value':'housing_starts'})
+        print(tmp.head())
+        df = df.merge(tmp, on='Date', how='left')
+
+        tmp = quandl.get("FRED/COMPUTSA")
+        tmp = tmp.rename(columns={'Value':'completions'})
+        df = df.merge(tmp, on='Date', how='left')
+
+        df.to_csv("usa_building.csv")
+
 
 # UNCOMMENT TO GET ISM DATA
-df = get_ism_data(api_url,api_url_2)
-df.to_csv("ism.csv")
+#df = get_ism_data(api_url,api_url_2)
+# df.to_csv("ism.csv")
+
+# UNCOMMENT TO GET UMCSI DATA
+#get_umsci_data()
+
+# get_gdp_data
+
+
+
+# Total Building Authorized by Building Permits for USA   FRED/M0255CUSM398NNBR
+# Housing starts  FRED/HOUST
+
+
+
+#Durable goods:
+#FRED/DGORDER
+
+
+
+
+
+
+
+
+
+
+
+
+
+
