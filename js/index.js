@@ -44,43 +44,47 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
     });
 
     var data_series = [
-      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis',type:'line',legendEntry_icon_name: 'circle'},
-      {name: 'New Orders', points: newOrder,yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21],legendEntry_icon_name: 'circle'},
-      {name: 'Production', points: manProd,yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'Supplier Deliveries', points: manDeliv,yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'Inventories', points: manInvent,yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15],legendEntry_icon_name: 'circle'},
+      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis',type:'line'},
+      {name: 'New Orders', points: newOrder,yAxis: 'leftAxis'},
+      {name: 'Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
+      {name: 'Production', points: manProd,yAxis: 'leftAxis'},
+      {name: 'Supplier Deliveries', points: manDeliv,yAxis: 'leftAxis'},
+      {name: 'Inventories', points: manInvent,yAxis: 'leftAxis'},
+      {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
 
     var data_series2 = [
-      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'Customer Inventories', points: manCustInv,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'Prices', points: manPrices,yAxis: 'leftAxis',color:colors[15],legendEntry_icon_name: 'circle'},
-      {name: 'Backlog of Orders', points: manBacklog,yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'New Export Orders', points: manExports,yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'Imports', points: manImports,yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
+      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
+      {name: 'Customer Inventories', points: manCustInv,type:'line',yAxis: 'leftAxis'},
+      {name: 'Prices', points: manPrices,yAxis: 'leftAxis',color:colors[15]},
+      {name: 'Backlog of Orders', points: manBacklog,yAxis: 'leftAxis'},
+      {name: 'New Export Orders', points: manExports,yAxis: 'leftAxis'},
+      {name: 'Imports', points: manImports,yAxis: 'leftAxis'},
     ];
 
     var data_series3 = [
-      {name: 'PMI', points: NMI,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'Business Activity', points: nonmanBusAct,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},
-      {name: 'New Orders', points: nonmannewOrder,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'Employment', points: nonmanEmpl,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'Supplier Deliveries', points: nonmanDeliv,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'Inventories', points: nonmanInvent,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'Inventory Sentiment', points: nonmanInvsent,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'Backlog of Orders', points: nonmanBacklog,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'Prices', points: nonmanPrices,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'Imports', points: nonmanImports,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: 'New Export Orders', points: nonmanExports,type:'line',yAxis: 'leftAxis',legendEntry_icon_name: 'circle'},  
-      {name: '', points: areaNMI,type:'area',yAxis: 'rightAxis',color:colors[15],legendEntry_icon_name: 'circle'},
+      {name: 'PMI', points: NMI,type:'line',yAxis: 'leftAxis'},
+      {name: 'Business Activity', points: nonmanBusAct,type:'line',yAxis: 'leftAxis'},
+      {name: 'New Orders', points: nonmannewOrder,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Employment', points: nonmanEmpl,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Supplier Deliveries', points: nonmanDeliv,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Inventories', points: nonmanInvent,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Inventory Sentiment', points: nonmanInvsent,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Backlog of Orders', points: nonmanBacklog,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Prices', points: nonmanPrices,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Imports', points: nonmanImports,type:'line',yAxis: 'leftAxis'},  
+      {name: 'New Export Orders', points: nonmanExports,type:'line',yAxis: 'leftAxis'},  
+      {name: '', points: areaNMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
 
     renderChart(data_series,'chartDiv2','ISM Manufacturing Index');
     renderChart2(data_series2,'chartDiv3','ISM Manufacturing Index');
 
+
    // renderChart(data_series3,'chartDiv4','ISM Services PMI Index');
+
+
+
    // renderChart2(data_series2,'chartDiv5','ISM Manufacturing Index');
 
   });
@@ -239,7 +243,8 @@ function renderChart2(series,jscchartname,title) {
       }
     ],
     chartArea: { 
-        fill: colors[19]
+        //fill: colors[19]
+        fill: '#FFFFFF'
       },
     legend_visible: true,
     xAxis_crosshair_enabled: true,
@@ -247,6 +252,10 @@ function renderChart2(series,jscchartname,title) {
       crosshair_enabled: true, 
       scale: { type: "time" } 
     },
+    defaultSeries: { 
+        line_width: 1.5, 
+        legendEntry_icon_name: 'circle'
+      }, 
 
     axisToZoom: 'x', 
       /*X Axis Time Zoom limit*/
@@ -305,11 +314,6 @@ function renderChart2(series,jscchartname,title) {
 
 
 
-
-
-
-
-
 function renderChart(series,jscchartname,title) {
 
 var chart = JSC.Chart(jscchartname, {
@@ -343,7 +347,7 @@ var chart = JSC.Chart(jscchartname, {
     ],
 
     chartArea: { 
-        fill: colors[19]
+        fill: '#FFFFFF'
       },
     legend_visible: true,
     xAxis_crosshair_enabled: true,
@@ -351,6 +355,12 @@ var chart = JSC.Chart(jscchartname, {
       crosshair_enabled: true, 
       scale: { type: "time" } 
     },
+  
+  defaultSeries: { 
+      line_width: 1.5, 
+      legendEntry_icon_name: 'circle'
+    }, 
+
 
     axisToZoom: 'x', 
       /*X Axis Time Zoom limit*/
@@ -360,7 +370,7 @@ var chart = JSC.Chart(jscchartname, {
           multiplier: 5 
         },
         label_text: 'Date',
-        defaultTick_label_color: colors[14],
+        defaultTick_label_color: colors[15],
       }, 
       annotations: [ 
         { 
@@ -411,6 +421,5 @@ function applyZoom(range) {
   
   chart.axes('x').zoom(range); 
 } 
-
 
 
