@@ -2,19 +2,17 @@
 
 // JS 
   
-JSC.fetch('./data/usa_stocks/us_sector_Auto-Tires-Trucks.csv').then( 
+JSC.fetch('https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_Auto-Tires-Trucks.csv').then( 
   function(response) { 
     if (response.ok) { 
       response.text().then(function(text) { 
         var parsedData = JSC.csv2Json(text); 
         parsedData.headerCol = true; 
         parsedData.columns = [ 
-          { value: '{%time:date g}' }, 
-          { value: '%PeakPeriod' }, 
-          { value: '%PeakDirection' }, 
-          { value: '%UpcrossPeriod' }, 
-          { value: '%SignificantWaveHeight' }, 
-          { value: '%SeaTemperature' } 
+          { value: '%Ticker' }, 
+          { value: '%Exchange' }, 
+          { value: '%Sector' }, 
+          { value: '%Industry' }, 
         ]; 
         JSC.Grid( 
           'gridDiv', 
@@ -26,3 +24,9 @@ JSC.fetch('./data/usa_stocks/us_sector_Auto-Tires-Trucks.csv').then(
     } 
   } 
 ); 
+
+
+
+
+
+//,,,,,,Month of Fiscal Yr End,P/E (Trailing 12 Months),P/E (F1),P/E (F2),F0 Consensus Est.,F1 Consensus Est.,F2 Consensus Est.,EPS Growth F1,EPS Growth F2,F1 PEG,F2 PEG,PEG Ratio
