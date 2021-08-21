@@ -26,7 +26,6 @@ JSC.fetch('https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
           { value: '%EPS Growth F2' },
           { value: '%F1 PEG' },
           { value: '%F2 PEG' },
-          { value: '%PEG Ratio' },
 
 
 
