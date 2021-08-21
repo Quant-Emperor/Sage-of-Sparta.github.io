@@ -9,10 +9,27 @@ JSC.fetch('https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
         var parsedData = JSC.csv2Json(text); 
         parsedData.headerCol = true; 
         parsedData.columns = [ 
+          { value: '{%Company Name}' }, 
           { value: '%Ticker' }, 
           { value: '%Exchange' }, 
           { value: '%Sector' }, 
           { value: '%Industry' }, 
+          { value: '%Market Cap (mil)' },
+          { value: '%Month of Fiscal Yr End' },
+          { value: '%P/E (Trailing 12 Months)' },
+          { value: '%P/E (F1)' },
+          { value: '%P/E (F2)' },
+          { value: '%F0 Consensus Est.' },
+          { value: '%F1 Consensus Est.' },
+          { value: '%F2 Consensus Est.' },
+          { value: '%EPS Growth F1' },
+          { value: '%EPS Growth F2' },
+          { value: '%F1 PEG' },
+          { value: '%F2 PEG' },
+          { value: '%PEG Ratio' },
+
+
+
         ]; 
         JSC.Grid( 
           'gridDiv', 
@@ -25,8 +42,3 @@ JSC.fetch('https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
   } 
 ); 
 
-
-
-
-
-//,,,,,,Month of Fiscal Yr End,P/E (Trailing 12 Months),P/E (F1),P/E (F2),F0 Consensus Est.,F1 Consensus Est.,F2 Consensus Est.,EPS Growth F1,EPS Growth F2,F1 PEG,F2 PEG,PEG Ratio
