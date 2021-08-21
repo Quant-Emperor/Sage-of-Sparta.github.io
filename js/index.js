@@ -87,6 +87,22 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
 
    // renderChart2(data_series2,'chartDiv5','ISM Manufacturing Index');
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   });
 
 
