@@ -18,10 +18,47 @@
 		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
+        <script src="js/us_companies.js"></script>		
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
 		<script>
-		  $(document).ready( function () {
-		    $('#table_id').DataTable();
-		  } );
+		  
+		$(function() {
+	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_Auto-Tires-Trucks.csv", {
+		          download: true,
+		          complete: function(example) {
+		             // console.log(example.data)
+		          $(document).ready(function () {
+		              $('#table_id').DataTable({
+		                  data: example.data,
+		                  dataSrc:"",
+		                  columns: [
+					          { title: 'Company Name' }, 
+					          { title: 'Ticker'}, 
+					          { title: 'Exchange' }, 
+					          { title: 'Sector' }, 
+					          { title: 'Industry' }, 
+					          { title: 'Market Cap (mil)' },
+					          { title: 'Month of Fiscal Yr End' },
+					          { title: 'P/E (Trailing 12 Months)' },
+					          { title: 'P/E (F1)' },
+					          { title: 'P/E (F2)' },
+					          { title: 'F0 Consensus Est' },
+					          { title: 'F1 Consensus Est' },
+					          { title: 'F2 Consensus Est' },
+					          { title: 'EPS Growth F1' },
+					          { title: 'EPS Growth F2' },
+					          { title: 'F1 PEG' },
+					          { title: 'F2 PEG' }
+		                  ]
+		              });
+		          });
+		          }
+		      });
+		  });
+
 		</script>
 	</head>
 	<body>
@@ -211,25 +248,7 @@
 				</div>
 			</div>
 
-
-			<table id="table_id" class="display">
-			    <thead>
-			        <tr>
-			            <th>Column 1</th>
-			            <th>Column 2</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			        <tr>
-			            <td>john</td>
-			            <td>kelly</td>
-			        </tr>
-			        <tr>
-			            <td>matt</td>
-			            <td>hello</td>
-			        </tr>
-			    </tbody>
-			</table>
+			<table id="table_id" class="display" width="90%"></table>
 
 
 		</section>
@@ -1737,10 +1756,7 @@
 		</footer>
 		<!-- End Footer -->
 
-        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
-        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
-        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
-        <script src="js/us_companies.js"></script>
+
         <script src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 		<script src="js/init.js"></script>
