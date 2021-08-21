@@ -15,8 +15,21 @@
 		<link href="css/custom.css" rel="stylesheet" type="text/css">
 		<link href="css/colors/purple.css" rel="stylesheet" type="text/css">
 		<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+		<script>
+		  $(document).ready( function () {
+		    $('#table_id').DataTable();
+		  } );
+		</script>
 	</head>
 	<body>
+	
+  
+	
+
+
 
 		<!-- Start Header -->
 		<nav class="navbar nav-down" data-fullwidth="true" data-menu-style="light" data-animation="shrink">
@@ -198,9 +211,32 @@
 				</div>
 			</div>
 
-			<p>Grid with 15K records</p>
-			<div id="gridDiv" style="max-width: 740px;height: 400px;margin: 0px auto">
-			</div>
+
+			<table id="table_id" class="display">
+			    <thead>
+			        <tr>
+			            <th>Column 1</th>
+			            <th>Column 2</th>
+			            <th>Column 3</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <tr>
+			            <td>Row 1 Data john</td>
+			            <td>Row 1 Data kelly</td>
+			        </tr>
+			        <tr>
+			            <td>Row 2 Data matt</td>
+			            <td>Row 2 Data gof</td>
+			        </tr>
+			        <tr>
+			            <td>Row 3 Data hello</td>
+			            <td>Row 3 Data yes</td>
+			        </tr>
+
+			    </tbody>
+			</table>
+
 
 		</section>
 		<!-- End Accordion -->
@@ -1706,11 +1742,13 @@
 
 		</footer>
 		<!-- End Footer -->
+
         <script src="https://code.jscharting.com/latest/jscharting.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
         <script src="js/us_companies.js"></script>
         <script src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 		<script src="js/init.js"></script>
 		<script src="js/scripts.js"></script>
 
