@@ -18,13 +18,9 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
         
         var disp_date = month + " " + year.toString()
         PMI.push({x: 'PMI', y: disp_date, z: val['MAN_PMI']});
-        newOrder.push({x: 'New Orders', y: disp_date, z: val['MAN_NEWORDERS']});
-        
-
+        newOrder.push({x: 'New Orders', y: disp_date, z: val['MAN_NEWORDERS']});       
         manProd.push({x: 'Production', y: disp_date, z: val['MAN_PROD']});
-
         manEmpl.push({x: 'Employment', y: disp_date, z: val['MAN_EMPL']});
-
         manDeliv.push({x: 'Deliveries', y: disp_date, z: val['MAN_DELIV']});
         manInvent.push({x: 'Inventories', y: disp_date, z: val['MAN_INVENT']});
         manCustInv.push({x: 'Cust Inv', y: disp_date, z: val['MAN_CUSTINV']});
@@ -32,10 +28,7 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
         manBacklog.push({x: 'Order Backlog', y: disp_date, z: val['MAN_BACKLOG']});
         manExports.push({x: 'Exports', y: disp_date, z: val['MAN_EXPORTS']});
         manImports.push({x: 'Imports', y: disp_date, z: val['MAN_IMPORTS']});
-
-
       }
-
     });
     
     var data_series = [
@@ -92,61 +85,7 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
       {name: 'Imports', points: manImports}
     ];
     renderHeatMap2(data_series,'chartDiv15','Imports',false);
-
-
-
-
   });
-
-
-
-//renderHeatMap('','chartDiv4','');
-
-function renderHeatMap(series,jscchartname,title) {
-    var chart = JSC.chart(jscchartname, { 
-    debug: true, 
-    type: 'heatmap', 
-    toolbar_visible: false, 
-    title_label_text: 
-      'Call Response Time (Minutes)', 
-    legend_title_label_text: 'Minutes', 
-    palette: { 
-      colors: ['green', 'yellow', 'red'], 
-      pointValue: '{%zValue}'
-    }, 
-    defaultPoint: { 
-      tooltip: 
-        '<b>%xValue</b> %yValue<br/>Response time: %zValuemin', 
-      label_text: '%zValue', 
-      outline_width: 0 
-    }, 
-    series: [ 
-      { 
-        name: 'Call Response Time.', 
-        points: [ 
-          { x: 'Josh', y: 'Monday', z: 1 }, 
-          { x: 'Josh', y: 'Tuesday', z: 6 }, 
-          { x: 'Josh', y: 'Wednesday', z: 3 }, 
-          { x: 'Josh', y: 'Thursday', z: 2 }, 
-          { x: 'Josh', y: 'Friday', z: 5 }, 
-          { x: 'Josh', y: 'Saturday', z: 1 }, 
-          { x: 'Greg', y: 'Monday', z: 4 }, 
-          { x: 'Greg', y: 'Tuesday', z: 6 }, 
-          { x: 'Greg', y: 'Wednesday', z: 1 }, 
-          { x: 'Greg', y: 'Thursday', z: 8 }, 
-          { x: 'Greg', y: 'Friday', z: 6 }, 
-          { x: 'Greg', y: 'Saturday', z: 1 }, 
-          { x: 'Molly', y: 'Monday', z: 2 }, 
-          { x: 'Molly', y: 'Tuesday', z: 2 }, 
-          { x: 'Molly', y: 'Wednesday', z: 3 }, 
-          { x: 'Molly', y: 'Thursday', z: 1 }, 
-          { x: 'Molly', y: 'Friday', z: 2 }, 
-          { x: 'Molly', y: 'Saturday', z: 2 } 
-        ] 
-      } 
-    ] 
-  }); 
-}
 
 
 function renderHeatMap2(series,jscchartname,title,dispy) {

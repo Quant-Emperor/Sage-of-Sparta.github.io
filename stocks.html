@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+<!-- elements12:51-->
+<head>
+        
+		<meta charset="utf-8">
+		<title>Sage of Sparta</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="img/assets/favicon.png" rel="icon" type="image/png">
+		<link href="css/init.css" rel="stylesheet" type="text/css">
+		<link href="css/ion-icons.min.css" rel="stylesheet" type="text/css">
+		<link href="css/etline-icons.min.css" rel="stylesheet" type="text/css">
+		<link href="css/theme.css" rel="stylesheet" type="text/css">
+		<link href="css/custom.css" rel="stylesheet" type="text/css">
+		<link href="css/colors/purple.css" rel="stylesheet" type="text/css">
+		<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
+        <script src="js/us_companies.js"></script>		
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+		<script>
+		  
+		$(function() {
+	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_Auto-Tires-Trucks.csv", {
+		          download: true,
+		          header: false,
+		          skipEmptyLines: true,
+		          complete: function(example) {
+		             // console.log(example.data)
+		          $(document).ready(function () {
+		              $('#table_id').DataTable({
+		                  //data: example.data,
+		                  //dataSrc:"",
+		                  data: example.data,
+		                  columns: [
+					          { title: "Company Name" }, 
+					          { title: "Ticker"}, 
+					          { title: "Exchange" }, 
+					          { title: "Sector" }, 
+					          { title: "Industry" }, 
+					          { title: "Market Cap (mil)" },
+					          { title: "Month of Fiscal Yr End" },
+					          { title: "P/E (Trailing 12 Months)" },
+					          { title: "P/E (F1)" },
+					          { title: "P/E (F2)" },
+					          { title: "F0 Consensus Est" },
+					          { title: "F1 Consensus Est" },
+					          { title: "F2 Consensus Est" },
+					          { title: "EPS Growth F1" },
+					          { title: "EPS Growth F2" },
+					          { title: "F1 PEG" },
+					          { title: "F2 PEG" },
+					          { title: "PEG Ratio" }
+		                  ]
+		              });
+		          });
+		          }
+		      });
+		  });
+
+		</script>
+	</head>
+	<body>
+
+		<!-- Start Header -->
+		<nav class="navbar nav-down" data-fullwidth="true" data-menu-style="light" data-animation="shrink">
+										<!-- Styles: light, dark, transparent, transparent-to-dark | Animation: hiding, shrink -->
+			<div class="container">
+
+				<div class="navbar-header">
+					<div class="container">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar top-bar"></span>
+							<span class="icon-bar middle-bar"></span>
+							<span class="icon-bar bottom-bar"></span>
+						</button>
+						<a class="navbar-brand to-top" href="#"><img src="img/assets/logo-light.png" class="logo-light" alt="#"><img src="img/assets/logo-dark.png" class="logo-dark" alt="#"></a>
+					</div>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="container">
+						<ul class="nav navbar-nav center-menu">
+
+							<!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
+							<li><a href="index-2.html">Home</a></li>
+							<li><a href="index-2.html#about">About</a></li>
+							<li><a href="index-2.html#services">Services</a></li>
+							<li><a href="index-2.html#works">Work</a></li>
+							<li class="dropdown megamenu vos">
+								<a class="dropdown-toggle">Elements<i class="ion-ios-arrow-down"></i></a>
+								<ul class="dropdown-menu fullwidth">
+									<li class="megamenu-content withdesc">
+										<div class="col-md-3 mg-col">
+											<ul>
+												<li><a href="#elements-accordion">Accordion</a></li>
+												<li><a href="#elements-buttons">Buttons</a></li>
+												<li><a href="#elements-features">Icon Features</a></li>
+												<li><a href="#elements-bars">Progress Bars</a></li>
+												<li><a href="#elements-pricing">Pricing Options</a></li>
+												<li><a href="#elements-lists">Lists</a></li>
+												<li><a href="#elements-typography">Typography</a></li>
+											</ul>
+										</div>
+										<div class="col-md-3 mg-col">
+											<ul>
+												<li><a href="project-slides.html">Project Slides</a></li>
+												<li><a href="project-gallery.html">Projects Gallery</a></li>
+												<li><a href="project-video.html">Projects Video</a></li>
+												<li><a href="ism.html">ISM Manufacturing</a></li>
+												<li><a href="ism-heatmaps.html">ISM Heatmaps</a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a class="dropdown-toggle">Blog<i class="ion-ios-arrow-down"></i></a>
+								<ul class="dropdown-menu">
+									<li><a href="blog-standard.html">Standard Layout</a></li>
+									<li><a href="blog-list.html">List Layout</a></li>
+									<li><a href="blog-grid.html">Grid Layout</a></li>
+									<li><a href="blog-post-standard.html">Standard Post</a></li>
+									<li><a href="blog-post-gallery.html">Gallery Post</a></li>
+									<li><a href="blog-post-video.html">Video Post</a></li>
+									<li><a href="blog-post-fullwidth.html">Fullwidth Post</a></li>
+								</ul>
+							</li>
+							<li><a href="index-2.html#contact">Contact</a></li>
+						</ul>
+						<ul class="nav navbar-nav menu-right">
+							<li class="nav-separator"></li>
+							<li  class="nav-icon"><a href="http://facebook.com/" target="_blank"><i class="ion-social-facebook"></i></a></li>
+							<li  class="nav-icon"><a href="http://twitter.com/" target="_blank"><i class="ion-social-twitter"></i></a></li>
+							<li  class="nav-icon"><a href="#" target="_blank"><i class="ion-help-buoy"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- End Header -->
+
+
+		<!-- Accordion -->
+		<section id="elements-accordion" class="pt120 pb120">
+					<div class="col-md-12 text-center mt40 pb40">
+						<h1><strong>USA Stocks</strong></h1>
+					</div>
+
+		</section>
+		<!-- End Accordion -->
+
+		<!-- Button Tabs Centered -->
+		<section id="elements-buttons" class="pt100 pb80" style="width:100%" align-content= "left">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-md-10 mr-auto text-center">
+
+						<div class="buttons-tabs-centered">
+
+							<ul id="buttonTabs" class="nav-tabs nav-tabs-center" width="1000px" >
+								<li class="active"><a href="#tab-c1" data-toggle="tab">Technology</a></li>
+								<li class=""><a href="#tab-c2" data-toggle="tab">Finance</a></li>
+								<li class=""><a href="#tab-c3" data-toggle="tab">Auto</a></li>
+								<li class=""><a href="#tab-c4" data-toggle="tab">Fourth</a></li>
+								<li class=""><a href="#tab-c5" data-toggle="tab">Fifth</a></li>
+								<li class=""><a href="#tab-c6" data-toggle="tab">Sixth</a></li>
+								<li class=""><a href="#tab-c7" data-toggle="tab">Seventh</a></li>
+								<li class=""><a href="#tab-c8" data-toggle="tab">Eighth</a></li>
+								<li class=""><a href="#tab-c9" data-toggle="tab">Ninth</a></li>
+							</ul>
+
+							<div id="myTabContent" class="tab-content">
+
+								<div class="tab-pane active in" id="tab-c1">
+									<p>Austin swag selfies truffaut portland lomo echo park, freegan artisan fashion axe butcher tilde locavore. Pour-over deep v tote bag, kinfolk photo booth umami man braid. Kale chips tote bag fanny pack, selvage craft beer tax idermy bitters blue bottle cardigan listicle knaus gaard single-origin coffee. IPhone narwhal swag food truck marfa disrupt yuccie, chicharrones try-hard normcore brooklyn.</p>
+
+								</div>
+
+								<div class="tab-pane" id="tab-c2">
+									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit blue bottle ethical yuccie aut fugit.</p>
+								</div>
+
+								<div class="tab-pane" id="tab-c3">
+									<p>Kickstarter truffaut cold-pressed chillwave, brooklyn gochujang chartreuse authentic. Lumbersexual heirloom offal twee, semiotics mixtape gastropub master cleanse normcore tousled meh literally. Pug chartreuse next level synth, biodiesel tilde blue bottle ethical yuccie. Microdosing with and fapchillwave gochujang brooklyn intelligentsia, kombucha dreamcatcher vinyl leggings shoreditch pork belly. 
+									</p>
+
+									<table id="table_id" class="display" width="70%"></table>
+
+								</div>
+
+								<div class="tab-pane" id="tab-c4">
+									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+								</div>
+
+
+								<div class="tab-pane" id="tab-c5">
+									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+								</div>
+								<div class="tab-pane" id="tab-c6">
+									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+								</div>
+
+
+								<div class="tab-pane" id="tab-c7">
+									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+								</div>
+								<div class="tab-pane" id="tab-c8">
+									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+								</div>
+
+
+								<div class="tab-pane" id="tab-c9">
+									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+								</div>
+
+
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- End Button Tabs Centered -->
+
+		
+
+		<hr>
+
+		
+
+
+		<!-- Start Footer -->
+		<footer id="footer" class="footer style-1 dark">
+
+			<a href="index-2.html"><img src="img/assets/footer-logo.png" alt="#" class="mr-auto img-responsive"></a>
+			<ul>
+				<li><a href="https://www.twitter.com/" target="_blank" class="color"><i class="ion-social-twitter"></i></a></li>
+				<li><a href="https://www.facebook.com/" target="_blank" class="color"><i class="ion-social-facebook"></i></a></li>
+				<li><a href="https://www.linkedin.com/" target="_blank" class="color"><i class="ion-social-linkedin"></i></a></li>
+				<li><a href="https://www.pinterest.com/" target="_blank" class="color"><i class="ion-social-pinterest"></i></a></li>
+				<li><a href="https://plus.google.com/" target="_blank" class="color"><i class="ion-social-googleplus"></i></a></li>
+			</ul>
+			<a href="https://www.templateshub.net" target="_blank">Templates Hub</a>
+			<p>Made with love for great people.</p>
+
+			<!-- Back To Top Button -->
+			<span><a class="scroll-top"><i class="ion-chevron-up"></i></a></span>
+
+		</footer>
+		<!-- End Footer -->
+
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/scripts.js"></script>
+
+	</body>
+
+<!-- elements12:54-->
+</html>
