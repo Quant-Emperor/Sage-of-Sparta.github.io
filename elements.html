@@ -28,6 +28,8 @@
 		$(function() {
 	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_Auto-Tires-Trucks.csv", {
 		          download: true,
+		          header: false,
+		          skipEmptyLines: true,
 		          complete: function(example) {
 		             // console.log(example.data)
 		          $(document).ready(function () {
@@ -52,7 +54,8 @@
 					          { title: "EPS Growth F1" },
 					          { title: "EPS Growth F2" },
 					          { title: "F1 PEG" },
-					          { title: "F2 PEG" }
+					          { title: "F2 PEG" },
+					          { title: "PEG Ratio" }
 		                  ]
 		              });
 		          });
@@ -251,7 +254,7 @@
 				</div>
 			</div>
 
-			<table id="table_id" class="display" width="90%"></table>
+			<table id="table_id" class="display" width="70%"></table>
 
 
 		</section>
