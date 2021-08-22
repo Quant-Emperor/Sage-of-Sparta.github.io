@@ -79,30 +79,8 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
 
     renderChart(data_series,'chartDiv2','ISM Manufacturing Index');
     renderChart2(data_series2,'chartDiv3','ISM Manufacturing Index');
-
-
    // renderChart(data_series3,'chartDiv4','ISM Services PMI Index');
-
-
-
    // renderChart2(data_series2,'chartDiv5','ISM Manufacturing Index');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   });
 
 
