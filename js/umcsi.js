@@ -3,34 +3,27 @@
 
 var colors = JSC.getPalette(0);
 
-JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/gdp.csv")
+JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/umcsi.csv")
   .then(response => response.text())
   .then(text => {
     let data = JSC.csv2Json(text);
-    let usa_gdp = [], EUU_gdp = [],EMU_gdp=[],CHN_gdp=[],JPN_gdp=[], IND_gdp = [];
+    let umcsi = [], current = [],expected=[];
 
     data.forEach((val,idx) => {
-
-      usa_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['USA_gdp'])});
-      EUU_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['EUU_gdp'])});
-      EMU_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['EMU_gdp'])});
-      CHN_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['CHN_gdp'])});
-      JPN_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['JPN_gdp'])});
-      IND_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['IND_gdp'])});
+      //Date  UMCSI Current Index Expected Index
+      umcsi.push({x: val['Date'], y: checkNaNReturnNumber(val['UMCSI'])});
+      current.push({x: val['Date'], y: checkNaNReturnNumber(val['Current Index'])});
+      expected.push({x: val['Date'], y: checkNaNReturnNumber(val['Expected Index'])});
 
     });
 
     var data_series = [
-      {name: 'USA', points: usa_gdp,yAxis: 'leftAxis'},
-      {name: 'European Union', points: EUU_gdp,yAxis: 'leftAxis'},
-      {name: 'Euro area', points: EMU_gdp,yAxis: 'leftAxis'},
-      {name: 'China', points: CHN_gdp,yAxis: 'leftAxis'},
-      {name: 'Japan', points: JPN_gdp,yAxis: 'leftAxis'},     
-      {name: 'India', points: IND_gdp,yAxis: 'leftAxis'},  
+      {name: 'UMCSI', points: umcsi,yAxis: 'leftAxis'},
+      {name: 'Current Conditions', points: current,yAxis: 'leftAxis'},
+      {name: 'Expected Conditions', points: expected,yAxis: 'leftAxis'}, 
     ];
 
-
-    renderChart3(data_series,'chartDivGDP','World GDP');
+    renderChart3(data_series,'chartDivUMCSI','University of Michigan Consumer Sentiment Index');
 
   });
 
@@ -51,7 +44,7 @@ function renderChart3(series,jscchartname,title) {
       {
         id: 'leftAxis',
         defaultTick_label_color: colors[15],
-        label_text: 'GDP',
+        label_text: 'Index',
         defaultTick_enabled: true,
       }
     ],
@@ -63,7 +56,7 @@ function renderChart3(series,jscchartname,title) {
     xAxis_crosshair_enabled: true,
     xAxis: { 
       crosshair_enabled: true, 
-      //scale: { type: "time" } 
+      scale: { type: "time" } 
     },
     defaultSeries: { 
         line_width: 1.5, 
@@ -78,7 +71,7 @@ function renderChart3(series,jscchartname,title) {
         //  unit: 'hour', 
         //  multiplier: 5 
         //},
-        label_text: 'Year',
+        label_text: 'Date',
         defaultTick_label_color: colors[15]
 
       }, 
@@ -117,10 +110,10 @@ function renderChart3(series,jscchartname,title) {
               },
             },
           },
-      //xAxis_scale_type: 'time', 
+      xAxis_scale_type: 'time', 
       series: series
   });
-
+  chart.axes('x').zoom([Date.parse(1979),Date.parse(2021)]); 
 }
 
 
