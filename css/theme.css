@@ -104,7 +104,7 @@ thead {
 
 .table-fill {
   background: white;
-  border-radius:3px;
+  border-radius:2px;
   border-collapse: collapse;
   height: 320px;
   margin: auto;
@@ -120,9 +120,9 @@ th {
   background:#1b1e24;
   border-bottom:4px solid #9ea7af;
   border-right: 1px solid #343a45;
-  font-size:23px;
+  font-size:15px;
   font-weight: 100;
-  padding:24px;
+  padding:18px;
   text-align:left;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   vertical-align:middle;
@@ -2206,7 +2206,9 @@ fieldset[disabled] .btn-primary.active, fieldset[disabled] .btn-primary.focus, f
 .nav-tabs { border-bottom: none; }
 .tab-pane p { line-height: 24px; }
 .tab-content { position: relative; }
-.tab-content>.tab-pane { display: block; }
+.tab-content>.tab-pane {     display: flex;
+    justify-content: center;
+    flex-direction: row;}
 .tab-pane {
 	position: absolute;
 	opacity: 0;
