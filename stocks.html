@@ -34,6 +34,24 @@
 		function getfinance(sector) {
 			  return sector[3] == "Finance";
 			}
+		function getConsumerStaple(sector) {
+			  return sector[3] == "Consumer Staples";
+			}
+		function getConsumerDisc(sector) {
+			  return sector[3] == "Consumer Discretionary";
+			}
+		function getMedical(sector) {
+			  return sector[3] == "Medical";
+			}
+		function getIndustrial(sector) {
+			  return sector[3] == "Industrial Products";
+			}
+		function getMaterials(sector) {
+			  return sector[3] == "Basic Materials";
+			}
+		function getTransportation(sector) {
+			  return sector[3] == "Transportation";
+			}
 
 		var column_list = [
 					          { title: "Company Name" }, 
@@ -65,26 +83,38 @@
 		             // console.log(example.data)
 		          $(document).ready(function () {
 		              $('#tech_table').DataTable({
-		                  //data: example.data,
-		                  //dataSrc:"",
 		                  data: example.data.filter(gettech),
 		                  columns: column_list
 		              });
-		              $('#auto_table').DataTable({
-		                  //data: example.data,
-		                  //dataSrc:"",
-		                  data: example.data.filter(getauto),
-		                  columns: column_list
-		              });
 		              $('#finance_table').DataTable({
-		                  //data: example.data,
-		                  //dataSrc:"",
 		                  data: example.data.filter(getfinance),
 		                  columns: column_list
 		              });
 
-
-
+					  $('#consumerstaple_table').DataTable({
+		                  data: example.data.filter(getConsumerStaple),
+		                  columns: column_list
+		              });
+/*					  $('#consumerdisc_table').DataTable({
+		                  data: example.data.filter(getConsumerDisc),
+		                  columns: column_list
+		              });
+					  $('#medical_table').DataTable({
+		                  data: example.data.filter(getMedical),
+		                  columns: column_list
+		              });
+					  $('#industrial_table').DataTable({
+		                  data: example.data.filter(getIndustrial),
+		                  columns: column_list
+		              });
+					  $('#materials_table').DataTable({
+		                  data: example.data.filter(getMaterials),
+		                  columns: column_list
+		              });
+                     $('#auto_table').DataTable({
+		                  data: example.data.filter(getauto),
+		                  columns: column_list
+		              });*/
 		          });
 		          }
 		      });
@@ -172,13 +202,12 @@
 							<ul id="buttonTabs" class="nav-tabs nav-tabs-center" width="1000px" >
 								<li class="active"><a href="#tab-c1" data-toggle="tab">Technology</a></li>
 								<li class=""><a href="#tab-c2" data-toggle="tab">Finance</a></li>
-								<li class=""><a href="#tab-c3" data-toggle="tab">Auto</a></li>
-								<li class=""><a href="#tab-c4" data-toggle="tab">Fourth</a></li>
-								<li class=""><a href="#tab-c5" data-toggle="tab">Fifth</a></li>
-								<li class=""><a href="#tab-c6" data-toggle="tab">Sixth</a></li>
-								<li class=""><a href="#tab-c7" data-toggle="tab">Seventh</a></li>
-								<li class=""><a href="#tab-c8" data-toggle="tab">Eighth</a></li>
-								<li class=""><a href="#tab-c9" data-toggle="tab">Ninth</a></li>
+								<li class=""><a href="#tab-c3" data-toggle="tab">Consumer Discretionary</a></li>
+								<li class=""><a href="#tab-c4" data-toggle="tab">Consumer Staples</a></li>
+								<li class=""><a href="#tab-c5" data-toggle="tab">Medical</a></li>
+								<li class=""><a href="#tab-c6" data-toggle="tab">Industrial Products</a></li>
+								<li class=""><a href="#tab-c7" data-toggle="tab">Basic Materials</a></li>
+								<li class=""><a href="#tab-c8" data-toggle="tab">Auto</a></li>
 							</ul>
 
 							<div id="myTabContent" class="tab-content">
@@ -191,42 +220,35 @@
 
 								<div class="tab-pane" id="tab-c2">
 									
-
-
 									<table id="finance_table" class="display" width="70%"></table>
 								</div>
 
 								<div class="tab-pane" id="tab-c3">
 
-									<table id="auto_table" class="display" width="70%"></table>
+									<table id="consumerstaple_table" class="display" width="70%"></table>
 
 								</div>
 
 								<div class="tab-pane" id="tab-c4">
-									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+									<table id="consumerdisc_table" class="display" width="70%"></table>
 								</div>
 
 
 								<div class="tab-pane" id="tab-c5">
-									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+									<table id="medical_table" class="display" width="70%"></table>
 								</div>
+
 								<div class="tab-pane" id="tab-c6">
-									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+									<table id="industrial_table" class="display" width="70%"></table>
 								</div>
 
 
 								<div class="tab-pane" id="tab-c7">
-									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+									<table id="materials_table" class="display" width="70%"></table>
 								</div>
 								<div class="tab-pane" id="tab-c8">
-									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
+									<table id="auto_table" class="display" width="70%"></table>
 								</div>
-
-
-								<div class="tab-pane" id="tab-c9">
-									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Sed scelerisque urna id scelerisque tincidunt. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare craft beer tax idermy bitters blue bottle cardigan listicle knaus.</p>
-								</div>
-
 
 
 							</div>
