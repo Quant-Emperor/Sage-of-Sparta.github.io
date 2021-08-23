@@ -25,10 +25,16 @@
 		<script>
 		
 		  // Returns [32, 33, 40]
-		 function checkIndustry(Industry) {
-			  return Industry[4] == "Internet - Software";
+		 function gettech(sector) {
+			  return sector[3] == "Computer and Technology";
 			}
-		
+		function getauto(sector) {
+			  return sector[3] == "Auto-Tires-Trucks";
+			}
+		function getfinance(sector) {
+			  return sector[3] == "Finance";
+			}
+
 		var column_list = [
 					          { title: "Company Name" }, 
 					          { title: "Ticker"}, 
@@ -51,19 +57,34 @@
 		                  ];
 		$(function() {
 
-	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_auto.csv", {
+	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
 		          download: true,
 		          header: false,
 		          skipEmptyLines: true,
-		          complete: function(example1) {
+		          complete: function(example) {
 		             // console.log(example.data)
 		          $(document).ready(function () {
+		              $('#tech_table').DataTable({
+		                  //data: example.data,
+		                  //dataSrc:"",
+		                  data: example.data.filter(gettech),
+		                  columns: column_list
+		              });
 		              $('#auto_table').DataTable({
 		                  //data: example.data,
 		                  //dataSrc:"",
-		                  data: example1.data,
+		                  data: example.data.filter(getauto),
 		                  columns: column_list
 		              });
+		              $('#finance_table').DataTable({
+		                  //data: example.data,
+		                  //dataSrc:"",
+		                  data: example.data.filter(getfinance),
+		                  columns: column_list
+		              });
+
+
+
 		          });
 		          }
 		      });
@@ -169,7 +190,10 @@
 								</div>
 
 								<div class="tab-pane" id="tab-c2">
-									<p>Sed scelerisque urna id scelerisque tincidunt. Sed scelerisque laoreet dolor sed aliquam. Duis at eros vehicula, sollicitudin magna elementum, pretium diam. Vivamus bibendum fringilla mauris et rhoncus. Phasellus mattis egestas risus ac tempor. Nam dapibus sodales ornare. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit blue bottle ethical yuccie aut fugit.</p>
+									
+
+
+									<table id="finance_table" class="display" width="70%"></table>
 								</div>
 
 								<div class="tab-pane" id="tab-c3">
