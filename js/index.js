@@ -270,7 +270,7 @@ function renderChart2(series,jscchartname,title) {
   });
 
 
-  chart.axes('x').zoom([Date.parse(2000),Date.parse(2021)]); 
+  chart.axes('x').zoom([Date.parse(2000),Date.parse(2022)]); 
 }
 
 
@@ -373,7 +373,7 @@ var chart = JSC.Chart(jscchartname, {
 
   });
 
- chart.axes('x').zoom([Date.parse(2000),Date.parse(2021)]); 
+ chart.axes('x').zoom([Date.parse(2000),Date.parse(2022)]); 
 
 }
 

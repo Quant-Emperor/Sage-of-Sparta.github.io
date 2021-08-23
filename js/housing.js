@@ -3,27 +3,28 @@
 
 var colors = JSC.getPalette(0);
 
-JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/umcsi.csv")
+JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_building.csv")
   .then(response => response.text())
   .then(text => {
     let data = JSC.csv2Json(text);
-    let umcsi = [], current = [],expected=[];
+    let building_permits = [], housing_starts = [],completions=[];
 
     data.forEach((val,idx) => {
-      //Date  UMCSI Current Index Expected Index
-      umcsi.push({x: val['Date'], y: checkNaNReturnNumber(val['UMCSI'])});
-      current.push({x: val['Date'], y: checkNaNReturnNumber(val['Current Index'])});
-      expected.push({x: val['Date'], y: checkNaNReturnNumber(val['Expected Index'])});
+      //Date  building_permits  housing_starts  completions
+
+      building_permits.push({x: val['Date'], y: checkNaNReturnNumber(val['building_permits'])});
+      housing_starts.push({x: val['Date'], y: checkNaNReturnNumber(val['housing_starts'])});
+      completions.push({x: val['Date'], y: checkNaNReturnNumber(val['completions'])});
 
     });
 
     var data_series = [
-      {name: 'UMCSI', points: umcsi,yAxis: 'leftAxis'},
-      {name: 'Current Conditions', points: current,yAxis: 'leftAxis'},
-      {name: 'Expected Conditions', points: expected,yAxis: 'leftAxis'}, 
+      {name: 'Building Permits', points: building_permits,yAxis: 'leftAxis'},
+      {name: 'Housing Starts', points: housing_starts,yAxis: 'leftAxis'},
+      {name: 'Completions', points: completions,yAxis: 'leftAxis'}, 
     ];
 
-    renderChart3(data_series,'chartDivUMCSI','University of Michigan Consumer Sentiment Index');
+    renderChart3(data_series,'chartDivHOUSING','Building Permits - Housing Starts - Completions');
 
   });
 
@@ -67,10 +68,10 @@ function renderChart3(series,jscchartname,title) {
     axisToZoom: 'x', 
       /*X Axis Time Zoom limit*/
       xAxis: { 
-        //scale_zoomLimit: { 
-        //  unit: 'hour', 
-        //  multiplier: 5 
-        //},
+        scale_zoomLimit: { 
+          unit: 'hour', 
+          multiplier: 5 
+        },
         label_text: 'Date',
         defaultTick_label_color: colors[15]
 
