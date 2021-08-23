@@ -7,48 +7,41 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
   .then(response => response.text())
   .then(text => {
     let data = JSC.csv2Json(text);
-    let PMI = [], areaPMI = [], newOrder = [], manEmpl = [], manProd = [], manDeliv = [], manInvent = [],manCustInv = [], manPrices = [], manBacklog = [], manExports=[], manImports=[];
+    let NMI = [], areaNMI = [], nonmanBusAct = [], nonmannewOrder = [], nonmanEmpl = [], nonmanDeliv=[], nonmanInvent=[],nonmanInvsent=[],nonmanBacklog=[],nonmanPrices=[],nonmanImports=[],nonmanExports=[];
 
     data.forEach((val,idx) => {
 
-      PMI.push({x: val['Date'], y: val['MAN_PMI']});
-      newOrder.push({x: val['Date'], y: val['MAN_NEWORDERS']});
-      manEmpl.push({x: val['Date'], y: val['MAN_EMPL']});
-      manProd.push({x: val['Date'], y: val['MAN_PROD']});
-      manDeliv.push({x: val['Date'], y: val['MAN_DELIV']});
-      manInvent.push({x: val['Date'], y: val['MAN_INVENT']});
-      areaPMI.push({x: val['Date'], y: val['MAN_PMI']-50});
-      
-      manCustInv.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_CUSTINV'])});
-      manPrices.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_PRICES'])});   
-      manBacklog.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_BACKLOG'])});
-      manExports.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_EXPORTS'])});
-      manImports.push({x: val['Date'], y: checkNaNReturnNumber(val['MAN_IMPORTS'])}); 
+      NMI.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_NMI'])});
+      areaNMI.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_NMI']-50)});
+      nonmanBusAct.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_BUSACT'])});
+      nonmannewOrder.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_NEWORD'])});  
+        
+      nonmanEmpl.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_EMPL'])});  
+      nonmanDeliv.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_DELIV'])});  
+      nonmanInvent.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_INVENT'])});  
+      nonmanInvsent.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_INVSENT'])});  
+      nonmanBacklog.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_BACKLOG'])});  
+      nonmanPrices.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_PRICES'])});  
+      nonmanImports.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_IMPORTS'])});  
+      nonmanExports.push({x: val['Date'], y: checkNaNReturnNumber(val['NONMAN_EXPORTS'])});  
 
     });
 
-    var data_series = [
-      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis',type:'line'},
-      {name: 'New Orders', points: newOrder,yAxis: 'leftAxis'},
-      {name: 'Employment', points: manEmpl,yAxis: 'leftAxis',color:colors[21]},
-      {name: 'Production', points: manProd,yAxis: 'leftAxis'},
-      {name: 'Supplier Deliveries', points: manDeliv,yAxis: 'leftAxis'},
-      {name: 'Inventories', points: manInvent,yAxis: 'leftAxis'},
-      {name: '', points: areaPMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
+    var data_series3 = [
+      {name: 'PMI', points: NMI,type:'line',yAxis: 'leftAxis'},
+      {name: 'Business Activity', points: nonmanBusAct,type:'line',yAxis: 'leftAxis'},
+      {name: 'New Orders', points: nonmannewOrder,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Employment', points: nonmanEmpl,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Supplier Deliveries', points: nonmanDeliv,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Inventories', points: nonmanInvent,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Inventory Sentiment', points: nonmanInvsent,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Backlog of Orders', points: nonmanBacklog,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Prices', points: nonmanPrices,type:'line',yAxis: 'leftAxis'},  
+      {name: 'Imports', points: nonmanImports,type:'line',yAxis: 'leftAxis'},  
+      {name: 'New Export Orders', points: nonmanExports,type:'line',yAxis: 'leftAxis'},  
+      {name: '', points: areaNMI,type:'area',yAxis: 'rightAxis',color:colors[15]},
     ];
-
-    var data_series2 = [
-      {name: 'PMI', points: PMI,type:'line',yAxis: 'leftAxis'},
-      {name: 'Customer Inventories', points: manCustInv,type:'line',yAxis: 'leftAxis'},
-      {name: 'Prices', points: manPrices,yAxis: 'leftAxis',color:colors[15]},
-      {name: 'Backlog of Orders', points: manBacklog,yAxis: 'leftAxis'},
-      {name: 'New Export Orders', points: manExports,yAxis: 'leftAxis'},
-      {name: 'Imports', points: manImports,yAxis: 'leftAxis'},
-    ];
-
-    renderChart(data_series,'chartDiv2','ISM Manufacturing Index');
-    renderChart2(data_series2,'chartDiv3','ISM Manufacturing Index');
-
+    renderChart(data_series3,'chartDiv4','ISM Services PMI Index');
   });
 
 
