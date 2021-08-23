@@ -280,7 +280,7 @@ function renderChart2(series,jscchartname,title) {
             margin_left: 30,
             outline: { color: '#FFFFFF', width: 3 },
             defaultEntry: {
-              iconWidth: 10,
+              iconWidth: 17,
               padding: 4,
               style: {
                 color: '#3A5254',
@@ -386,7 +386,7 @@ var chart = JSC.Chart(jscchartname, {
             margin_left: 30,
             outline: { color: '#FFFFFF', width: 3 },
             defaultEntry: {
-              iconWidth: 25,
+              iconWidth: 17,
               padding: 4,
               style: {
                 color: '#3A5254',

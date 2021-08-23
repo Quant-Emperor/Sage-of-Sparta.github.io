@@ -7,21 +7,28 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
   .then(response => response.text())
   .then(text => {
     let data = JSC.csv2Json(text);
-    let usa_gdp = [];
-
+    let usa_gdp = [], EUU_gdp = [],EMU_gdp=[],CHN_gdp=[],JPN_gdp=[];
 
     data.forEach((val,idx) => {
 
       usa_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['USA_gdp'])});
+      EUU_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['EUU_gdp'])});
+      EMU_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['EMU_gdp'])});
+      CHN_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['CHN_gdp'])});
+      JPN_gdp.push({x: val['year'], y: checkNaNReturnNumber(val['JPN_gdp'])});
 
     });
 
     var data_series = [
-      {name: 'USA GDP', points: usa_gdp,type:'line',yAxis: 'leftAxis',type:'line'},
+      {name: 'USA', points: usa_gdp,yAxis: 'leftAxis'},
+      {name: 'European Union', points: EUU_gdp,yAxis: 'leftAxis'},
+      {name: 'Euro area', points: EMU_gdp,yAxis: 'leftAxis'},
+      {name: 'China', points: CHN_gdp,yAxis: 'leftAxis'},
+      {name: 'Japan', points: JPN_gdp,yAxis: 'leftAxis'},     
     ];
 
 
-    renderChart(data_series,'chartDivGDP','World GDP');
+    renderChart3(data_series,'chartDivGDP','World GDP');
 
   });
 
@@ -30,22 +37,19 @@ function checkNaNReturnNumber(x) {
   if (isNaN(x)) {
     return 0;
   }
-  if (x === -50) {
-    return 0;
-  }
 
   return Number(x);
 }
 
 
-function renderChart(series,jscchartname,title) {
+function renderChart3(series,jscchartname,title) {
   var chart = JSC.Chart(jscchartname, {
     //title_label_text: title,
     yAxis: [
       {
         id: 'leftAxis',
         defaultTick_label_color: colors[15],
-        label_text: 'Index',
+        label_text: 'GDP',
         defaultTick_enabled: true,
       }
     ],
@@ -57,7 +61,7 @@ function renderChart(series,jscchartname,title) {
     xAxis_crosshair_enabled: true,
     xAxis: { 
       crosshair_enabled: true, 
-      scale: { type: "time" } 
+      //scale: { type: "time" } 
     },
     defaultSeries: { 
         line_width: 1.5, 
@@ -67,11 +71,11 @@ function renderChart(series,jscchartname,title) {
     axisToZoom: 'x', 
       /*X Axis Time Zoom limit*/
       xAxis: { 
-        scale_zoomLimit: { 
-          unit: 'hour', 
-          multiplier: 5 
-        },
-        label_text: 'Date',
+        //scale_zoomLimit: { 
+        //  unit: 'hour', 
+        //  multiplier: 5 
+        //},
+        label_text: 'Year',
         defaultTick_label_color: colors[15]
 
       }, 
@@ -83,17 +87,19 @@ function renderChart(series,jscchartname,title) {
             'Click-Drag the chart area to zoom.'
         } 
       ], 
-      legend: {
+
+            legend: {
             position: 'top',
             template: '%icon %name', 
+
             fill: '#FFFFFF',
             boxVisible: false,
             corners: 'round',
-            radius: 3,
+            radius: 2,
             margin_left: 30,
             outline: { color: '#FFFFFF', width: 3 },
             defaultEntry: {
-              iconWidth: 10,
+              iconWidth: 17,
               padding: 4,
               style: {
                 color: '#3A5254',
@@ -108,14 +114,10 @@ function renderChart(series,jscchartname,title) {
               },
             },
           },
-
-      
-      xAxis_scale_type: 'time', 
+      //xAxis_scale_type: 'time', 
       series: series
   });
 
-
-  chart.axes('x').zoom([Date.parse(2000),Date.parse(2020)]); 
 }
 
 
