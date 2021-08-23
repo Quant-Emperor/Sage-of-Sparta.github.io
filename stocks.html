@@ -23,20 +23,13 @@
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>	
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
 		<script>
-		  
-		$(function() {
-	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_auto.csv", {
-		          download: true,
-		          header: false,
-		          skipEmptyLines: true,
-		          complete: function(example) {
-		             // console.log(example.data)
-		          $(document).ready(function () {
-		              $('#table_id').DataTable({
-		                  //data: example.data,
-		                  //dataSrc:"",
-		                  data: example.data,
-		                  columns: [
+		
+		  // Returns [32, 33, 40]
+		 function checkIndustry(Industry) {
+			  return Industry[4] == "Internet - Software";
+			}
+		
+		var column_list = [
 					          { title: "Company Name" }, 
 					          { title: "Ticker"}, 
 					          { title: "Exchange" }, 
@@ -55,12 +48,27 @@
 					          { title: "F1 PEG" },
 					          { title: "F2 PEG" },
 					          { title: "PEG Ratio" }
-		                  ]
+		                  ];
+		$(function() {
+
+	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_auto.csv", {
+		          download: true,
+		          header: false,
+		          skipEmptyLines: true,
+		          complete: function(example1) {
+		             // console.log(example.data)
+		          $(document).ready(function () {
+		              $('#auto_table').DataTable({
+		                  //data: example.data,
+		                  //dataSrc:"",
+		                  data: example1.data,
+		                  columns: column_list
 		              });
 		          });
 		          }
 		      });
 		  });
+
 
 		</script>
 	</head>
@@ -155,7 +163,8 @@
 							<div id="myTabContent" class="tab-content">
 
 								<div class="tab-pane active in" id="tab-c1">
-									<p>Austin swag selfies truffaut portland lomo echo park, freegan artisan fashion axe butcher tilde locavore. Pour-over deep v tote bag, kinfolk photo booth umami man braid. Kale chips tote bag fanny pack, selvage craft beer tax idermy bitters blue bottle cardigan listicle knaus gaard single-origin coffee. IPhone narwhal swag food truck marfa disrupt yuccie, chicharrones try-hard normcore brooklyn.</p>
+									
+									<table id="tech_table" class="display" width="70%"></table>
 
 								</div>
 
@@ -165,7 +174,7 @@
 
 								<div class="tab-pane" id="tab-c3">
 
-									<table id="table_id" class="display" width="70%"></table>
+									<table id="auto_table" class="display" width="70%"></table>
 
 								</div>
 
