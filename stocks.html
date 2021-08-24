@@ -155,75 +155,17 @@
 
 
 					<div class="col-md-10 mr-auto text-center">
-
-						<div class="buttons-tabs-centered">
-
-							<ul id="buttonTabs" class="nav-tabs nav-tabs-center" width="1000px" >
-								<li class="active"><a href="#tab-c1" data-toggle="tab">Technology</a></li>
-								<li class=""><a href="#tab-c2" data-toggle="tab">Finance</a></li>
-								<li class=""><a href="#tab-c3" data-toggle="tab">Consumer Discretionary</a></li>
-								<li class=""><a href="#tab-c4" data-toggle="tab">Consumer Staples</a></li>
-								<li class=""><a href="#tab-c5" data-toggle="tab">Medical</a></li>
-								<li class=""><a href="#tab-c6" data-toggle="tab">Industrial Products</a></li>
-								<li class=""><a href="#tab-c7" data-toggle="tab">Basic Materials</a></li>
-								<li class=""><a href="#tab-c8" data-toggle="tab">Auto</a></li>
-							</ul>
-
-							<div id="myTabContent" class="tab-content">
-
-								<div class="tab-pane active in" id="tab-c1">
-									
-									
-
-								</div>
-
-								<div class="tab-pane" id="tab-c2">
-									
-									
-								</div>
-
-								<div class="tab-pane" id="tab-c3">
-
-									
-
-								</div>
-
-								<div class="tab-pane" id="tab-c4">
-									
-								</div>
-
-
-								<div class="tab-pane" id="tab-c5">
-
-									
-								</div>
-
-								<div class="tab-pane" id="tab-c6">
-									
-								</div>
-
-
-								<div class="tab-pane" id="tab-c7">
-									
-								</div>
-								<div class="tab-pane" id="tab-c8">
-									
-								</div>
-
-
-							</div>
-
+						<div class="btn-group">
+							
+						    <button id="techbtn" class="btn btn-md btn-primary btn-round">Technology</button>
+						    <button id="financebtn" class="btn btn-md btn-primary btn-round">Finance</button>
+						    <button id="onprogress" class="btn btn-md btn-primary btn-round">On Process</button>
 						</div>
-
 					</div>
 
-					<div class="btn-group pull-right">
-					    <button id="onprogress" class="btn btn-default filter">On Process</button>
-					    <button id="closed" class="btn btn-default filter">Closed</button>
-					    <button id="all" class="btn btn-default filter">All</button>
-					</div>
+					
 						<script>
-				  			  $('#closed').on('click', function () {
+				  			  $('#techbtn').on('click', function () {
 								$(function() {
 									//$('#table').dataTable().clear().draw();
 									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
@@ -234,9 +176,6 @@
 										             // console.log(example.data)
 										          $(document).ready(function () {
 										              
-										          	//data1 = example.data.filter(gettech)
-										          	//data2 = example.data.filter(getfinance)
-
 										              var dataTables = $('#table').DataTable({
 										              	retrieve: true,
 										              	paging: false,
@@ -247,35 +186,6 @@
 										              dataTables.columns(3).search("Computer and Technology").draw();
 
 												  });
-
-								/*			      $('#finance_table').DataTable({
-										                  data: example.data.filter(getfinance),
-										                  columns: column_list
-										              });
-											      $('#consumerstaple_table').DataTable({
-										                  data: example.data.filter(getConsumerStaple),
-										                  columns: column_list
-										              });
-												  $('#consumerdisc_table').DataTable({
-										                  data: example.data.filter(getConsumerDisc),
-										                  columns: column_list
-										              });
-												  $('#medical_table').DataTable({
-										                  data: example.data.filter(getMedical),
-										                  columns: column_list
-										              });
-												  $('#industrial_table').DataTable({
-										                  data: example.data.filter(getIndustrial),
-										                  columns: column_list
-										              });
-												  $('#materials_table').DataTable({
-										                  data: example.data.filter(getMaterials),
-										                  columns: column_list
-										              });
-								                  $('#auto_table').DataTable({
-										                  data: example.data.filter(getauto),
-										                  columns: column_list
-										              });*/
 										          
 										          }
 
@@ -285,9 +195,9 @@
 
 
 
-				  			  $('#all').on('click', function () {
+				  			  $('#financebtn').on('click', function () {
 								    //dataTables.columns(4).search("Finance").draw();
-$(function() {
+									$(function() {
 
 									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
 										          download: true,
@@ -296,9 +206,6 @@ $(function() {
 										          complete: function(example) {
 										             // console.log(example.data)
 										          $(document).ready(function () {
-										              
-										          	//data1 = example.data.filter(gettech)
-										          	//data2 = example.data.filter(getfinance)
 
 										              var dataTables = $('#table').DataTable({
 										              	retrieve: true,
@@ -311,35 +218,6 @@ $(function() {
 
 												  });
 
-								/*			      $('#finance_table').DataTable({
-										                  data: example.data.filter(getfinance),
-										                  columns: column_list
-										              });
-											      $('#consumerstaple_table').DataTable({
-										                  data: example.data.filter(getConsumerStaple),
-										                  columns: column_list
-										              });
-												  $('#consumerdisc_table').DataTable({
-										                  data: example.data.filter(getConsumerDisc),
-										                  columns: column_list
-										              });
-												  $('#medical_table').DataTable({
-										                  data: example.data.filter(getMedical),
-										                  columns: column_list
-										              });
-												  $('#industrial_table').DataTable({
-										                  data: example.data.filter(getIndustrial),
-										                  columns: column_list
-										              });
-												  $('#materials_table').DataTable({
-										                  data: example.data.filter(getMaterials),
-										                  columns: column_list
-										              });
-								                  $('#auto_table').DataTable({
-										                  data: example.data.filter(getauto),
-										                  columns: column_list
-										              });*/
-										          
 										          }
 
 										      });
@@ -350,9 +228,11 @@ $(function() {
 
 							  });
 						</script>
-					<table id="table" class="display" width="70%"></table>
+					
 				</div>
 			</div>
+
+			<table id="table" class="display" width="70%"></table>
 		</section>
 		<!-- End Button Tabs Centered -->
 
