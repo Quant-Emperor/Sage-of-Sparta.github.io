@@ -73,55 +73,14 @@
 					          { title: "F2 PEG" },
 					          { title: "PEG Ratio" }
 		                  ];
-		$(function() {
-
-	      Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
-		          download: true,
-		          header: false,
-		          skipEmptyLines: true,
-		          complete: function(example) {
-		             // console.log(example.data)
-		          $(document).ready(function () {
-		              $('#tech_table').DataTable({
-		                  data: example.data.filter(gettech),
-		                  columns: column_list
-		              });
-		              $('#finance_table').DataTable({
-		                  data: example.data.filter(getfinance),
-		                  columns: column_list
-		              });
-
-					  $('#consumerstaple_table').DataTable({
-		                  data: example.data.filter(getConsumerStaple),
-		                  columns: column_list
-		              });
-/*					  $('#consumerdisc_table').DataTable({
-		                  data: example.data.filter(getConsumerDisc),
-		                  columns: column_list
-		              });
-					  $('#medical_table').DataTable({
-		                  data: example.data.filter(getMedical),
-		                  columns: column_list
-		              });
-					  $('#industrial_table').DataTable({
-		                  data: example.data.filter(getIndustrial),
-		                  columns: column_list
-		              });
-					  $('#materials_table').DataTable({
-		                  data: example.data.filter(getMaterials),
-		                  columns: column_list
-		              });
-                     $('#auto_table').DataTable({
-		                  data: example.data.filter(getauto),
-		                  columns: column_list
-		              });*/
-		          });
-		          }
-		      });
-		  });
 
 
+		
 		</script>
+
+
+
+
 	</head>
 	<body>
 
@@ -214,40 +173,41 @@
 
 								<div class="tab-pane active in" id="tab-c1">
 									
-									<table id="tech_table" class="display" width="70%"></table>
+									
 
 								</div>
 
 								<div class="tab-pane" id="tab-c2">
 									
-									<table id="finance_table" class="display" width="70%"></table>
+									
 								</div>
 
 								<div class="tab-pane" id="tab-c3">
 
-									<table id="consumerstaple_table" class="display" width="70%"></table>
+									
 
 								</div>
 
 								<div class="tab-pane" id="tab-c4">
-									<table id="consumerdisc_table" class="display" width="70%"></table>
+									
 								</div>
 
 
 								<div class="tab-pane" id="tab-c5">
-									<table id="medical_table" class="display" width="70%"></table>
+
+									
 								</div>
 
 								<div class="tab-pane" id="tab-c6">
-									<table id="industrial_table" class="display" width="70%"></table>
+									
 								</div>
 
 
 								<div class="tab-pane" id="tab-c7">
-									<table id="materials_table" class="display" width="70%"></table>
+									
 								</div>
 								<div class="tab-pane" id="tab-c8">
-									<table id="auto_table" class="display" width="70%"></table>
+									
 								</div>
 
 
@@ -257,6 +217,140 @@
 
 					</div>
 
+					<div class="btn-group pull-right">
+					    <button id="onprogress" class="btn btn-default filter">On Process</button>
+					    <button id="closed" class="btn btn-default filter">Closed</button>
+					    <button id="all" class="btn btn-default filter">All</button>
+					</div>
+						<script>
+				  			  $('#closed').on('click', function () {
+								$(function() {
+									//$('#table').dataTable().clear().draw();
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              
+										          	//data1 = example.data.filter(gettech)
+										          	//data2 = example.data.filter(getfinance)
+
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+
+										              dataTables.columns(3).search("Computer and Technology").draw();
+
+												  });
+
+								/*			      $('#finance_table').DataTable({
+										                  data: example.data.filter(getfinance),
+										                  columns: column_list
+										              });
+											      $('#consumerstaple_table').DataTable({
+										                  data: example.data.filter(getConsumerStaple),
+										                  columns: column_list
+										              });
+												  $('#consumerdisc_table').DataTable({
+										                  data: example.data.filter(getConsumerDisc),
+										                  columns: column_list
+										              });
+												  $('#medical_table').DataTable({
+										                  data: example.data.filter(getMedical),
+										                  columns: column_list
+										              });
+												  $('#industrial_table').DataTable({
+										                  data: example.data.filter(getIndustrial),
+										                  columns: column_list
+										              });
+												  $('#materials_table').DataTable({
+										                  data: example.data.filter(getMaterials),
+										                  columns: column_list
+										              });
+								                  $('#auto_table').DataTable({
+										                  data: example.data.filter(getauto),
+										                  columns: column_list
+										              });*/
+										          
+										          }
+
+										      });
+		  							});
+							  });
+
+
+
+				  			  $('#all').on('click', function () {
+								    //dataTables.columns(4).search("Finance").draw();
+$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              
+										          	//data1 = example.data.filter(gettech)
+										          	//data2 = example.data.filter(getfinance)
+
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+
+										              dataTables.columns(3).search("Finance").draw();
+
+												  });
+
+								/*			      $('#finance_table').DataTable({
+										                  data: example.data.filter(getfinance),
+										                  columns: column_list
+										              });
+											      $('#consumerstaple_table').DataTable({
+										                  data: example.data.filter(getConsumerStaple),
+										                  columns: column_list
+										              });
+												  $('#consumerdisc_table').DataTable({
+										                  data: example.data.filter(getConsumerDisc),
+										                  columns: column_list
+										              });
+												  $('#medical_table').DataTable({
+										                  data: example.data.filter(getMedical),
+										                  columns: column_list
+										              });
+												  $('#industrial_table').DataTable({
+										                  data: example.data.filter(getIndustrial),
+										                  columns: column_list
+										              });
+												  $('#materials_table').DataTable({
+										                  data: example.data.filter(getMaterials),
+										                  columns: column_list
+										              });
+								                  $('#auto_table').DataTable({
+										                  data: example.data.filter(getauto),
+										                  columns: column_list
+										              });*/
+										          
+										          }
+
+										      });
+		  							});
+
+
+
+
+							  });
+						</script>
+					<table id="table" class="display" width="70%"></table>
 				</div>
 			</div>
 		</section>
