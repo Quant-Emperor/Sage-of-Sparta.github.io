@@ -159,12 +159,20 @@
 							
 						    <button id="techbtn" class="btn btn-md btn-primary btn-round">Technology</button>
 						    <button id="financebtn" class="btn btn-md btn-primary btn-round">Finance</button>
-						    <button id="onprogress" class="btn btn-md btn-primary btn-round">On Process</button>
+						    <button id="consumerdiscbtn" class="btn btn-md btn-primary btn-round">Consumer Discretionary</button>
+						    <button id="consumerstapbtn" class="btn btn-md btn-primary btn-round">Consumer Staples</button>
+						    <button id="medicalbtn" class="btn btn-md btn-primary btn-round">Medical</button>
+						    <button id="industrialbtn" class="btn btn-md btn-primary btn-round">Industrial</button>
+							<button id="materialsbtn" class="btn btn-md btn-primary btn-round">Materials</button>
+							<button id="autobtn" class="btn btn-md btn-primary btn-round">Auto</button>
+							<button id="transportbtn" class="btn btn-md btn-primary btn-round">Transportation</button>
+
 						</div>
 					</div>
 
-					
+						
 						<script>
+							/// Read file
 				  			  $('#techbtn').on('click', function () {
 								$(function() {
 									//$('#table').dataTable().clear().draw();
@@ -173,30 +181,21 @@
 										          header: false,
 										          skipEmptyLines: true,
 										          complete: function(example) {
-										             // console.log(example.data)
 										          $(document).ready(function () {
-										              
 										              var dataTables = $('#table').DataTable({
 										              	retrieve: true,
 										              	paging: false,
 										                  data: example.data,
 										                  columns: column_list
 										              });
-
 										              dataTables.columns(3).search("Computer and Technology").draw();
-
 												  });
-										          
 										          }
-
 										      });
 		  							});
 							  });
-
-
-
+				  			  ////Read file
 				  			  $('#financebtn').on('click', function () {
-								    //dataTables.columns(4).search("Finance").draw();
 									$(function() {
 
 									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
@@ -206,27 +205,173 @@
 										          complete: function(example) {
 										             // console.log(example.data)
 										          $(document).ready(function () {
-
 										              var dataTables = $('#table').DataTable({
 										              	retrieve: true,
 										              	  paging: false,
 										                  data: example.data,
 										                  columns: column_list
 										              });
-
 										              dataTables.columns(3).search("Finance").draw();
-
 												  });
-
 										          }
-
 										      });
 		  							});
-
-
-
-
 							  });
+				  			  $('#consumerdiscbtn').on('click', function () {
+									$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+										              dataTables.columns(3).search("Consumer Discretionary").draw();
+												  });
+										          }
+										      });
+		  							});
+							  });
+				  			  $('#consumerstapbtn').on('click', function () {
+									$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+										              dataTables.columns(3).search("Consumer Staples").draw();
+												  });
+										          }
+										      });
+		  							});
+							  });
+				  			  $('#medicalbtn').on('click', function () {
+									$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+										              dataTables.columns(3).search("Medical").draw();
+												  });
+										          }
+										      });
+		  							});
+							  });
+				  			  $('#industrialbtn').on('click', function () {
+									$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+										              dataTables.columns(3).search("Industrial Products").draw();
+												  });
+										          }
+										      });
+		  							});
+							  });
+				  			  $('#materialsbtn').on('click', function () {
+									$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+										              dataTables.columns(3).search("Basic Materials").draw();
+												  });
+										          }
+										      });
+		  							});
+							  });
+				  			  $('#autobtn').on('click', function () {
+									$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+										              dataTables.columns(3).search("Auto-Tires-Trucks").draw();
+												  });
+										          }
+										      });
+		  							});
+							  });
+				  			  $('#transportbtn').on('click', function () {
+									$(function() {
+
+									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
+										          download: true,
+										          header: false,
+										          skipEmptyLines: true,
+										          complete: function(example) {
+										             // console.log(example.data)
+										          $(document).ready(function () {
+										              var dataTables = $('#table').DataTable({
+										              	retrieve: true,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list
+										              });
+										              dataTables.columns(3).search("Transportation").draw();
+												  });
+										          }
+										      });
+		  							});
+							  });
+
 						</script>
 					
 				</div>
