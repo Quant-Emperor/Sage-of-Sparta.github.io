@@ -62,32 +62,33 @@ print(final_df.head())
 output_1 = final_df[['Company Name','Ticker','Exchange','Sector','Industry','Market Cap (mil)','Month of Fiscal Yr End','P/E (Trailing 12 Months)','P/E (F1)','P/E (F2)','F0 Consensus Est.','F1 Consensus Est.', 'F2 Consensus Est.','EPS Growth F1','EPS Growth F2','F1 PEG','F2 PEG','PEG Ratio']]
 output_2 = missing_df[['Company Name','Ticker','Exchange','Sector','Industry','Market Cap (mil)','Month of Fiscal Yr End','P/E (Trailing 12 Months)','P/E (F1)','P/E (F2)','F0 Consensus Est.','F1 Consensus Est.', 'F2 Consensus Est.','PEG Ratio']]
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Auto-Tires-Trucks')]
-#tmpdf.to_csv('./usa_stocks/us_sector_auto.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Computer and Technology')]
-#tmpdf.to_csv('./usa_stocks/us_sector_technology.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Auto-Tires-Trucks')]
+tmpdf.to_csv('./usa_stocks/us_sector_auto.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Finance')]
-#tmpdf.to_csv('./usa_stocks/us_sector_finance.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Computer and Technology')]
+tmpdf.to_csv('./usa_stocks/us_sector_technology.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Consumer Discretionary')]
-#tmpdf.to_csv('./usa_stocks/us_sector_consumer_disc.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Finance')]
+tmpdf.to_csv('./usa_stocks/us_sector_finance.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Consumer Staples')]
-#tmpdf.to_csv('./usa_stocks/us_sector_consumer_stap.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Consumer Discretionary')]
+tmpdf.to_csv('./usa_stocks/us_sector_consumer_disc.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Medical')]
-#tmpdf.to_csv('./usa_stocks/us_sector_medical.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Consumer Staples')]
+tmpdf.to_csv('./usa_stocks/us_sector_consumer_stap.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Industrial Products')]
-#tmpdf.to_csv('./usa_stocks/us_sector_industrial.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Medical')]
+tmpdf.to_csv('./usa_stocks/us_sector_medical.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Basic Materials')]
-#tmpdf.to_csv('./usa_stocks/us_sector_materials.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Industrial Products')]
+tmpdf.to_csv('./usa_stocks/us_sector_industrial.csv',index=False,header=False)
 
-#tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Transportation')]
-#tmpdf.to_csv('./usa_stocks/us_sector_transportation.csv',index=False,header=False)
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Basic Materials')]
+tmpdf.to_csv('./usa_stocks/us_sector_materials.csv',index=False,header=False)
+
+tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Transportation')]
+tmpdf.to_csv('./usa_stocks/us_sector_transportation.csv',index=False,header=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC')]
 tmpdf.to_csv('./usa_stocks/us_sector_equities.csv',index=False,header=False)
