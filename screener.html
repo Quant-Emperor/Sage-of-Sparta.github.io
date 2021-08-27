@@ -120,19 +120,28 @@
 						                	retrieve: true,
 										    
 						                	"ajax": {
-									            "url": "https://financialmodelingprep.com/api/v3/stock-screener?country=US&apikey=c01b3c8e189822588988574a0c3957dd",
+									            "url": "https://financialmodelingprep.com/api/v3/stock-screener?country=US&marketCapMoreThan=1000000000&betaMoreThan=1&marketCapLowerThan=10000000000&apikey=c01b3c8e189822588988574a0c3957dd",
 									            "dataSrc": ""
 									        },
 
 						                    "columns": [
 						                        { "data": "symbol" },
 						                        { "data": "companyName" },
-						                        { "data": "marketCap" },
+						                        { "data": "marketCap",
+							                        "render": function ( data ) {
+												    return data.toString().replace(
+												      /\B(?=(\d{3})+(?!\d))/g, ","
+												    )},
+						                         },
 						                        { "data": "sector" },
 						                        { "data": "industry" },
 						                        { "data": "beta" },
 						                        { "data": "price" },
-						                        { "data": "lastAnnualDividend" },
+						                        { "data": "lastAnnualDividend",
+						                          "render": function ( data ) {
+												    return data.toFixed(2)},
+						                    	},
+
 						                        { "data": "volume" },
 						                        { "data": "exchange" },
 						                        { "data": "exchangeShortName" },
@@ -218,7 +227,11 @@
 				</div>
 			</div>
 
-			<table id="table" class="display" width="70%">
+
+		</section>
+
+
+					<table id="table" class="display" width="70%">
 				<thead>
 		            <tr>
 		                <th>Symbol</th>
@@ -238,7 +251,6 @@
 		            </tr>
 		        </thead>
 			</table>
-		</section>
 		<!-- End Button Tabs Centered -->
 
 		
