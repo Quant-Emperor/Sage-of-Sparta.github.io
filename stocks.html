@@ -67,10 +67,10 @@
 					          { title: "F0 Consensus Est" },
 					          { title: "F1 Consensus Est" },
 					          { title: "F2 Consensus Est" },
-					          { title: "EPS Growth F1" },
-					          { title: "EPS Growth F2" },
-					          { title: "F1 PEG" },
-					          { title: "F2 PEG" },
+					          { title: "EPS Growth F1"},
+					          { title: "EPS Growth F2"},
+					          { title: "F1 PEG"},
+					          { title: "F2 PEG"},
 					          { title: "PEG Ratio" }
 		                  ];
 
@@ -187,7 +187,7 @@
 										              	retrieve: true,
 										              	paging: false,
 										                  data: example.data,
-										                  columns: column_list
+										                  columns: column_list,
 										              });
 										              dataTables.columns(3).search("Computer and Technology").draw();
 												  });
@@ -210,7 +210,11 @@
 										              	retrieve: true,
 										              	  paging: false,
 										                  data: example.data,
-										                  columns: column_list
+										                  columns: column_list,
+										                  "data":"EPS Growth F1",
+								                          "render": function ( data ) {
+														    return data.toFixed(2)},
+					      
 										              });
 										              dataTables.columns(3).search("Finance").draw();
 												  });

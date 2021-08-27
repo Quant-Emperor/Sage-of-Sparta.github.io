@@ -110,6 +110,35 @@
 
 						
 						<script>
+
+
+						var column_list = [
+												{ title: "Ticker", "data": "symbol" },
+						                        { title: "Name", "data": "companyName" },
+						                        { title: "Market Cap", "data": "marketCap",
+							                        "render": function ( data ) {
+												    return data.toString().replace(
+												      /\B(?=(\d{3})+(?!\d))/g, ","
+												    )},
+						                         },
+						                        { title: "Sector", "data": "sector" },
+						                        { title: "Industry", "data": "industry" },
+						                        { title: "Beta", "data": "beta" },
+						                        { title: "Price", "data": "price" },
+						                        { title: "Last Annual Dividend", "data": "lastAnnualDividend",
+						                          "render": function ( data ) {
+												    return data.toFixed(2)},
+						                    	},
+
+						                        { title: "Volume", "data": "volume" },
+						                        { title: "Exchange", "data": "exchange" },
+						                        { title: "Exchange Short Name", "data": "exchangeShortName" },
+						                        { title: "Country", "data": "country" },
+						                        { title: "ETF", "data": "isEtf" },
+						                        { title: "Active", "data": "isActivelyTrading" }
+						                    ];
+						
+
 						var table = $('#table').DataTable();
 						/// Read file
 						$('#US').on('click', function () {
@@ -124,31 +153,7 @@
 									            "dataSrc": ""
 									        },
 
-						                    "columns": [
-						                        { "data": "symbol" },
-						                        { "data": "companyName" },
-						                        { "data": "marketCap",
-							                        "render": function ( data ) {
-												    return data.toString().replace(
-												      /\B(?=(\d{3})+(?!\d))/g, ","
-												    )},
-						                         },
-						                        { "data": "sector" },
-						                        { "data": "industry" },
-						                        { "data": "beta" },
-						                        { "data": "price" },
-						                        { "data": "lastAnnualDividend",
-						                          "render": function ( data ) {
-												    return data.toFixed(2)},
-						                    	},
-
-						                        { "data": "volume" },
-						                        { "data": "exchange" },
-						                        { "data": "exchangeShortName" },
-						                        { "data": "country" },
-						                        { "data": "isEtf" },
-						                        { "data": "isActivelyTrading" }
-						                    ]
+						                    "columns": column_list
 						                });
 						            });
 						        
@@ -166,22 +171,7 @@
 									            "dataSrc": ""
 									        },
 
-						                    "columns": [
-						                        { "data": "symbol" },
-						                        { "data": "companyName" },
-						                        { "data": "marketCap" },
-						                        { "data": "sector" },
-						                        { "data": "industry" },
-						                        { "data": "beta" },
-						                        { "data": "price" },
-						                        { "data": "lastAnnualDividend" },
-						                        { "data": "volume" },
-						                        { "data": "exchange" },
-						                        { "data": "exchangeShortName" },
-						                        { "data": "country" },
-						                        { "data": "isEtf" },
-						                        { "data": "isActivelyTrading" }
-						                    ]
+						                    "columns": column_list
 						                });
 						            });
 						        
@@ -198,22 +188,7 @@
 									            "url": "https://financialmodelingprep.com/api/v3/stock-screener?country=IN&apikey=c01b3c8e189822588988574a0c3957dd",
 									            "dataSrc": ""
 									        },
-						                    "columns": [
-						                        { "data": "symbol" },
-						                        { "data": "companyName" },
-						                        { "data": "marketCap" },
-						                        { "data": "sector" },
-						                        { "data": "industry" },
-						                        { "data": "beta" },
-						                        { "data": "price" },
-						                        { "data": "lastAnnualDividend" },
-						                        { "data": "volume" },
-						                        { "data": "exchange" },
-						                        { "data": "exchangeShortName" },
-						                        { "data": "country" },
-						                        { "data": "isEtf" },
-						                        { "data": "isActivelyTrading" }
-						                    ]
+						                    "columns": column_list
 						                });
 						            });
 						        
@@ -232,24 +207,7 @@
 
 
 					<table id="table" class="display" width="70%">
-				<thead>
-		            <tr>
-		                <th>Symbol</th>
-		                <th>Company Name</th>
-		                <th>Market Cap</th>
-		                <th>Sector</th>
-		                <th>Industry</th>
-		                <th>Beta</th>
-		                <th>Price</th>
-		                <th>Last Annual Dividend</th>
-		                <th>Volume</th>
-		                <th>Exchange</th>
-		                <th>Exchange Short Name</th>
-		                <th>Country</th>
-						<th>ETF?</th>
-						<th>Active</th>
-		            </tr>
-		        </thead>
+
 			</table>
 		<!-- End Button Tabs Centered -->
 
