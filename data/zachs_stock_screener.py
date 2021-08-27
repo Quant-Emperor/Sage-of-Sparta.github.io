@@ -67,7 +67,7 @@ tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Auto-Tire
 tmpdf.to_csv('./usa_stocks/us_sector_auto.csv',index=False,header=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Computer and Technology')]
-tmpdf.to_csv('./usa_stocks/us_sector_technology.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_technology.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Finance')]
 tmpdf.to_csv('./usa_stocks/us_sector_finance.csv',index=False,header=False)
