@@ -22,6 +22,7 @@
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>	
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
 		<script>
 		
 		  // Returns [32, 33, 40]
@@ -54,14 +55,14 @@
 			}
 
 		var column_list = [
-					          { title: "Company Name", "data": "Company Name" }, 
+					          { title: "Company Name"}, 
 					          { title: "Ticker"}, 
 					          { title: "Exchange" }, 
 					          { title: "Sector" }, 
 					          { title: "Industry" }, 
 					          { title: "Market Cap (mil)" },
 					          { title: "Month of Fiscal Yr End" },
-					          { title: "P/E (Trailing 12 Months)" },
+					          { title: "P/E (Trailing 12 Months)"},
 					          { title: "P/E (F1)" },
 					          { title: "P/E (F2)" },
 					          { title: "F0 Consensus Est" },
@@ -173,28 +174,31 @@
 
 						
 						<script>
+
+
+							var table = $('#table').DataTable();
 							/// Read file
 				  			  $('#techbtn').on('click', function () {
-								$(function() {
-									//$('#table').dataTable().clear().draw();
+									$(function() {
+
 									     Papa.parse("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/usa_stocks/us_sector_equities.csv", {
 										          download: true,
-										          //header: false,
-										          header:true,
-										          dynamicTyping: true,
+										          header: false,
 										          skipEmptyLines: true,
 										          complete: function(example) {
-										          	console.log(example.data);
+										             //console.log(example.data)
 										          $(document).ready(function () {
 										              var dataTables = $('#table').DataTable({
 										              	retrieve: true,
-										              	paging: false,
-										                  //data: example.data,
-										                data:column_list
-										                  //columns: column_list,
+										              	  paging: false,
+										                  data: example.data,
+										                  columns: column_list,					      
 										              });
+										              dataTables.columns(3).search("Finance").draw();
+										              dataTables.columns(14).render( '\,', '.', 2, '£', '' );
+
 										              
-										              dataTables.columns(3).search("Computer and Technology").draw();
+
 												  });
 										          }
 										      });
