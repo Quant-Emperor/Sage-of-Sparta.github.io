@@ -367,7 +367,7 @@ p {
 }
 [data-overlay-dark] p.lead {
 	font-weight: 300;
-	color: #4C51E0;
+	color: #FFFFFF;
 }
 
 @media all and (max-width: 992px) {
