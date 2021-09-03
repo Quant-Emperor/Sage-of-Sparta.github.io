@@ -355,6 +355,7 @@ p {
 	line-height: 1.75;
 	font-weight: 300;
 	color: #888;
+
 }
 [data-overlay-dark] p {
 	font-weight: 400;
@@ -366,6 +367,7 @@ p {
 }
 [data-overlay-dark] p.lead {
 	font-weight: 300;
+	color: #4C51E0;
 }
 
 @media all and (max-width: 992px) {
