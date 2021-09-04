@@ -102,14 +102,12 @@
 				    	<form id="frm1">
 						  <input type="text" name="fname" value="AAPL" style="width:10%">
 						</form> 
-						<button id="US" class="btn btn-md btn-primary btn-round">Search</button>
-
+						<button id="TICKER" class="btn btn-md btn-primary btn-round">Search</button>
 				    </div>
 
 
 						
 					<script>
-
 						var column_list = [
 												{ title: "Ticker", "data": "symbol" },
 						                        { title: "Date", "data": "date" },
@@ -128,16 +126,23 @@
 												      /\B(?=(\d{3})+(?!\d))/g, ","
 												    )},
 						                         },
-
-						                        { title: "minusCashAndCashEquivalents", "data": "minusCashAndCashEquivalents" },
-						                        { title: "addTotalDebt", "data": "addTotalDebt" },
-						                        { title: "enterpriseValue", "data": "enterpriseValue" },
 						                    ];
-						
 
+						var column_list2 = [
+												{ title: "Ticker", "data": "symbol" },
+						                        { title: "Date", "data": "publishedDate" },
+						                        { title: "Title", "data": "title" },
+						                        { title: "Source Name", "data": "site" },
+						                        { title: "News", "data": "text" },
+						                        { title: "Link", "data": "url" },
+						                    ];
+
+						
+						/// table
+						
 						var table = $('#table').DataTable();
 						/// Read file
-						$('#US').on('click', function () {
+						$('#TICKER').on('click', function () {
 							
 							var x = document.getElementById("frm1");
 							var ticker = x.elements[0].value
@@ -153,16 +158,37 @@
 									            "url": urlstring,
 									            "dataSrc": ""
 									        },
-
 						                    "columns": column_list
 						                });
 						            });
-						        
 				  			  });
-							/// Read file
+						/// table
 						
 
-						</script>
+						var table2 = $('#table2').DataTable();
+						/// Read file
+						$('#TICKER').on('click', function () {
+							
+							var x = document.getElementById("frm1");
+							var ticker = x.elements[0].value
+							var urlstring = "https://financialmodelingprep.com/api/v3/stock_news?tickers=" + ticker + "&limit=50&apikey=c01b3c8e189822588988574a0c3957dd"
+
+							table2.destroy();
+				  			  console.log(urlstring)
+						            $(document).ready(function () {
+						                table = $('#table2').DataTable({
+						                	retrieve: true,
+										    
+						                	"ajax": {
+									            "url": urlstring,
+									            "dataSrc": ""
+									        },
+						                    "columns": column_list2
+						                });
+						            });
+				  			  });
+
+					</script>
 					
 				</div>
 			</div>
@@ -171,9 +197,22 @@
 		</section>
 
 
-					<table id="table" class="display" width="70%">
+		<table id="table" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Enterprise Values</strong></caption> </table>  
+		<table id="table2" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table>
 
-			</table>
+		<table>
+		 <tr>
+		 <td>
+		     
+		 </td>
+		 <td>
+		    
+		 </td>
+		 </tr>
+		</table>
+
+
+
 		<!-- End Button Tabs Centered -->
 		
 
