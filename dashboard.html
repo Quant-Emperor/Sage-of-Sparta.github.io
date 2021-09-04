@@ -22,7 +22,8 @@
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>	
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
-
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
+		
 	</head>
 	<body>
 
@@ -88,66 +89,68 @@
 		<!-- End Header -->
 
 
-
 		<!-- Button Tabs Centered -->
 		<section id="elements-buttons" class="pt100 pb80" style="width:100%" align-content= "center">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center mt40 pb40">
-						<h1><strong>Stock Screener</strong></h1>
+						<h1><strong>Dashboard</strong></h1>
 					</div>
 
 
-					<div class="col-md-10 mr-auto text-center">
-						<div class="btn-group">
-							<button id="US" class="btn btn-md btn-primary btn-round">United States</button>
-							<button id="CN" class="btn btn-md btn-primary btn-round">China</button>
-						    <button id="IN" class="btn btn-md btn-primary btn-round">India</button>
-						</div>
-					</div>
+				    <div class="col-md-12 text-center mt40 pb40">
+				    	<form id="frm1">
+						  <input type="text" name="fname" value="AAPL" style="width:10%">
+						</form> 
+						<button id="US" class="btn btn-md btn-primary btn-round">Search</button>
+
+				    </div>
+
 
 						
-						<script>
-
+					<script>
 
 						var column_list = [
 												{ title: "Ticker", "data": "symbol" },
-						                        { title: "Name", "data": "companyName" },
-						                        { title: "Market Cap", "data": "marketCap",
+						                        { title: "Date", "data": "date" },
+						                        { title: "Price", "data": "stockPrice",
+						                          "render": function ( data ) {
+												    return data.toFixed(2)}, },
+						                        { title: "Number of Shares", "data": "numberOfShares",
 							                        "render": function ( data ) {
 												    return data.toString().replace(
 												      /\B(?=(\d{3})+(?!\d))/g, ","
 												    )},
 						                         },
-						                        { title: "Sector", "data": "sector" },
-						                        { title: "Industry", "data": "industry" },
-						                        { title: "Beta", "data": "beta" },
-						                        { title: "Price", "data": "price" },
-						                        { title: "Last Annual Dividend", "data": "lastAnnualDividend",
-						                          "render": function ( data ) {
-												    return data.toFixed(2)},
-						                    	},
+						                         { title: "Market Cap", "data": "marketCapitalization",
+							                        "render": function ( data ) {
+												    return data.toString().replace(
+												      /\B(?=(\d{3})+(?!\d))/g, ","
+												    )},
+						                         },
 
-						                        { title: "Volume", "data": "volume" },
-						                        { title: "Exchange", "data": "exchange" },
-						                        { title: "Exchange Short Name", "data": "exchangeShortName" },
-						                        { title: "Country", "data": "country" },
-						                        { title: "ETF", "data": "isEtf" },
-						                        { title: "Active", "data": "isActivelyTrading" }
+						                        { title: "minusCashAndCashEquivalents", "data": "minusCashAndCashEquivalents" },
+						                        { title: "addTotalDebt", "data": "addTotalDebt" },
+						                        { title: "enterpriseValue", "data": "enterpriseValue" },
 						                    ];
 						
 
 						var table = $('#table').DataTable();
 						/// Read file
 						$('#US').on('click', function () {
+							
+							var x = document.getElementById("frm1");
+							var ticker = x.elements[0].value
+							var urlstring = "https://financialmodelingprep.com/api/v3/enterprise-values/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
+
 							table.destroy();
-				  			  
+				  			  console.log(urlstring)
 						            $(document).ready(function () {
 						                table = $('#table').DataTable({
 						                	retrieve: true,
 										    
 						                	"ajax": {
-									            "url": "https://financialmodelingprep.com/api/v3/stock-screener?country=US&marketCapMoreThan=1000000000&betaMoreThan=1&marketCapLowerThan=10000000000&apikey=c01b3c8e189822588988574a0c3957dd",
+									            "url": urlstring,
 									            "dataSrc": ""
 									        },
 
@@ -157,43 +160,7 @@
 						        
 				  			  });
 							/// Read file
-						$('#CN').on('click', function () {
-							table.destroy();
-				  			  
-						            $(document).ready(function () {
-						                table = $('#table').DataTable({
-						                	retrieve: true,
-										    
-						                	"ajax": {
-									            "url": "https://financialmodelingprep.com/api/v3/stock-screener?country=CN&apikey=c01b3c8e189822588988574a0c3957dd",
-									            "dataSrc": ""
-									        },
-
-						                    "columns": column_list
-						                });
-						            });
-						        
-				  			  });
-							/// Read file
-						$('#IN').on('click', function () {
-							table.destroy();
-				  			  
-						            $(document).ready(function () {
-						                table = $('#table').DataTable({
-						                	retrieve: true,
-										              	 
-						                	"ajax": {
-									            "url": "https://financialmodelingprep.com/api/v3/stock-screener?country=IN&apikey=c01b3c8e189822588988574a0c3957dd",
-									            "dataSrc": ""
-									        },
-						                    "columns": column_list
-						                });
-						            });
-						        
-				  			  });
-
-
-
+						
 
 						</script>
 					
@@ -208,7 +175,6 @@
 
 			</table>
 		<!-- End Button Tabs Centered -->
-
 		
 
 		<hr>
