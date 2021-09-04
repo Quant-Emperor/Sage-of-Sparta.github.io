@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+
+<!-- elements12:51-->
+<head>
+        
+		<meta charset="utf-8">
+		<title>Love of Quant</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="img/assets/favicon.png" rel="icon" type="image/png">
+		<link href="css/init.css" rel="stylesheet" type="text/css">
+		<link href="css/ion-icons.min.css" rel="stylesheet" type="text/css">
+		<link href="css/etline-icons.min.css" rel="stylesheet" type="text/css">
+		<link href="css/theme.css" rel="stylesheet" type="text/css">
+		<link href="css/custom.css" rel="stylesheet" type="text/css">
+		<link href="css/colors/purple.css" rel="stylesheet" type="text/css">
+		<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>	
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
+		
+	</head>
+
+
+	<body>
+
+		<!-- Start Header -->
+		<nav class="navbar nav-down" data-fullwidth="true" data-menu-style="light" data-animation="shrink">
+										<!-- Styles: light, dark, transparent, transparent-to-dark | Animation: hiding, shrink -->
+			<div class="container">
+
+				<div class="navbar-header">
+					<div class="container">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar top-bar"></span>
+							<span class="icon-bar middle-bar"></span>
+							<span class="icon-bar bottom-bar"></span>
+						</button>
+						<a class="navbar-brand to-top" href="#"><img src="img/assets/logo-light.png" class="logo-light" alt="#"><img src="img/assets/logo-dark-.png" class="logo-dark" alt="#"></a>
+					</div>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="container">
+						<ul class="nav navbar-nav center-menu">
+
+							<!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
+							<li><a href="index-2.html" target="_top">Home</a></li>
+							<li class="dropdown megamenu vos">
+								<a class="dropdown-toggle">Elements<i class="ion-ios-arrow-down"></i></a>
+								<ul class="dropdown-menu fullwidth">
+									<li class="megamenu-content withdesc">
+										<div class="col-md-3 mg-col">
+											<ul>
+												<li><a href="stocks.html" target="_top">Equities</a></li>
+                                                <li><a href="gdp.html" target="_top">GDP</a></li>
+                                                <li><a href="umcsi.html" target="_top">UMCSI</a></li>
+                                                <li><a href="housing.html" target="_top">Housing</a></li>
+                                                <li><a href="screener.html" target="_top">Stock Screener</a></li>
+											</ul>
+										</div>
+										<div class="col-md-3 mg-col">
+											<ul>
+												<li><a href="ism.html" target="_top">ISM Manufacturing</a></li>
+												<li><a href="ism-services.html" target="_top">ISM Services</a></li>
+												<li><a href="ism-heatmaps.html" target="_top">ISM Heatmaps</a></li>
+												<li><a href="dashboard.html" target="_top">Stock Dashboard</a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- End Header -->
+
+
+
+
+
+		<!-- Button Tabs Centered -->
+		<section id="elements-buttons" class="pt100 pb80" style="width:100%" align-content= "center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center mt40 pb40">
+						<h1><strong>Dashboard</strong></h1>
+					</div>
+
+
+				    <div class="col-md-12 text-center mt40 pb40">
+				    	<form id="frm1">
+						  <input type="text" name="fname" value="AAPL" style="width:10%">
+						</form> 
+						<button id="TICKER" class="btn btn-md btn-primary btn-round">Search</button>
+				    </div>
+
+
+						
+					<script>
+						var column_list = [
+												{ title: "Ticker", "data": "symbol" },
+						                        { title: "Date", "data": "date" },
+						                        { title: "Price", "data": "stockPrice",
+						                          "render": function ( data ) {
+												    return data.toFixed(2)}, },
+						                        { title: "Number of Shares", "data": "numberOfShares",
+							                        "render": function ( data ) {
+												    return data.toString().replace(
+												      /\B(?=(\d{3})+(?!\d))/g, ","
+												    )},
+						                         },
+						                         { title: "Market Cap", "data": "marketCapitalization",
+							                        "render": function ( data ) {
+												    return data.toString().replace(
+												      /\B(?=(\d{3})+(?!\d))/g, ","
+												    )},
+						                         },
+						                    ];
+
+						var column_list2 = [
+												{ title: "Ticker", "data": "symbol" },
+						                        { title: "Date", "data": "publishedDate" },
+						                        { title: "Title", "data": "title" },
+						                        { title: "Source Name", "data": "site" },
+						                        { title: "News", "data": "text" },
+						                        { title: "Link", "data": "url" 
+
+												,"render": function(data){
+												           return '<a href="' + data + '">' + data + '</a>';
+												         }
+
+
+
+						                    },
+						                    ];
+
+						
+						/// table
+						
+						var table = $('#table').DataTable();
+						/// Read file
+						$('#TICKER').on('click', function () {
+							
+							var x = document.getElementById("frm1");
+							var ticker = x.elements[0].value
+							var urlstring = "https://financialmodelingprep.com/api/v3/enterprise-values/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
+
+							table.destroy();
+				  			  console.log(urlstring)
+						            $(document).ready(function () {
+						                table = $('#table').DataTable({
+						                	retrieve: true,
+										    
+						                	"ajax": {
+									            "url": urlstring,
+									            "dataSrc": ""
+									        },
+						                    "columns": column_list
+						                });
+						            });
+				  			  });
+						/// table
+						
+
+						var table2 = $('#table2').DataTable();
+						/// Read file
+						$('#TICKER').on('click', function () {
+							
+							var x = document.getElementById("frm1");
+							var ticker = x.elements[0].value
+							var urlstring = "https://financialmodelingprep.com/api/v3/stock_news?tickers=" + ticker + "&limit=50&apikey=c01b3c8e189822588988574a0c3957dd"
+
+							table2.destroy();
+				  			  console.log(urlstring)
+						            $(document).ready(function () {
+						                table = $('#table2').DataTable({
+						                	retrieve: true,
+										    
+						                	"ajax": {
+									            "url": urlstring,
+									            "dataSrc": ""
+									        },
+						                    "columns": column_list2
+						                });
+						            });
+				  			  });
+
+					</script>
+					
+				</div>
+			</div>
+
+
+		</section>
+
+
+		<table id="table" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Enterprise Values</strong></caption> </table>  
+		<table id="table2" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table>
+
+		<table>
+		 <tr>
+		 <td>
+		     
+		 </td>
+		 <td>
+		    
+		 </td>
+		 </tr>
+		</table>
+
+
+
+		<!-- End Button Tabs Centered -->
+		
+
+		<hr>
+
+		
+
+
+		<!-- Start Footer -->
+		<footer id="footer" class="footer style-1 dark">
+
+			<!-- Back To Top Button -->
+			<span><a class="scroll-top"><i class="ion-chevron-up"></i></a></span>
+
+		</footer>
+		<!-- End Footer -->
+
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/scripts.js"></script>
+
+	</body>
+
+<!-- elements12:54-->
+</html>
