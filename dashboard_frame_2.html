@@ -36,12 +36,7 @@
 			<div class="container">
 				<div class="row">
 
-				    <div class="col-md-12 text-center mt40 pb40">
-				    	<form id="frm1">
-						  <input type="text" name="fname" value="AAPL" style="width:10%">
-						</form> 
-						<button id="TICKER" class="btn btn-md btn-primary btn-round">Search</button>
-				    </div>
+
 
 
 						
@@ -84,18 +79,20 @@
 						                    ];
 
 						
-						/// table
+
+						/// table parent.document.getElementById("f2");
 						
 						var table = $('#table').DataTable();
 						/// Read file
-						$('#TICKER').on('click', function () {
+						$('#TICKER', window.parent.frames['f1'].document).on('click', function () {
+
 							
-							var x = document.getElementById("frm1");
+							var x =       window.parent.f1.document.getElementById("frm1");
 							var ticker = x.elements[0].value
 							var urlstring = "https://financialmodelingprep.com/api/v3/enterprise-values/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
 
 							table.destroy();
-				  			  console.log(urlstring)
+				  			  
 						            $(document).ready(function () {
 						                table = $('#table').DataTable({
 						                	retrieve: true,
@@ -113,14 +110,14 @@
 
 						var table2 = $('#table2').DataTable();
 						/// Read file
-						$('#TICKER').on('click', function () {
+						$('#TICKER', window.parent.frames['f1'].document).on('click', function () {
 							
-							var x = document.getElementById("frm1");
+							var x = window.parent.f1.document.getElementById("frm1");
 							var ticker = x.elements[0].value
 							var urlstring = "https://financialmodelingprep.com/api/v3/stock_news?tickers=" + ticker + "&limit=50&apikey=c01b3c8e189822588988574a0c3957dd"
 
 							table2.destroy();
-				  			  console.log(urlstring)
+				  			  
 						            $(document).ready(function () {
 						                table = $('#table2').DataTable({
 						                	retrieve: true,
