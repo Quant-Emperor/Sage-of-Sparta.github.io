@@ -178,10 +178,12 @@ def get_euro_economic_data():
 # Initial Claims (weekly) ,  FRED/ICNSA
 #Continuing claims (weekly)   FRED/CCNSA
 
+tmp = quandl.get("SGE/USANFP")
+print(tmp.tail())
 
 
 #Employment situation report
-# unemployment rate
+# unemployment rate   FRED/UNRATE
 # Total NFPs
 # Government
 # Private
