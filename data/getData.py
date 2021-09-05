@@ -113,6 +113,13 @@ def get_quarterly_gdp():
         
         df.to_csv("quarterly_gdp.csv")
         
+def get_euro_economic_data():
+        # Get European Economic Indicator Data
+        df = pd.read_excel('C:/Users/Damian Joseph/Downloads/main_indicators_sa_nace2/main_indicators_nace2.xlsx','MONTHLY')
+        df = df.rename(columns={'Unnamed: 0':'Date'})
+        cols = [c for c in df.columns if c.lower()[:8] != 'unnamed:']
+        df=df[cols]
+        df.to_csv("euro_indicators.csv",index=False)
 
 
 # UNCOMMENT TO GET ISM DATA
@@ -124,7 +131,7 @@ def get_quarterly_gdp():
 
 # get_gdp_data()
 
-get_quarterly_gdp()
+#get_quarterly_gdp()
 
 
 
@@ -188,6 +195,8 @@ get_quarterly_gdp()
 
 # Covid data
 # john hopkins
+
+
 
 
 
