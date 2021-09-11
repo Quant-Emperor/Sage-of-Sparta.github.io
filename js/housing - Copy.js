@@ -10,13 +10,13 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
     let building_permits = [], housing_starts = [],completions=[];
 
     data.forEach((val,idx) => {
-      //Date  UMCSI Current Index Expected Index
+      //Date  building_permits  housing_starts  completions
+
       building_permits.push({x: val['Date'], y: checkNaNReturnNumber(val['building_permits'])});
       housing_starts.push({x: val['Date'], y: checkNaNReturnNumber(val['housing_starts'])});
       completions.push({x: val['Date'], y: checkNaNReturnNumber(val['completions'])});
 
     });
-
 
     var data_series = [
       {name: 'Building Permits', points: building_permits,yAxis: 'leftAxis'},
