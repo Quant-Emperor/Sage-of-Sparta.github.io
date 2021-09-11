@@ -456,6 +456,7 @@ a:active {
 	height: 100vh;
 	padding: 114px 0;
 	overflow: hidden;
+	background-color: #BAB0EE;
 }
 .hero-fullscreen .container {
 	z-index: 2;
