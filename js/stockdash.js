@@ -14,15 +14,11 @@ function checkNaNReturnNumber(x) {
   return Number(x);
 }
 
-const urls = [
-  "https://financialmodelingprep.com/api/v3/ratios/AAPL?limit=40&apikey=c01b3c8e189822588988574a0c3957dd",
-  "https://financialmodelingprep.com/api/v3/historical-price-full/AAPL?apikey=c01b3c8e189822588988574a0c3957dd",
-]
 
-const fetchData = async () => {
+async function fetchData(urlstrings) {
   try {
     const response = await Promise.all(
-      urls.map(url => fetch(url).then(res => res.json()))
+      urlstrings.map(url => fetch(url).then(res => res.json()))
     )
     
     var ratios = response[0];
@@ -65,7 +61,7 @@ const fetchData = async () => {
   }
 }
 
-fetchData();
+
 
 
 function renderChart(series,jscchartname,title) {

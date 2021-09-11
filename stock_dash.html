@@ -146,6 +146,28 @@
 						                    ];
 
 						
+
+
+
+						$('#TICKER').on('click', function () {
+
+							var x = document.getElementById("frm1");
+							var ticker = x.elements[0].value
+
+							var url1 = "https://financialmodelingprep.com/api/v3/ratios/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
+							var url2 = "https://financialmodelingprep.com/api/v3/historical-price-full/" + ticker + "?apikey=c01b3c8e189822588988574a0c3957dd"
+							
+
+							const urls = [
+							  url1,
+							  url2,
+							]
+
+
+							fetchData(urls);
+
+						});
+
 						/// table
 						
 						var table = $('#table').DataTable();
@@ -211,8 +233,7 @@
                 <div class="row text-center">
 
                     <div class="col-md-12 text-center">
-                        <h1><strong>EPS Chart</strong></h1>
-                        <p class="lead">EPS Yeah</p>
+                        <p class="lead">PE Chart</p>
                     </div>
 
                 </div>
@@ -229,7 +250,7 @@
 
 
 		<table id="table" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Enterprise Values</strong></caption> </table>  
-		<table id="table2" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table>
+		<table id="table2" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
 
 		<table>
 		 <tr>
