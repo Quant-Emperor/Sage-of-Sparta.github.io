@@ -124,7 +124,7 @@ def get_euro_economic_data():
 
 # UNCOMMENT TO GET ISM DATA
 #df = get_ism_data(api_url,api_url_2)
-# df.to_csv("ism.csv")
+#df.to_csv("ism.csv")
 
 # UNCOMMENT TO GET UMCSI DATA
 #get_umsci_data()
@@ -178,8 +178,8 @@ def get_euro_economic_data():
 # Initial Claims (weekly) ,  FRED/ICNSA
 #Continuing claims (weekly)   FRED/CCNSA
 
-tmp = quandl.get("SGE/USANFP")
-print(tmp.tail())
+#tmp = quandl.get("SGE/USANFP")
+#print(tmp.tail())
 
 
 #Employment situation report
