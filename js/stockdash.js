@@ -26,13 +26,12 @@ async function fetchData(urlstrings) {
 
     console.log(ratios);
 
-    let pe = [], stockadjcloseprice = [];
+    let pe = [], stockadjcloseprice = [], peg = [];
 
 
     ratios.forEach((val, idx) => {
-      
       pe.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsRatio"]});
-
+      peg.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsToGrowthRatio"]});
     });
 
     
@@ -51,11 +50,20 @@ async function fetchData(urlstrings) {
 
     var data_series = [
       {name: 'Stock Close', points: stockadjcloseprice,type:'line',yAxis: 'leftAxis'},
+      //{name: 'PEG', points: peg,type:'line',yAxis: 'rightAxis'},
+
     ];
 
 
     renderChart(data_series,'stockchartdiv','Stock Price');
-        
+    
+    var data_series = [
+      {name: 'PEG', points: peg,type:'line',yAxis: 'leftAxis'},
+
+    ];
+
+    renderChart(data_series,'pegchartdiv','PEG');
+
   } catch (error) {
     console.log("Error", error)
   }
