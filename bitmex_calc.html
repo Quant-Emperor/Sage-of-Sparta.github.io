@@ -86,7 +86,7 @@
 		<!-- End Header -->
 
 		<!-- Button Tabs Centered -->
-		<section id="elements-buttons" class="pt100 pb80" style="width:100%" align-content= "center">
+		<section id="elements-buttons" class="pt100 pb80" style="width:100%; height:100%" align-content= "center">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12 text-center mt40 pb40">
@@ -101,15 +101,42 @@
 
 			 <div class="login-box" >
 			  <form id="frm1">
+
+			  	<!-- <label for="side" class="dropbeta">Go Long/Short</label> -->
+				  <select id="side" name="side" style="background-color: transparent; font-family: sans-serif;  font-size: 16px; color: #fff;">
+				    <option value="long" style="background-color: black; font-family: sans-serif;  font-size: 16px; color: white;">Long</option>
+				    <option value="short" style="background-color: black; font-family: sans-serif;  font-size: 16px; color: white;">Short</option>
+				  </select>
+				<div class="user-box">
+			      <input type="text" name="forder" required="">
+			      <label>Order Value</label>
+			    </div>
 			    <div class="user-box">
 			      <input type="text" name="fprice" required="">
 			      <label>Price</label>
 			    </div>
 			    <div class="user-box">
-			      <input type="password" name="" required="">
-			      <label>Password</label>
+			      <input type="number" name="flimitentry" required="">
+			      <label>Limit Entry</label>
 			    </div>
-			    <a button id="TICKER" align="center">
+			    <div class="user-box">
+			      <input type="number" name="fstop" required="">
+			      <label>Stop Loss</label>
+			    </div>
+			    <div class="user-box">
+			      <input type="number" name="ftarget" required="">
+			      <label>Target</label>
+			    </div>
+				<div class="user-box">
+			      <input type="number" name="fqty" required="">
+			      <label>Quantity</label>
+			    </div>
+				<div class="user-box">
+			      <input type="number" name="fleverage" required="">
+			      <label>Leverage</label>
+			    </div>
+
+			    <a button id="TICKER">
 			      <span></span>
 			      <span></span>
 			      <span></span>
@@ -128,18 +155,106 @@
 
 		<script>
 
+			var ticker = "";
+
 			$('#SOLANA').on('click', function () {
 
+							ticker = "SOL"
 							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd"
-							
+							var id = "solana"
 							const urls = [
 							  url1,
 							]
+							fetchData(urls,id);
+						});
+			
+			$('#BITCOIN').on('click', function () {
+
+							ticker = "BTC"
+
+							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+							var id = "bitcoin"
+							const urls = [
+							  url1,
+							]
+							fetchData(urls,id);
+						});
+
+			$('#CARDANO').on('click', function () {
+
+							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=cardano&vs_currencies=usd"
+							var id = "cardano"
+							const urls = [
+							  url1,
+							]
+							fetchData(urls,id);
+						});
+
+			$('#POLKADOT').on('click', function () {
+
+							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=polkadot&vs_currencies=usd"
+							var id = "polkadot"
+							const urls = [
+							  url1,
+							]
+							fetchData(urls,id);
+						});
+
+			$('#TICKER').on('click', function () {
+
+							
+							var side = document.getElementById('frm1').elements['side'].value;
+							console.log(side)
+							var xbtmultiplier = 0;
+							var orderval = 0;
+							var takerfee = 0;
+							var orderentryval = 0;
+							var bankruptcyval = 0;
+							var markprice = 0;
+							var shortfundingrate = 0;
+							var maintenancemargin = 0;
+							var sellpremium = 0;
+							var leverage = 0;
+
+							if (side = "long") {
+
+								if (ticker = "SOL") {
+									xbtmultiplier = 0.00001;
+									takerfee = 0.0005;
+									orderentryval =  document.getElementById('frm1').elements['flimitentry'].value * document.getElementById('frm1').elements['fqty'].value * xbtmultiplier;
+									bankruptcyval = orderentryval + orderentryval/document.getElementById('frm1').elements['fleverage'].value;
+									
+									orderval = orderentryval/document.getElementById('frm1').elements['fleverage'].value + (orderentryval+bankruptcyval)*takerfee;
+									//console.log(orderval)
+									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
+								}
+							}
+							else if (side = "short") {
+								if (ticker = "SOL") {
+									xbtmultiplier = 0.00001;
+									takerfee = 0.075;
+									maintenancemargin = 0.35;
+									shortfundingrate = 0.15;
+									leverage = document.getElementById('frm1').elements['fleverage'].value;
+									orderentryval =  document.getElementById('frm1').elements['flimitentry'].value * document.getElementById('frm1').elements['fqty'].value * xbtmultiplier;
+									bankruptcyval = orderentryval + orderentryval/leverage;
+									markprice = document.getElementById('frm1').elements['fprice'].value * document.getElementById('frm1').elements['fqty'].value * xbtmultiplier;
+									console.log(markprice);
+									//sellpremium = Math.max(0,orderentryval - Math.abs(orderentryval*(1/leverage-(maintenancemargin/100-shortfundingrate/100)))-markprice);
+									//console.log(sellpremium);
+									orderval = orderentryval/leverage + (orderentryval+bankruptcyval)*takerfee;
+									console.log(orderval);
+									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
+
+								}
+							}
+							else {
 
 
-							fetchData(urls);
+							}
 
 						});
+
 
 		</script>
 
@@ -151,7 +266,6 @@
 		<!-- End Footer -->
 		<script src="js/bitmex.js"></script>
         <script src="js/jquery.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 		<script src="js/init.js"></script>
 		<script src="js/scripts.js"></script>
 

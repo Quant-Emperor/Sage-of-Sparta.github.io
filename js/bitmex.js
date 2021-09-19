@@ -1,21 +1,7 @@
 
 
 
-var colors = JSC.getPalette(0);
-
-function checkNaNReturnNumber(x) {
-  if (isNaN(x)) {
-    return 0;
-  }
-  if (x === -50) {
-    return 0;
-  }
-
-  return Number(x);
-}
-
-
-async function fetchData(urlstrings) {
+async function fetchData(urlstrings,id) {
   try {
     const response = await Promise.all(
       urlstrings.map(url => fetch(url).then(res => res.json()))
@@ -23,8 +9,12 @@ async function fetchData(urlstrings) {
     
     var data = response[0];
 
-    console.log(data);
+    //console.log(data["solana"]["usd"]);
     
+    document.getElementById('frm1').elements['fprice'].value = data[id]["usd"];
+
+//var x = document.getElementById("frm1");
+  //            var ticker = x.elements[0].value
 
   } catch (error) {
     console.log("Error", error)
