@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- elements12:51-->
+<head>
+        
+		<meta charset="utf-8">
+		<title>Love of Quant</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="img/assets/favicon.png" rel="icon" type="image/png">
+		<link href="css/init.css" rel="stylesheet" type="text/css">
+		<link href="css/ion-icons.min.css" rel="stylesheet" type="text/css">
+		<link href="css/etline-icons.min.css" rel="stylesheet" type="text/css">
+		<link href="css/customtab.css" rel="stylesheet" type="text/css">
+		<link href="css/theme.css" rel="stylesheet" type="text/css"> 
+		
+		<link href="css/colors/purple.css" rel="stylesheet" type="text/css">
+		<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>	
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
+		
+	</head>
+
+
+	<body>
+
+		<!-- Start Header -->
+		<nav class="navbar nav-down" data-fullwidth="true" data-menu-style="light" data-animation="shrink">
+										<!-- Styles: light, dark, transparent, transparent-to-dark | Animation: hiding, shrink -->
+			<div class="container">
+
+				<div class="navbar-header">
+					<div class="container">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar top-bar"></span>
+							<span class="icon-bar middle-bar"></span>
+							<span class="icon-bar bottom-bar"></span>
+						</button>
+						<!-- <a class="navbar-brand to-top" href="#"><img src="img/assets/logo-light.png" class="logo-light" alt="#"><img src="img/assets/logo-dark-.png" class="logo-dark" alt="#"></a> -->
+					</div>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<div class="container">
+						<ul class="nav navbar-nav center-menu">
+
+							<!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
+							<li><a href="index-2.html" target="_top">Home</a></li>
+							<li><a href="index-2.html#about">About</a></li>
+							<li class="dropdown megamenu vos">
+								<a class="dropdown-toggle">Elements<i class="ion-ios-arrow-down"></i></a>
+								<ul class="dropdown-menu fullwidth">
+									<li class="megamenu-content withdesc">
+										<div class="col-md-3 mg-col">
+											<ul>
+												<li><a href="stocks.html" target="_top">Equities</a></li>
+                                                <li><a href="gdp.html" target="_top">GDP</a></li>
+                                                <li><a href="umcsi.html" target="_top">UMCSI</a></li>
+                                                <li><a href="housing.html" target="_top">Housing</a></li>
+                                                <li><a href="screener.html" target="_top">Stock Screener</a></li>
+											</ul>
+										</div>
+										<div class="col-md-3 mg-col">
+											<ul>
+												<li><a href="ism.html" target="_top">ISM Manufacturing</a></li>
+												<li><a href="ism-services.html" target="_top">ISM Services</a></li>
+												<li><a href="ism-heatmaps.html" target="_top">ISM Heatmaps</a></li>
+												<li><a href="stock_dash.html" target="_top">Stock Dashboard</a></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</li>
+							
+						</ul>
+						
+					</div>
+				</div>
+			</div>
+		</nav>
+		<!-- End Header -->
+
+		<!-- Button Tabs Centered -->
+		<section id="elements-buttons" class="pt100 pb80" style="width:100%" align-content= "center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 text-center mt40 pb40">
+						<h1 style="color:white;"><strong>BitMex Crypto Modeller</strong></h1>
+					</div>
+					<button id="BITCOIN" class="btn btn-md btn-primary btn-round">Bitcoin</button>
+					<button id="SOLANA" class="btn btn-md btn-primary btn-round">Solana</button>
+					<button id="CARDANO" class="btn btn-md btn-primary btn-round">Cardano</button>
+					<button id="POLKADOT" class="btn btn-md btn-primary btn-round">Polkadot</button>
+
+			</div>
+
+			 <div class="login-box" >
+			  <form id="frm1">
+			    <div class="user-box">
+			      <input type="text" name="fprice" required="">
+			      <label>Price</label>
+			    </div>
+			    <div class="user-box">
+			      <input type="password" name="" required="">
+			      <label>Password</label>
+			    </div>
+			    <a button id="TICKER" align="center">
+			      <span></span>
+			      <span></span>
+			      <span></span>
+			      <span></span>
+			      Model
+			    </a>
+
+			  </form>
+
+
+			</div>
+
+			
+
+		</section>
+
+		<script>
+
+			$('#SOLANA').on('click', function () {
+
+							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd"
+							
+							const urls = [
+							  url1,
+							]
+
+
+							fetchData(urls);
+
+						});
+
+		</script>
+
+
+
+		<!-- End Button Tabs Centered -->
+		
+
+		<!-- End Footer -->
+		<script src="js/bitmex.js"></script>
+        <script src="js/jquery.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+		<script src="js/init.js"></script>
+		<script src="js/scripts.js"></script>
+
+
+	</body>
+
+<!-- elements12:54-->
+</html>

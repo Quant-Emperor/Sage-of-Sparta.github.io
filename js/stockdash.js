@@ -24,7 +24,7 @@ async function fetchData(urlstrings) {
     var ratios = response[0];
     var hist_price = response[1].historical;
 
-    console.log(ratios);
+    //console.log(ratios);
 
     let pe = [], stockadjcloseprice = [], peg = [];
 
