@@ -204,7 +204,7 @@
 
 							
 							var side = document.getElementById('frm1').elements['side'].value;
-							console.log(side)
+							
 							var xbtmultiplier = 0;
 							var orderval = 0;
 							var takerfee = 0;
@@ -216,9 +216,10 @@
 							var sellpremium = 0;
 							var leverage = 0;
 
-							if (side = "long") {
+							if (side == "long") {
 
-								if (ticker = "SOL") {
+								if (ticker == "SOL") {
+									console.log(side)
 									xbtmultiplier = 0.00001;
 									takerfee = 0.0005;
 									orderentryval =  document.getElementById('frm1').elements['flimitentry'].value * document.getElementById('frm1').elements['fqty'].value * xbtmultiplier;
@@ -227,22 +228,25 @@
 									orderval = orderentryval/document.getElementById('frm1').elements['fleverage'].value + (orderentryval+bankruptcyval)*takerfee;
 									//console.log(orderval)
 									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
+
 								}
 							}
-							else if (side = "short") {
-								if (ticker = "SOL") {
+							else if (side == "short") {
+								if (ticker == "SOL") {
+									console.log(side)
 									xbtmultiplier = 0.00001;
-									takerfee = 0.075;
+									takerfee = 0.05;
 									maintenancemargin = 0.35;
-									shortfundingrate = 0.15;
+									shortfundingrate = -0.15;
 									leverage = document.getElementById('frm1').elements['fleverage'].value;
 									orderentryval =  document.getElementById('frm1').elements['flimitentry'].value * document.getElementById('frm1').elements['fqty'].value * xbtmultiplier;
+									console.log(orderentryval);
 									bankruptcyval = orderentryval + orderentryval/leverage;
 									markprice = document.getElementById('frm1').elements['fprice'].value * document.getElementById('frm1').elements['fqty'].value * xbtmultiplier;
 									console.log(markprice);
-									//sellpremium = Math.max(0,orderentryval - Math.abs(orderentryval*(1/leverage-(maintenancemargin/100-shortfundingrate/100)))-markprice);
+									sellpremium = Math.max(0,orderentryval - Math.abs(orderentryval*(1/leverage-(maintenancemargin/100-shortfundingrate/100)))-markprice);
 									//console.log(sellpremium);
-									orderval = orderentryval/leverage + (orderentryval+bankruptcyval)*takerfee;
+									orderval = orderentryval/leverage + (orderentryval+bankruptcyval)*takerfee/100;
 									console.log(orderval);
 									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
 
