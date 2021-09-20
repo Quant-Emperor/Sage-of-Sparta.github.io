@@ -17,4 +17,4 @@ s=requests.get(url).content
 companies=pd.read_csv(io.StringIO(s.decode('utf-8')))
 
 
-companies.head()
+companies.to_csv("downloaddata.csv")
