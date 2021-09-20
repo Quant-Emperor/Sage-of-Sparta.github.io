@@ -102,31 +102,46 @@
 			<div class="container">
 				 <div class="login-box">
 					  <form id="frm1">
-
-					  	<!-- <label for="side" class="dropbeta">Go Long/Short</label> -->
 						  <select id="side" name="side" style="background-color: transparent; font-family: sans-serif;  font-size: 16px; color: #fff;">
 						    <option value="long" style="background-color: black; font-family: sans-serif;  font-size: 16px; color: white;">Long</option>
 						    <option value="short" style="background-color: black; font-family: sans-serif;  font-size: 16px; color: white;">Short</option>
 						  </select>
-						<div class="user-box">
-					      <input type="text" name="forder" required="">
-					      <label>Order Value</label>
-					    </div>
+					  	<!-- <label for="side" class="dropbeta">Go Long/Short</label> -->
+					  	<div class="user-box">
+					      <input type="text" name="fticker" required="">
+					      <label>Ticker</label>
+					    </div> 
 					    <div class="user-box">
 					      <input type="text" name="fprice" required="">
-					      <label>Price</label>
+					      <label>Current Price (USD)</label>
+					    </div>
+						<div class="user-box">
+					      <input type="text" name="forder" required="">
+					      <label>Order Value (BTC)</label>
+					    </div>
+						<div class="user-box">
+					      <input type="text" name="ftargetbtc" required="">
+					      <label>Target (BTC)</label>
+					    </div>
+						<div class="user-box">
+					      <input type="text" name="fstopbtc" required="">
+					      <label>Stop Loss (BTC)</label>
+					    </div>
+					    <div class="user-box">
+					      <input type="text" name="frr" required="">
+					      <label>Risk Reward Ratio</label>
 					    </div>
 					    <div class="user-box">
 					      <input type="number" name="flimitentry" required="">
-					      <label>Limit Entry</label>
+					      <label>Limit Entry (USD)</label>
 					    </div>
 					    <div class="user-box">
 					      <input type="number" name="fstop" required="">
-					      <label>Stop Loss</label>
+					      <label>Stop Loss (USD)</label>
 					    </div>
 					    <div class="user-box">
 					      <input type="number" name="ftarget" required="">
-					      <label>Target</label>
+					      <label>Target (USD)</label>
 					    </div>
 						<div class="user-box">
 					      <input type="number" name="fqty" required="">
@@ -166,6 +181,7 @@
 			$('#SOLANA').on('click', function () {
 
 							ticker = "SOL"
+							document.getElementById('frm1').elements['fticker'].value = ticker;
 							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd"
 							var id = "solana"
 							const urls = [
@@ -177,7 +193,8 @@
 			$('#BITCOIN').on('click', function () {
 
 							ticker = "BTC"
-
+							document.getElementById('frm1').elements['fticker'].value = ticker;
+							
 							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
 							var id = "bitcoin"
 							const urls = [
@@ -187,6 +204,8 @@
 						});
 
 			$('#CARDANO').on('click', function () {
+							ticker = "ADA"
+							document.getElementById('frm1').elements['fticker'].value = ticker;
 
 							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=cardano&vs_currencies=usd"
 							var id = "cardano"
@@ -197,6 +216,9 @@
 						});
 
 			$('#POLKADOT').on('click', function () {
+
+							ticker = "DOT"
+							document.getElementById('frm1').elements['fticker'].value = ticker;
 
 							var url1 = "https://api.coingecko.com/api/v3/simple/price?ids=polkadot&vs_currencies=usd"
 							var id = "polkadot"
@@ -221,8 +243,32 @@
 							var maintenancemargin = 0;
 							var sellpremium = 0;
 							var leverage = 0;
+							var qty = 0;
+							var profit = 0;
+							var target = 0;
+							var loss = 0
+							var stop = 0;
 
 							if (side == "long") {
+
+								if (ticker == "BTC") {
+									takerfee = 0.0005;
+									leverage = document.getElementById('frm1').elements['fleverage'].value;
+									limentry = document.getElementById('frm1').elements['flimitentry'].value
+									qty = document.getElementById('frm1').elements['fqty'].value;
+									orderentryval = parseFloat(1/limentry).toFixed(8) * qty;
+									bankruptcyval = orderentryval + orderentryval/leverage;
+									orderval = 1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee
+									target = document.getElementById('frm1').elements['ftarget'].value;
+									stop = document.getElementById('frm1').elements['fstop'].value;
+
+									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
+									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((1/limentry - 1/target) * qty * leverage).toFixed(8);
+									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((1/stop - 1/limentry) * qty * leverage).toFixed(8);
+									document.getElementById('frm1').elements['frr'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/document.getElementById('frm1').elements['fstopbtc'].value).toFixed(8);
+
+
+								}
 
 								if (ticker == "SOL") {
 									console.log(side)
@@ -257,6 +303,32 @@
 									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
 
 								}
+
+								if (ticker == "BTC") {
+									takerfee = 0.0005;
+									maintenancemargin = 0.35;
+									shortfundingrate = 0.01;
+									leverage = document.getElementById('frm1').elements['fleverage'].value;
+									limentry = document.getElementById('frm1').elements['flimitentry'].value;
+									price = document.getElementById('frm1').elements['fprice'].value;
+									qty = document.getElementById('frm1').elements['fqty'].value;
+									orderentryval = parseFloat(1/limentry).toFixed(8) * qty;
+									markprice = parseFloat(1/price).toFixed(8) * qty;
+									bankruptcyval = orderentryval + orderentryval/leverage;
+									
+									sellpremium = Math.max(0,orderentryval - Math.abs(orderentryval*(1/leverage-(maintenancemargin/100-shortfundingrate/100)))-markprice);
+									orderval = 1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee + sellpremium;
+									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
+									target = document.getElementById('frm1').elements['ftarget'].value;
+									stop = document.getElementById('frm1').elements['fstop'].value;
+
+									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
+									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((1/target - 1/limentry) * qty * leverage).toFixed(8);
+									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((1/limentry - 1/stop) * qty * leverage).toFixed(8);
+									document.getElementById('frm1').elements['frr'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/document.getElementById('frm1').elements['fstopbtc'].value).toFixed(8);
+
+								}
+
 							}
 							else {
 
