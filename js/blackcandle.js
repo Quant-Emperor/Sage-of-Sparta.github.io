@@ -28,7 +28,6 @@ async function fetchData(urlstrings) {
 
     let data = [];
 
-
     nyse_json.forEach((val, idx) => { 
       if ((nyse_json[idx]["price"] < nyse_json[idx]["open"]) && (nyse_json[idx]["close"] >= nyse_json[idx]["previousClose"] ) ) {
         data.push({symbol: nyse_json[idx]["symbol"]});
