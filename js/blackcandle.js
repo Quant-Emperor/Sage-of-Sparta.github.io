@@ -29,13 +29,13 @@ async function fetchData(urlstrings) {
     let data = [];
 
     nyse_json.forEach((val, idx) => { 
-      if ((nyse_json[idx]["price"] < nyse_json[idx]["open"]) && (nyse_json[idx]["close"] >= nyse_json[idx]["previousClose"] ) ) {
+      if ((nyse_json[idx]["price"] < nyse_json[idx]["open"]) && (nyse_json[idx]["price"] >= nyse_json[idx]["previousClose"] ) ) {
         data.push({symbol: nyse_json[idx]["symbol"], name: nyse_json[idx]["name"], price: nyse_json[idx]["price"], change: nyse_json[idx]["change"], changesPercentage: nyse_json[idx]["changesPercentage"]});
       }
 
     });
     nasdaq_json.forEach((val, idx) => {
-      if ((nasdaq_json[idx]["price"] < nasdaq_json[idx]["open"]) && (nasdaq_json[idx]["close"] >= nasdaq_json[idx]["previousClose"] ) ) {
+      if ((nasdaq_json[idx]["price"] < nasdaq_json[idx]["open"]) && (nasdaq_json[idx]["price"] >= nasdaq_json[idx]["previousClose"] ) ) {
         data.push({symbol: nasdaq_json[idx]["symbol"], name: nasdaq_json[idx]["name"], price: nasdaq_json[idx]["price"], change: nasdaq_json[idx]["change"], changesPercentage: nasdaq_json[idx]["changesPercentage"]});
       }
     });
