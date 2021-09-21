@@ -275,6 +275,25 @@
 									document.getElementById('frm1').elements['fprofitroe'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/orderval * 100).toFixed(2);
 								}
 
+								if (ticker == "ADA") {
+									takerfee = 0.0005;
+									xbtmultiplier = 0.01;
+									leverage = document.getElementById('frm1').elements['fleverage'].value;
+									limentry = document.getElementById('frm1').elements['flimitentry'].value
+									qty = document.getElementById('frm1').elements['fqty'].value;
+									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
+									bankruptcyval = orderentryval + orderentryval/leverage;
+									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee).toFixed(4)
+									target = document.getElementById('frm1').elements['ftarget'].value;
+									stop = document.getElementById('frm1').elements['fstop'].value;
+
+									document.getElementById('frm1').elements['forder'].value = orderval;
+									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((target - limentry) * xbtmultiplier * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((stop - limentry) * xbtmultiplier * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstoproe'].value = parseFloat(document.getElementById('frm1').elements['fstopbtc'].value/ orderval * 100).toFixed(2);
+									document.getElementById('frm1').elements['fprofitroe'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/orderval * 100).toFixed(2);
+								}
+
 								if (ticker == "SOL") {
 									console.log(side)
 									xbtmultiplier = 0.00001;
@@ -333,6 +352,32 @@
 									document.getElementById('frm1').elements['fstoproe'].value = parseFloat(document.getElementById('frm1').elements['fstopbtc'].value/ orderval * 100).toFixed(2);
 									document.getElementById('frm1').elements['fprofitroe'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/orderval * 100).toFixed(2);
 
+								}
+
+								if (ticker == "ADA") {
+									takerfee = 0.0005;
+									xbtmultiplier = 0.01;
+									maintenancemargin = 0.35;
+									shortfundingrate = -0.01;
+									leverage = document.getElementById('frm1').elements['fleverage'].value;
+									limentry = document.getElementById('frm1').elements['flimitentry'].value;
+									price = document.getElementById('frm1').elements['fprice'].value;
+									qty = document.getElementById('frm1').elements['fqty'].value;
+									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
+									markprice = parseFloat(xbtmultiplier*price).toFixed(8) * qty;
+									bankruptcyval = orderentryval + orderentryval/leverage;
+									
+									sellpremium = Math.max(0,orderentryval - Math.abs(orderentryval*(1/leverage-(maintenancemargin/100-shortfundingrate/100)))-markprice);
+									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee).toFixed(8);
+									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
+									target = document.getElementById('frm1').elements['ftarget'].value;
+									stop = document.getElementById('frm1').elements['fstop'].value;
+
+									document.getElementById('frm1').elements['forder'].value = orderval;
+									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((limentry - target)*xbtmultiplier * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((limentry - stop)*xbtmultiplier * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstoproe'].value = parseFloat(document.getElementById('frm1').elements['fstopbtc'].value/ orderval * 100).toFixed(2);
+									document.getElementById('frm1').elements['fprofitroe'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/orderval * 100).toFixed(2);
 								}
 
 							}

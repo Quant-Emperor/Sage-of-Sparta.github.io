@@ -65,6 +65,12 @@ body {
   color: #03e9f4;
   font-size: 12px;
 }
+.login-box .user-box input:not(:focus):not(:placeholder-shown):invalid~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
 
 .login-box form a {
   position: relative;
