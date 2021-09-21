@@ -15,6 +15,15 @@
         <link href="css/custom.css" rel="stylesheet" type="text/css">
         <link href="css/colors/purple.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
+
     </head>
     <body data-fade-in="true">
 
@@ -52,7 +61,6 @@
                                                 <li><a href="umcsi.html">UMCSI</a></li>
                                                 <li><a href="housing.html">Housing</a></li>
                                                 <li><a href="screener.html">Stock Screener</a></li>
-                                                
                                             </ul>
                                         </div>
                                         <div class="col-md-3 mg-col">
@@ -77,30 +85,63 @@
         <!-- End Header -->
 
         <!-- Project -->
-        <section class="pt140 pb50">
+<!-- Button Tabs Centered -->
+        <section id="elements-buttons" class="pt100 pb80" style="width:100%" align-content= "center">
             <div class="container">
-                <div class="row text-center">
-
-                    <div class="col-md-12 text-center">
-                        <h1><strong>ISM Manufacturing</strong></h1>
-                        <p class="lead">The ISM manufacturing index or purchasing managers' index is considered a key indicator of the state of the U.S. economy. It indicates the level of demand for products by measuring the amount of ordering activity at the nation's factories. The PMI number, which is announced on the first business day of each month, can greatly influence investor and business confidence.</p>
+                <div class="row">
+                    <div class="col-md-12 text-center mt40 pb40">
+                        <h1><strong>Secrets of the Black Candle</strong></h1>
                     </div>
 
+
+                    <div class="col-md-12 text-center mt40 pb40">
+                        <button id="TICKER" class="btn btn-md btn-primary btn-round">Search</button>
+                    </div>
+
+
+                        
+                    <script>
+                        var column_list = [
+                                                { title: "Ticker", "data": "symbol" }
+                                            ];
+
+
+                        $('#TICKER').on('click', function () {
+
+                            var url1 = "https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=c01b3c8e189822588988574a0c3957dd"
+                            var url2 = "https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=c01b3c8e189822588988574a0c3957dd"
+                            
+
+                            const urls = [
+                              url1,
+                              url2,
+                            ]
+
+                            fetchData(urls);
+
+                        });
+
+
+
+                    </script>
+                    
                 </div>
             </div>
 
-                           <!-- DAMIAN J -->
-            <div id="chartDiv2" style="width:80%; height:500px; margin:0 auto;"></div>  
-            <div id="chartDiv3" style="width:80%; height:500px; margin:0 auto;"></div>
-
+             <div id="grid" style="max-width: 440px;margin: 0px auto"></div>
 
         </section>
         <!-- End Project -->
+        <section class="pt140 pb50">
+
+            
+
+        </section>
+
 
 
         <!-- Start Footer -->
         <footer id="footer" class="footer style-1 dark">
-
 
             <!-- Back To Top Button -->
             <span><a class="scroll-top"><i class="ion-chevron-up"></i></a></span>
@@ -110,7 +151,8 @@
         <script src="https://code.jscharting.com/latest/jscharting.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
-        <script src="js/index.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script src="js/blackcandle.js"></script>
         <script src="js/jquery.js"></script>
         <script src="js/init.js"></script>
         <script src="js/scripts.js"></script>
