@@ -63,6 +63,7 @@
                                                 <li><a href="umcsi.html" target="_top">UMCSI</a></li>
                                                 <li><a href="housing.html" target="_top">Housing</a></li>
                                                 <li><a href="screener.html" target="_top">Stock Screener</a></li>
+                                                <li><a href="black_candle.html" target="_top">Secrets of Black Candle</a></li>
 											</ul>
 										</div>
 										<div class="col-md-3 mg-col">
@@ -129,8 +130,12 @@
 					      <label>Stop Loss (BTC)</label>
 					    </div>
 					    <div class="user-box">
-					      <input type="text" name="frr" required="">
-					      <label>Risk Reward Ratio</label>
+					      <input type="text" name="fstoproe" required="">
+					      <label>Stop Loss ROE %</label>
+					    </div>
+					    <div class="user-box">
+					      <input type="text" name="fprofitroe" required="">
+					      <label>Profit ROE %</label>
 					    </div>
 					    <div class="user-box">
 					      <input type="number" name="flimitentry" required="">
@@ -259,16 +264,15 @@
 									qty = document.getElementById('frm1').elements['fqty'].value;
 									orderentryval = parseFloat(1/limentry).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
-									orderval = 1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee
+									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee).toFixed(4)
 									target = document.getElementById('frm1').elements['ftarget'].value;
 									stop = document.getElementById('frm1').elements['fstop'].value;
 
-									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
-									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((1/limentry - 1/target) * qty * leverage).toFixed(8);
-									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((1/stop - 1/limentry) * qty * leverage).toFixed(8);
-									document.getElementById('frm1').elements['frr'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/document.getElementById('frm1').elements['fstopbtc'].value).toFixed(8);
-
-
+									document.getElementById('frm1').elements['forder'].value = orderval;
+									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((1/limentry - 1/target) * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((1/limentry - 1/stop) * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstoproe'].value = parseFloat(document.getElementById('frm1').elements['fstopbtc'].value/ orderval * 100).toFixed(2);
+									document.getElementById('frm1').elements['fprofitroe'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/orderval * 100).toFixed(2);
 								}
 
 								if (ticker == "SOL") {
@@ -318,15 +322,16 @@
 									bankruptcyval = orderentryval + orderentryval/leverage;
 									
 									sellpremium = Math.max(0,orderentryval - Math.abs(orderentryval*(1/leverage-(maintenancemargin/100-shortfundingrate/100)))-markprice);
-									orderval = 1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee + sellpremium;
+									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee + sellpremium).toFixed(8);
 									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
 									target = document.getElementById('frm1').elements['ftarget'].value;
 									stop = document.getElementById('frm1').elements['fstop'].value;
 
-									document.getElementById('frm1').elements['forder'].value = parseFloat(orderval).toFixed(8);
-									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((1/target - 1/limentry) * qty * leverage).toFixed(8);
-									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((1/limentry - 1/stop) * qty * leverage).toFixed(8);
-									document.getElementById('frm1').elements['frr'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/document.getElementById('frm1').elements['fstopbtc'].value).toFixed(8);
+									document.getElementById('frm1').elements['forder'].value = orderval;
+									document.getElementById('frm1').elements['ftargetbtc'].value = parseFloat((1/limentry - 1/target) * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstopbtc'].value = parseFloat((1/limentry - 1/stop) * qty).toFixed(4);
+									document.getElementById('frm1').elements['fstoproe'].value = parseFloat(document.getElementById('frm1').elements['fstopbtc'].value/ orderval * 100).toFixed(2);
+									document.getElementById('frm1').elements['fprofitroe'].value = parseFloat(document.getElementById('frm1').elements['ftargetbtc'].value/orderval * 100).toFixed(2);
 
 								}
 
