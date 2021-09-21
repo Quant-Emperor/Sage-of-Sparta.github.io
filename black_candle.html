@@ -22,7 +22,7 @@
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>  
 
     </head>
     <body data-fade-in="true">
@@ -107,6 +107,7 @@
 
 
                         $('#TICKER').on('click', function () {
+                      
 
                             var url1 = "https://financialmodelingprep.com/api/v3/quotes/nyse?apikey=c01b3c8e189822588988574a0c3957dd"
                             var url2 = "https://financialmodelingprep.com/api/v3/quotes/nasdaq?apikey=c01b3c8e189822588988574a0c3957dd"
@@ -117,11 +118,13 @@
                               url2,
                             ]
 
+ 
+                            //var users = data.map(el => Object.values(el));
+
                             fetchData(urls);
 
-                        });
 
-
+                            });
 
                     </script>
                     
@@ -129,6 +132,9 @@
             </div>
 
              <div id="grid" style="max-width: 440px;margin: 0px auto"></div>
+
+            <table id="table" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Watchlist</strong></caption> </table> 
+
 
         </section>
         <!-- End Project -->
@@ -151,11 +157,12 @@
         <script src="https://code.jscharting.com/latest/jscharting.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        
         <script src="js/blackcandle.js"></script>
         <script src="js/jquery.js"></script>
         <script src="js/init.js"></script>
         <script src="js/scripts.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
     </body>
 
