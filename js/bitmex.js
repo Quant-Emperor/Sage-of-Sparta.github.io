@@ -11,7 +11,7 @@ async function fetchData(urlstrings,id) {
 
     //console.log(data["solana"]["usd"]);
     
-    document.getElementById('frm1').elements['fprice'].value = data[id]["usd"];
+    document.getElementById('frm2').elements['fprice'].value = data[id]["usd"];
 
 //var x = document.getElementById("frm1");
   //            var ticker = x.elements[0].value
