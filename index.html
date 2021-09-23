@@ -188,20 +188,6 @@
                                     },
                                     ];
 
-
-                var column_list3 = [
-                                        
-                                        //{ title: "Name", "data": "source.name" },
-                                        //{ title: "Date", "data": "articles.publishedAt" },
-                                        { title: "Title", "articles": "author" },
-                                        //{ title: "Description", "data": "description" },
-                                        //{ title: "News", "data": "content" },
-                                        //{ title: "Link", "data": "url","render": function(data){
-                                        //           return '<a href="' + data + '">' + data + '</a>';}},
-
-                                        
-                                    ];
-
                 var table = $('#table').DataTable();
                 var urlstring = "https://financialmodelingprep.com/api/v3/stock_news?limit=50&apikey=c01b3c8e189822588988574a0c3957dd"
 
@@ -227,42 +213,99 @@
                     });
                 
                 var table2 = $('#table2').DataTable();
-                var urlstring2 = "https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
-                
+                var urlstring2 = 'https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e'
+                var urlstring2 = "http://api.allorigins.win/get?url=https%3A//newsapi.org/v2/everything%3Fdomains%3Dwsj.com%26sortBy%3Dpopularity%26apiKey%3Db9fc211659cb431aabc01c5b5f5ccd4e&callback=?"
 
+
+
+            var url1 = `https://api.allorigins.win/get?url=${encodeURIComponent('https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e')}`
+            const urls = [
+              url1,
+            ]
+            
+            async function fetchData(urlstrings) {
+              try {
+                const response = await Promise.all(
+                  urlstrings.map(url => fetch(url).then(res => res.json()))
+                )
+                
+                var jsonstring = response[0].contents;
+                const jsonobj = JSON.parse(jsonstring);
+                //console.log(jsonobj.articles);
+
+                  $(document).ready(function() {
+                  
+                  //console.log(data);
+                  var column_list = [
+                    { title: "author"},
+                    { title: "title"},
+                    { title: "description"},
+                    { title: "publishedAt"},
+                    { title: "content"},
+
+                  ];
+
+                   let data = [];
+
+                    jsonobj.articles.forEach((val, idx) => { 
+
+              
+                      data.push({author: jsonobj.articles[idx]["author"],title: jsonobj.articles[idx]["title"],description: jsonobj.articles[idx]["description"],publishedAt: jsonobj.articles[idx]["publishedAt"],content: jsonobj.articles[idx]["content"] });
+
+
+                      //console.log(jsonobj.articles[idx]);
+
+                    });
+
+                    var data_val = data.map(el => Object.values(el));
+
+                      var dataTables = $('#table2').DataTable ({
+                          retrieve: true,
+                          paging: false,
+                          data:data_val,
+                          columns : column_list
+                      });
+                      //dataTables.rows.add(data).draw();
+              });
+
+
+
+              } catch (error) {
+                console.log("Error", error)
+              }
+            }
+
+
+                
+            fetchData(urls)
+
+
+                // with fetch
+               /* var output = fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e')}`)
+                .then(response => {
+                    if (response.ok) return response.json()
+                    throw new Error('Network response was not ok.')
+                })
+                .then(data => console.log(data.contents));
+
+
+
+                console.log(output)
+                
                 table2.destroy();
 
-                $(document).ready(function () {
-
                    table2 = $('#table2').DataTable( {
-                        "ajax": urlstring2,
-                        "dataSrc" : function(json){
-                                      var data = [];
-                                      for(var articlename in json.articles){
-                                         //var articles = json.articles[articlename];
-                                         data.push([
-                                            articlename,
-                                         ]);     
-                                                  
-                                      }
-                                      //console.log(data);   
-                                      return data;
-                                   },
-
+                        "ajax": output,
+                        "dataSrc" : "",
                         "columns": [
-                            { "title": "title" },
+                            { "articles": "author" },
                             
                         ]
-                    } );
-
-
-                   });
-            
-
-
+                    } );   */
 
             </script>
         
+
 
 
 
