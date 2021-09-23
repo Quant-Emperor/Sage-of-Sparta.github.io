@@ -50,6 +50,7 @@
                             <li><a href="#about">About</a></li>
                             <li><a href="#table">Stock News</a></li>
                             <li><a href="#table2">Wall Street Journal</a></li>
+                            <li  class="nav-icon"><a href="http://facebook.com/" target="_blank"><i class="ion-social-facebook"></i></a></li>
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
                                 <ul class="dropdown-menu fullwidth">
@@ -225,6 +226,8 @@
               url1,
             ]
             
+
+
             async function fetchData(urlstrings) {
               try {
                 const response = await Promise.all(
@@ -239,7 +242,7 @@
                   
                   //console.log(data);
                   var column_list = [
-                   { title: "publishedAt"},
+                   { title: "Time"},
                     { title: "author"},
                     { title: "title"},
                     { title: "description"},
@@ -324,6 +327,7 @@
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
         <script src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.11.2/dataRender/datetime.js"></script>
         <script src="js/init.js"></script>
         <script src="js/scripts.js"></script>
         <script src="js/custom.js"></script>
