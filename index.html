@@ -48,6 +48,8 @@
                             <!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
                             <li><a href="#hero">Home</a></li>
                             <li><a href="#about">About</a></li>
+                            <li><a href="#table">Stock News</a></li>
+                            <li><a href="#table2">Wall Street Journal</a></li>
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
                                 <ul class="dropdown-menu fullwidth">
@@ -237,11 +239,15 @@
                   
                   //console.log(data);
                   var column_list = [
+                   { title: "publishedAt"},
                     { title: "author"},
                     { title: "title"},
                     { title: "description"},
-                    { title: "publishedAt"},
                     { title: "content"},
+                    { title: "Link", "url": "url","render": function(url){
+                                                   return '<a href="' + url + '">' + url + '</a>';
+                                                 }
+                                    },
 
                   ];
 
@@ -250,7 +256,7 @@
                     jsonobj.articles.forEach((val, idx) => { 
 
               
-                      data.push({author: jsonobj.articles[idx]["author"],title: jsonobj.articles[idx]["title"],description: jsonobj.articles[idx]["description"],publishedAt: jsonobj.articles[idx]["publishedAt"],content: jsonobj.articles[idx]["content"] });
+                      data.push({publishedAt: jsonobj.articles[idx]["publishedAt"], author: jsonobj.articles[idx]["author"],title: jsonobj.articles[idx]["title"],description: jsonobj.articles[idx]["description"],content: jsonobj.articles[idx]["content"],url: jsonobj.articles[idx]["url"]  });
 
 
                       //console.log(jsonobj.articles[idx]);
@@ -274,44 +280,21 @@
                 console.log("Error", error)
               }
             }
+            
+            fetchData(urls);
+            setInterval( function () {
+            fetchData(urls); // user paging is not reset on reload
 
+                }, 30000 );
 
                 
-            fetchData(urls)
-
-
-                // with fetch
-               /* var output = fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e')}`)
-                .then(response => {
-                    if (response.ok) return response.json()
-                    throw new Error('Network response was not ok.')
-                })
-                .then(data => console.log(data.contents));
-
-
-
-                console.log(output)
-                
-                table2.destroy();
-
-                   table2 = $('#table2').DataTable( {
-                        "ajax": output,
-                        "dataSrc" : "",
-                        "columns": [
-                            { "articles": "author" },
-                            
-                        ]
-                    } );   */
+            
 
             </script>
         
 
-
-
-
-
             <table id="table" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
-            <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table>  
+            <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Wall Street Journal</strong></caption> </table>  
 
         </section>
         <!-- End Project -->
