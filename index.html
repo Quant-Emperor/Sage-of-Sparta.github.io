@@ -238,6 +238,11 @@
                 const jsonobj = JSON.parse(jsonstring);
                 //console.log(jsonobj.articles);
 
+                //var dataTables = $('#table2').DataTable();
+
+                //dataTables.destroy();
+
+
                   $(document).ready(function() {
                   
                   //console.log(data);
@@ -268,13 +273,14 @@
 
                     var data_val = data.map(el => Object.values(el));
 
-                      var dataTables = $('#table2').DataTable ({
+
+                    var dataTables = $('#table2').DataTable ({
                           retrieve: true,
                           paging: false,
                           data:data_val,
                           columns : column_list
                       });
-                      //dataTables.rows.add(data).draw();
+                      
               });
 
 
