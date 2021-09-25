@@ -50,7 +50,7 @@
                             <li><a href="#about">About</a></li>
                             <li><a href="#table">Stock News</a></li>
                             <li><a href="#table2">Wall Street Journal</a></li>
-                            <li  class="nav-icon"><a href="http://facebook.com/" target="_blank"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="#table3">Crypto News</a></li>
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
                                 <ul class="dropdown-menu fullwidth">
@@ -179,7 +179,8 @@
 
                 var column_list2 = [
                                         { title: "Ticker", "data": "symbol" },
-                                        { title: "Date", "data": "publishedDate" },
+                                        { title: "Date", "data": "publishedDate", "render": function(publishedAt) {
+                                            return new Date(publishedAt);} },
                                         { title: "Title", "data": "title" },
                                         { title: "Source Name", "data": "site" },
                                         { title: "News", "data": "text" },
@@ -219,12 +220,21 @@
                 var urlstring2 = 'https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e'
                 var urlstring2 = "http://api.allorigins.win/get?url=https%3A//newsapi.org/v2/everything%3Fdomains%3Dwsj.com%26sortBy%3Dpopularity%26apiKey%3Db9fc211659cb431aabc01c5b5f5ccd4e&callback=?"
 
+                //var url = "https://newsapi.org/v2/everything?domains=wsj.com&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
+                //var url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
+                
+                var url = "https://newsapi.org/v2/everything?domains=wsj.com&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
 
+                var urlbit = "https://newsapi.org/v2/everything?q=(bitcoin OR crypto)&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
 
-            var url1 = `https://api.allorigins.win/get?url=${encodeURIComponent('https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e')}`
+            var url1 = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
+            var url2 = `https://api.allorigins.win/get?url=${encodeURIComponent(urlbit)}`
             const urls = [
               url1,
+              url2,
             ]
+
+            
             
 
 
@@ -236,18 +246,16 @@
                 
                 var jsonstring = response[0].contents;
                 const jsonobj = JSON.parse(jsonstring);
-                //console.log(jsonobj.articles);
 
-                //var dataTables = $('#table2').DataTable();
-
-                //dataTables.destroy();
-
+                var jsonstring2 = response[1].contents;
+                const jsonobj2 = JSON.parse(jsonstring2);
 
                   $(document).ready(function() {
                   
                   //console.log(data);
                   var column_list = [
-                   { title: "Time"},
+                   { title: "Time", "render": function(publishedAt) {
+                        return new Date(publishedAt);}},
                     { title: "author"},
                     { title: "title"},
                     { title: "description"},
@@ -263,16 +271,12 @@
 
                     jsonobj.articles.forEach((val, idx) => { 
 
-              
                       data.push({publishedAt: jsonobj.articles[idx]["publishedAt"], author: jsonobj.articles[idx]["author"],title: jsonobj.articles[idx]["title"],description: jsonobj.articles[idx]["description"],content: jsonobj.articles[idx]["content"],url: jsonobj.articles[idx]["url"]  });
 
-
                       //console.log(jsonobj.articles[idx]);
-
                     });
 
                     var data_val = data.map(el => Object.values(el));
-
 
                     var dataTables = $('#table2').DataTable ({
                           retrieve: true,
@@ -280,10 +284,30 @@
                           data:data_val,
                           columns : column_list
                       });
+
+
+                   let data2 = [];
+
+                    jsonobj2.articles.forEach((val, idx) => { 
+
+                      data2.push({publishedAt: jsonobj2.articles[idx]["publishedAt"], author: jsonobj2.articles[idx]["author"],title: jsonobj2.articles[idx]["title"],description: jsonobj2.articles[idx]["description"],content: jsonobj2.articles[idx]["content"],url: jsonobj2.articles[idx]["url"]  });
+
+                      //console.log(jsonobj.articles[idx]);
+                    });
+
+                    var data_val = data2.map(el => Object.values(el));
+
+
+                    var dataTables2 = $('#table3').DataTable ({
+                          retrieve: true,
+                          paging: false,
+                          data:data_val,
+                          columns : column_list
+                      });
+
+
                       
               });
-
-
 
               } catch (error) {
                 console.log("Error", error)
@@ -291,19 +315,17 @@
             }
             
             fetchData(urls);
-            setInterval( function () {
-            fetchData(urls); // user paging is not reset on reload
 
+            setInterval( function () {
+                fetchData(urls);
                 }, 30000 );
 
-                
-            
-
             </script>
-        
 
             <table id="table" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
             <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Wall Street Journal</strong></caption> </table>  
+            <table id="table3" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Crypto News</strong></caption> </table>  
+
 
         </section>
         <!-- End Project -->
@@ -316,9 +338,6 @@
 
         </section>
         <!-- End Map -->
-
-
-
 
         <!-- Start Footer -->
         <footer id="footer" class="footer style-1 dark">
@@ -337,11 +356,6 @@
         <script src="js/init.js"></script>
         <script src="js/scripts.js"></script>
         <script src="js/custom.js"></script>
-
-
-
-        
-
 
     </body>
 
