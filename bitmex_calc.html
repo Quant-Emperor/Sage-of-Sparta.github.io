@@ -287,9 +287,9 @@
 
 								if (ticker == "BTC") {
 									takerfee = 0.0005;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(1/limentry).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
 									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee).toFixed(4)
@@ -306,9 +306,9 @@
 								if (ticker == "ADA") {
 									takerfee = 0.0005;
 									xbtmultiplier = 0.01;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
 									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee).toFixed(4)
@@ -325,9 +325,9 @@
 								if (ticker == "SOL") {
 									takerfee = 0.0005;
 									xbtmultiplier = 0.00001;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
 									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee).toFixed(4)
@@ -344,9 +344,9 @@
 								if (ticker == "DOT") {
 									takerfee = 0.0005;
 									xbtmultiplier = 0.0001;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
 									orderval = parseFloat(1/leverage * orderentryval + (orderentryval + bankruptcyval) * takerfee).toFixed(4)
@@ -366,10 +366,10 @@
 									xbtmultiplier = 0.00001;
 									maintenancemargin = 0.35;
 									shortfundingrate = -0.01;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value;
-									price = document.getElementById('frm1').elements['fprice'].value;
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value;
+									price = document.getElementById('frm2').elements['fprice'].value;
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
 									markprice = parseFloat(xbtmultiplier*price).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
@@ -391,10 +391,10 @@
 									takerfee = 0.0005;
 									maintenancemargin = 0.35;
 									shortfundingrate = 0.01;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value;
-									price = document.getElementById('frm1').elements['fprice'].value;
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value;
+									price = document.getElementById('frm2').elements['fprice'].value;
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(1/limentry).toFixed(8) * qty;
 									markprice = parseFloat(1/price).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
@@ -418,10 +418,10 @@
 									xbtmultiplier = 0.01;
 									maintenancemargin = 0.35;
 									shortfundingrate = -0.01;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value;
-									price = document.getElementById('frm1').elements['fprice'].value;
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value;
+									price = document.getElementById('frm2').elements['fprice'].value;
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
 									markprice = parseFloat(xbtmultiplier*price).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
@@ -444,10 +444,10 @@
 									xbtmultiplier = 0.0001;
 									maintenancemargin = 0.35;
 									shortfundingrate = -0.01;
-									leverage = document.getElementById('frm1').elements['fleverage'].value;
-									limentry = document.getElementById('frm1').elements['flimitentry'].value;
-									price = document.getElementById('frm1').elements['fprice'].value;
-									qty = document.getElementById('frm1').elements['fqty'].value;
+									leverage = document.getElementById('frm2').elements['fleverage'].value;
+									limentry = document.getElementById('frm2').elements['flimitentry'].value;
+									price = document.getElementById('frm2').elements['fprice'].value;
+									qty = document.getElementById('frm2').elements['fqty'].value;
 									orderentryval = parseFloat(xbtmultiplier*limentry).toFixed(8) * qty;
 									markprice = parseFloat(xbtmultiplier*price).toFixed(8) * qty;
 									bankruptcyval = orderentryval + orderentryval/leverage;
