@@ -39,3 +39,33 @@ balls.forEach((el, i, ra) => {
     }
   );
 });
+
+
+
+async function fetchgreed() {
+    try {
+    const output = await (
+        fetch("https://fear-and-greed-index.p.rapidapi.com/v1/fgi", {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "fear-and-greed-index.p.rapidapi.com",
+                "x-rapidapi-key": "ba6f93db03mshd84c680f5955961p1a7394jsn2cbfb7f22023"
+            }
+        })
+        .then(res => res.json())
+        .catch(err => {
+            console.error(err);
+        })
+
+      )
+
+      console.log(output["fgi"]["now"]["value"]);
+      console.log(output["fgi"]["now"]["valueText"]);
+
+      
+
+    }
+    catch (error) {
+        console.log("Error", error)
+      }
+};
