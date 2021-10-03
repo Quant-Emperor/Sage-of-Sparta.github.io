@@ -175,10 +175,12 @@
 
 							var url1 = "https://financialmodelingprep.com/api/v3/ratios/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
 							var url2 = "https://financialmodelingprep.com/api/v3/historical-price-full/" + ticker + "?apikey=c01b3c8e189822588988574a0c3957dd"
+							var url3 = "https://financialmodelingprep.com/api/v4/company-outlook?symbol=" + ticker + "&apikey=c01b3c8e189822588988574a0c3957dd"
 							
 							const urls = [
 							  url1,
 							  url2,
+							  url3,
 							  
 							]
 
@@ -280,6 +282,8 @@
         <section class="pt140 pb50">
             <div class="container">
             
+            <table id="table4" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Profile</strong></caption> </table> 
+
             <table id="table3" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Quote</strong></caption> </table> 
 
             <div id="epschartdiv" style="width:80%; height:500px; margin:0 auto;"></div> 
