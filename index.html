@@ -31,13 +31,17 @@
 
                 <div class="navbar-header">
                     <div class="container">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar top-bar"></span>
                             <span class="icon-bar middle-bar"></span>
                             <span class="icon-bar bottom-bar"></span>
                         </button>
-                        <!-- <a class="navbar-brand to-top" href="#"><img src="img/assets/logo-dark-.png" class="logo-light" alt="#"><img src="img/assets/logo-dark-.png" class="logo-dark" alt="#"></a> -->
+                         <a class="navbar-brand to-top" href="#"><img src="img/assets/logo-dark-.png" class="logo-light" alt="#"><img src="img/assets/logo-dark-.png" class="logo-dark" alt="#"></a> -->
+                        <ul class="nav navbar-nav menu-left">
+                            <li id="fearvaltext"><a href="index.html"></a></li>
+                            <li id="fearval"><a href="index.html" ></a></li>
+                        </ul>
                     </div>
                 </div>
 
@@ -84,9 +88,12 @@
 
                                 $(document).ready(function () {
 
+                                    
+
                                     fetchgreed();
 
-
+                                    //console.log(document.getElementById('fearvaltext').innerText);
+                                    //console.log(document.getElementById('fearval').innerText);
                                 });
 
                             </script>

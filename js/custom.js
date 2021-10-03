@@ -59,10 +59,19 @@ async function fetchgreed() {
 
       )
 
-      console.log(output["fgi"]["now"]["value"]);
-      console.log(output["fgi"]["now"]["valueText"]);
+      //console.log(output["fgi"]["now"]["value"]);
+      //console.log(output["fgi"]["now"]["valueText"]);
 
-      
+                                    //console.log(document.getElementById('fearvaltext').innerText);
+                                    //console.log(document.getElementById('fearval').innerText);
+
+      //document.getElementById('fearvaltext').innerHTML = output["fgi"]["now"]["valueText"]
+
+
+      const elem = document.querySelector('#fearvaltext');
+
+      elem.textContent = output["fgi"]["now"]["valueText"]
+     // document.getElementById('fearval').textContent = output["fgi"]["now"]["value"]
 
     }
     catch (error) {
