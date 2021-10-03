@@ -197,10 +197,17 @@
 
             <script>
 
+
+
+
                 var column_list2 = [
                                         { title: "Ticker", "data": "symbol" },
                                         { title: "Date", "data": "publishedDate", "render": function(publishedAt) {
-                                            return new Date(publishedAt);} },
+
+                                            const date = new Date(publishedAt).toLocaleDateString("en-US");
+                                            const time = new Date(publishedAt).toLocaleTimeString("en-US");
+
+                                            return date + ' ' + time;} },
                                        // { title: "Title", "data": "title" },
                                         { title: "Source Name", "data": "site" },
                                         { title: "News", "data": "text", "width": "50%" },
@@ -283,7 +290,11 @@
                   //console.log(data);
                   var column_list = [
                    { title: "Time", "render": function(publishedAt) {
-                        return new Date(publishedAt);}},
+
+                    const date = new Date(publishedAt).toLocaleDateString("en-US");
+                        const time = new Date(publishedAt).toLocaleTimeString("en-US");
+
+                        return date + ' ' + time;}},
                     //{ title: "author"},
                     { title: "title", "width": "10%"},
                     { title: "description", "width": "50%"},
