@@ -51,8 +51,12 @@
 						<ul class="nav navbar-nav center-menu">
 
 							<!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
-							<li><a href="index-2.html" target="_top">Home</a></li>
-							<li><a href="index-2.html#about">About</a></li>
+							<li><a href="index.html" target="_top">Home</a></li>
+							<li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#table">Stock News</a></li>
+                            <li><a href="index.html#table2">Wall Street Journal</a></li>
+                            <li><a href="index.html#table4">Bloomberg</a></li>
+                            <li><a href="index.html#table3">Crypto News</a></li>
 							<li class="dropdown megamenu vos">
 								<a class="dropdown-toggle">Elements<i class="ion-ios-arrow-down"></i></a>
 								<ul class="dropdown-menu fullwidth">
@@ -132,18 +136,32 @@
 						var column_list2 = [
 												{ title: "Ticker", "data": "symbol" },
 						                        { title: "Date", "data": "publishedDate" },
-						                        { title: "Title", "data": "title" },
+						                       // { title: "Title", "data": "title" },
 						                        { title: "Source Name", "data": "site" },
-						                        { title: "News", "data": "text" },
+						                        { title: "News", "data": "text", "width": "50%" },
 						                        { title: "Link", "data": "url" 
 
 												,"render": function(data){
-												           return '<a href="' + data + '">' + data + '</a>';
+												          // return '<a href="' + data + '">' + data + '</a>';
+												          	return '<a href="' + data + '">Click here</a>';
+
 												         }
-
-
-
 						                    },
+						                    ];
+
+						var column_list3 = [
+												{ title: "Ticker", "data": "symbol" },
+						                        { title: "Name", "data": "name" },
+						                        { title: "Price", "data": "price" },
+						                        { title: "changesPercentage", "data": "changesPercentage" },
+						                        { title: "change", "data": "change" },
+						                        { title: "marketCap", "data": "marketCap" },
+						                        { title: "volume", "data": "volume" },
+						                        { title: "avgVolume", "data": "avgVolume" },
+						                        { title: "open", "data": "open" },
+						                        { title: "eps", "data": "eps" },
+						                        { title: "pe", "data": "pe" },
+						                        
 						                    ];
 
 						
@@ -158,12 +176,11 @@
 							var url1 = "https://financialmodelingprep.com/api/v3/ratios/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
 							var url2 = "https://financialmodelingprep.com/api/v3/historical-price-full/" + ticker + "?apikey=c01b3c8e189822588988574a0c3957dd"
 							
-
 							const urls = [
 							  url1,
 							  url2,
+							  
 							]
-
 
 							fetchData(urls);
 
@@ -172,52 +189,83 @@
 						/// table
 						
 						var table = $('#table').DataTable();
+						var table2 = $('#table2').DataTable();
+						var table3 = $('#table3').DataTable();
 						/// Read file
 						$('#TICKER').on('click', function () {
 							
+
+							table.destroy();
+							table2.destroy();
+							table3.destroy();
+
 							var x = document.getElementById("frm1");
 							var ticker = x.elements[0].value
 							var urlstring = "https://financialmodelingprep.com/api/v3/enterprise-values/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
 
-							table.destroy();
-				  			  
+							var urlstring2 = "https://financialmodelingprep.com/api/v3/stock_news?tickers=" + ticker + "&limit=50&apikey=c01b3c8e189822588988574a0c3957dd"
+
+							var urlstring3 = "https://financialmodelingprep.com/api/v3/quote/" + ticker + "?apikey=c01b3c8e189822588988574a0c3957dd"
+
+							
+				  			 
 						            $(document).ready(function () {
-						                table = $('#table').DataTable({
+
+						            	table = $('#table').DataTable({
 						                	retrieve: true,
-										    
+										    searching: false, 
+										    info: false,
 						                	"ajax": {
 									            "url": urlstring,
 									            "dataSrc": ""
 									        },
+									        "pageLength": 5,
 						                    "columns": column_list
 						                });
+
+						                table2 = $('#table2').DataTable({
+						                	retrieve: true,
+										    
+						                	"ajax": {
+									            "url": urlstring2,
+									            "dataSrc": ""
+									        },
+									        "pageLength": 5,
+						                    "columns": column_list2
+						                });
+
+						                table3 = $('#table3').DataTable({
+						                	retrieve: true,
+										    searching: false, 
+										    paging: false, 
+										    info: false,
+						                	"ajax": {
+									            "url": urlstring3,
+									            "dataSrc": ""
+									        },
+						                    "columns": column_list3
+
+
+
+
+
+						                });
+
+
 						            });
+
+
+
 				  			  });
 						/// table
 						
 
-						var table2 = $('#table2').DataTable();
+						
 						/// Read file
-						$('#TICKER').on('click', function () {
+						//$('#TICKER').on('click', function () {
 							
-							var x = document.getElementById("frm1");
-							var ticker = x.elements[0].value
-							var urlstring = "https://financialmodelingprep.com/api/v3/stock_news?tickers=" + ticker + "&limit=50&apikey=c01b3c8e189822588988574a0c3957dd"
 
-							table2.destroy();
-				  			 
-						            $(document).ready(function () {
-						                table = $('#table2').DataTable({
-						                	retrieve: true,
-										    
-						                	"ajax": {
-									            "url": urlstring,
-									            "dataSrc": ""
-									        },
-						                    "columns": column_list2
-						                });
-						            });
-				  			  });
+				  			//  });
 
 					</script>
 					
@@ -231,23 +279,17 @@
         <!-- Project -->
         <section class="pt140 pb50">
             <div class="container">
-                <div class="row text-center">
+            
+            <table id="table3" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Quote</strong></caption> </table> 
 
-                    <div class="col-md-12 text-center">
-                        <p class="lead">PE Chart</p>
-                    </div>
-
-                </div>
-            </div>
-
-                           <!-- DAMIAN J -->
             <div id="epschartdiv" style="width:80%; height:500px; margin:0 auto;"></div> 
             <div id="stockchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>
             <div id="pegchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>  
 
 		    <table id="table" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Enterprise Values</strong></caption> </table>  
-		    <table id="table2" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
-
+		    <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
+		    
+		    </div>
 
         </section>
         <!-- End Project -->

@@ -54,6 +54,7 @@
                             <li><a href="#about">About</a></li>
                             <li><a href="#table">Stock News</a></li>
                             <li><a href="#table2">Wall Street Journal</a></li>
+                            <li><a href="#table4">Bloomberg</a></li>
                             <li><a href="#table3">Crypto News</a></li>
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
@@ -200,13 +201,13 @@
                                         { title: "Ticker", "data": "symbol" },
                                         { title: "Date", "data": "publishedDate", "render": function(publishedAt) {
                                             return new Date(publishedAt);} },
-                                        { title: "Title", "data": "title" },
+                                       // { title: "Title", "data": "title" },
                                         { title: "Source Name", "data": "site" },
-                                        { title: "News", "data": "text" },
+                                        { title: "News", "data": "text", "width": "50%" },
                                         { title: "Link", "data": "url" 
 
                                         ,"render": function(data){
-                                                   return '<a href="' + data + '">' + data + '</a>';
+                                                   return '<a href="' + data + '">Click here</a>';
                                                  }
                                     },
                                     ];
@@ -225,6 +226,7 @@
                                 "url": urlstring,
                                 "dataSrc": ""
                             },
+                            "pageLength": 5,
                             "columns": column_list2
                         });
 
@@ -246,11 +248,15 @@
 
                 var urlbit = "https://newsapi.org/v2/everything?q=(bitcoin OR crypto)&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
 
+                var urlbb = "https://newsapi.org/v2/everything?domains=bloomberg.com&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
+
             var url1 = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`
             var url2 = `https://api.allorigins.win/get?url=${encodeURIComponent(urlbit)}`
+            var url3 = `https://api.allorigins.win/get?url=${encodeURIComponent(urlbb)}`
             const urls = [
               url1,
               url2,
+              url3,
             ]
 
             
@@ -269,18 +275,21 @@
                 var jsonstring2 = response[1].contents;
                 const jsonobj2 = JSON.parse(jsonstring2);
 
+                var jsonstring3 = response[2].contents;
+                const jsonobj3 = JSON.parse(jsonstring3);
+
                   $(document).ready(function() {
                   
                   //console.log(data);
                   var column_list = [
                    { title: "Time", "render": function(publishedAt) {
                         return new Date(publishedAt);}},
-                    { title: "author"},
-                    { title: "title"},
-                    { title: "description"},
-                    { title: "content"},
-                    { title: "Link", "url": "url","render": function(url){
-                                                   return '<a href="' + url + '">' + url + '</a>';
+                    //{ title: "author"},
+                    { title: "title", "width": "10%"},
+                    { title: "description", "width": "50%"},
+                    //{ title: "content"},
+                    { title: "Link", "url": "url", "render": function(url){
+                                                   return '<a href="' + url + '">Click here</a>';
                                                  }
                                     },
 
@@ -290,7 +299,7 @@
 
                     jsonobj.articles.forEach((val, idx) => { 
 
-                      data.push({publishedAt: jsonobj.articles[idx]["publishedAt"], author: jsonobj.articles[idx]["author"],title: jsonobj.articles[idx]["title"],description: jsonobj.articles[idx]["description"],content: jsonobj.articles[idx]["content"],url: jsonobj.articles[idx]["url"]  });
+                      data.push({publishedAt: jsonobj.articles[idx]["publishedAt"],title: jsonobj.articles[idx]["title"],description: jsonobj.articles[idx]["description"],url: jsonobj.articles[idx]["url"]  });
 
                       //console.log(jsonobj.articles[idx]);
                     });
@@ -299,8 +308,9 @@
 
                     var dataTables = $('#table2').DataTable ({
                           retrieve: true,
-                          paging: false,
+                          //paging: false,
                           data:data_val,
+                          pageLength: 5,
                           columns : column_list
                       });
 
@@ -309,21 +319,43 @@
 
                     jsonobj2.articles.forEach((val, idx) => { 
 
-                      data2.push({publishedAt: jsonobj2.articles[idx]["publishedAt"], author: jsonobj2.articles[idx]["author"],title: jsonobj2.articles[idx]["title"],description: jsonobj2.articles[idx]["description"],content: jsonobj2.articles[idx]["content"],url: jsonobj2.articles[idx]["url"]  });
+                      data2.push({publishedAt: jsonobj2.articles[idx]["publishedAt"],title: jsonobj2.articles[idx]["title"],description: jsonobj2.articles[idx]["description"],url: jsonobj2.articles[idx]["url"]  });
 
                       //console.log(jsonobj.articles[idx]);
                     });
 
-                    var data_val = data2.map(el => Object.values(el));
+                    var data_val2 = data2.map(el => Object.values(el));
 
 
                     var dataTables2 = $('#table3').DataTable ({
                           retrieve: true,
-                          paging: false,
-                          data:data_val,
+                          //paging: false,
+                          data:data_val2,
+                          pageLength: 5,
                           columns : column_list
                       });
 
+
+                    // BLOOMBERG.COM
+                   let data3 = [];
+
+                    jsonobj3.articles.forEach((val, idx) => { 
+
+                      data3.push({publishedAt: jsonobj3.articles[idx]["publishedAt"],title: jsonobj3.articles[idx]["title"],description: jsonobj3.articles[idx]["description"],url: jsonobj3.articles[idx]["url"]  });
+
+                      //console.log(jsonobj.articles[idx]);
+                    });
+
+                    var data_val3 = data3.map(el => Object.values(el));
+
+
+                    var dataTables3 = $('#table4').DataTable ({
+                          retrieve: true,
+                          //paging: false,
+                          data:data_val3,
+                          pageLength: 5,
+                          columns : column_list
+                      });
 
                       
               });
@@ -341,10 +373,16 @@
 
             </script>
 
-            <table id="table" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
-            <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Wall Street Journal</strong></caption> </table>  
-            <table id="table3" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Crypto News</strong></caption> </table>  
+            <div class="container">
 
+            </div>
+
+            <table id="table" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
+            <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Wall Street Journal</strong></caption> </table>
+
+            <table id="table3" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Crypto News</strong></caption> </table>  
+            <table id="table4" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Bloomberg News</strong></caption> </table>   
+            
 
         </section>
         <!-- End Project -->
