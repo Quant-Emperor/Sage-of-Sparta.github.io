@@ -75,8 +75,9 @@ async function fetchData(urlstrings) {
 
           var dataTables = $('#table').DataTable ({
               retrieve: true,
-              paging: false,
+              //paging: false,
               data:data_val,
+              pageLength: 5,
               columns : column_list
           });
           //dataTables.rows.add(data).draw();

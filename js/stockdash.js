@@ -86,7 +86,7 @@ async function fetchData(urlstrings) {
 
         //var dataset = [[profile["symbol"],profile["price"],profile["beta"],profile["volAvg"],profile["website"]],
         //              [profile["symbol"],profile["price"],profile["beta"],profile["volAvg"],profile["website"]]
-        //]; f
+        //]; 
 
 var dataSet = [
     [ "Tiger Nixon", "System Architect", "Edinburgh", "5421", "2011/04/25", "$320,800" ],
