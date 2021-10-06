@@ -21,6 +21,26 @@ async function fetchData(urlstrings) {
       urlstrings.map(url => fetch(url).then(res => res.json()))
     )
     
+
+    var vol_data = await JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/average_volumes.csv")
+        .then(response => response.text())
+        .then(text => {
+          let  data = JSC.csv2Json(text);
+          let vol_data = [];
+
+          //data.forEach((val,idx) => {
+          //  vol_data.push({Ticker: val['Ticker']});
+          //});
+          //console.log(data);
+          return(data);
+        });
+
+
+
+    //console.log(vol_data);
+
+
+
     var nyse_json = response[0];
     var nasdaq_json = response[1];
     var screen = response[2];
@@ -28,7 +48,7 @@ async function fetchData(urlstrings) {
 
     
 
-    let data = [];
+    let data = [], data2 = [];
 
     nyse_json.forEach((val, idx) => { 
 
@@ -39,6 +59,12 @@ async function fetchData(urlstrings) {
         if ((nyse_json[idx]["price"] < nyse_json[idx]["open"]) && (nyse_json[idx]["price"] >= nyse_json[idx]["previousClose"] )&&(screen_symbol[0].symbol === nyse_json[idx]["symbol"]) ) {
           data.push({symbol: nyse_json[idx]["symbol"], name: nyse_json[idx]["name"], price: nyse_json[idx]["price"], change: nyse_json[idx]["change"], changesPercentage: nyse_json[idx]["changesPercentage"], beta: screen_symbol[0].beta});
         }
+      }
+
+      screen_symbol = vol_data.filter(x => (x.Ticker === nyse_json[idx]["symbol"]));
+      if (screen_symbol.length > 0) {
+        //console.log(screen_symbol);
+        data2.push({symbol: nyse_json[idx]["symbol"], name: nyse_json[idx]["name"], premarket_vol: nyse_json[idx]["volume"]/screen_symbol[0]["average_open_vol"], intraday_vol: nyse_json[idx]["volume"]/screen_symbol[0]["average_vol"], close_vol: nyse_json[idx]["volume"]/screen_symbol[0]["average_close_vol"]});
       }
 
     });
@@ -53,28 +79,17 @@ async function fetchData(urlstrings) {
         }
       }
 
+      screen_symbol = vol_data.filter(x => (x.Ticker === nasdaq_json[idx]["symbol"]));
+      if (screen_symbol.length > 0) {
+        //console.log(screen_symbol);
+        data2.push({symbol: nasdaq_json[idx]["symbol"], name: nasdaq_json[idx]["name"], premarket_vol: nasdaq_json[idx]["volume"]/screen_symbol[0]["average_open_vol"], intraday_vol: nasdaq_json[idx]["volume"]/screen_symbol[0]["average_vol"], close_vol: nasdaq_json[idx]["volume"]/screen_symbol[0]["average_close_vol"]});
+      }
+
+
     });
     
 
-  JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/average_volumes.csv")
-    .then(response => response.text())
-    .then(text => {
-      let data = JSC.csv2Json(text);
-      let average_vol = [];
 
-      data.forEach((val,idx) => {
-
-        average_vol.push({x: val['Ticker'], y: checkNaNReturnNumber(val['average_vol'])});
-
-
-      });
-
-
-      console.log(data);
-
-
-
-    });
 
 
 
@@ -83,12 +98,20 @@ async function fetchData(urlstrings) {
       
       //console.log(data);
       var column_list = [
-        { title: "symbol"},
-        { title: "name"},
-        { title: "price"},
-        { title: "change"},
-        { title: "changesPercentage"},
-        { title: "beta"},
+        { title: "Ticker"},
+        { title: "Name"},
+        { title: "Price", "render": function(price){
+                                                   return parseFloat(price).toFixed(2);
+                                                 }},
+        { title: "Change", "render": function(change){
+                                                   return parseFloat(change).toFixed(4);
+                                                 }},
+        { title: "Change %", "render": function(changesPercentage){
+                                                   return parseFloat(changesPercentage).toFixed(4);
+                                                 }},
+        { title: "Beta", "render": function(beta){
+                                                   return parseFloat(beta).toFixed(2);
+                                                 }},
 
       ];
 
@@ -101,7 +124,32 @@ async function fetchData(urlstrings) {
               pageLength: 5,
               columns : column_list
           });
-          //dataTables.rows.add(data).draw();
+
+
+      var column_list2 = [
+        { title: "Ticker"},
+        { title: "Name"},
+        { title: "Pre-market Volume %", "render": function(premarket_vol){
+                                                   return parseFloat(premarket_vol).toFixed(2);
+                                                 }},
+        { title: "Intraday Volume %", "render": function(intraday_vol){
+                                                   return parseFloat(intraday_vol).toFixed(2);
+                                                 }},
+        { title: "Close Volume %", "render": function(close_vol){
+                                                   return parseFloat(close_vol).toFixed(2);
+                                                 }},
+      ];
+
+      var data_val2 = data2.map(el => Object.values(el));
+
+          var dataTables2 = $('#table2').DataTable ({
+              retrieve: true,
+              //paging: false,
+              data:data_val2,
+              pageLength: 5,
+              columns : column_list2
+          });         
+          
   });
 
 
