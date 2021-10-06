@@ -54,10 +54,31 @@ async function fetchData(urlstrings) {
       }
 
     });
-    //console.log(nyse)
+    
 
-    //datagrid(data);
-    //loaddatatable(data);
+  JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.github.io/master/data/average_volumes.csv")
+    .then(response => response.text())
+    .then(text => {
+      let data = JSC.csv2Json(text);
+      let average_vol = [];
+
+      data.forEach((val,idx) => {
+
+        average_vol.push({x: val['Ticker'], y: checkNaNReturnNumber(val['average_vol'])});
+
+
+      });
+
+
+      console.log(data);
+
+
+
+    });
+
+
+
+
       $(document).ready(function() {
       
       //console.log(data);
