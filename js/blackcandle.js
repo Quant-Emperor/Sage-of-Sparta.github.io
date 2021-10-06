@@ -87,12 +87,6 @@ async function fetchData(urlstrings) {
 
 
     });
-    
-
-
-
-
-
 
       $(document).ready(function() {
       
