@@ -25,10 +25,11 @@ async function fetchData(urlstrings) {
     var hist_price = response[1].historical;
     var profile = response[2].profile;
     var eps_est = response[3];
+    var quarterly_eps_est = response[4];
 
     //console.log(profile["symbol"]);
 
-    let pe = [], stockadjcloseprice = [], peg = [], epsestimate = [];
+    let pe = [], stockadjcloseprice = [], peg = [], epsestimate = [], quarterlyepsestimate = [];
 
 
     ratios.forEach((val, idx) => {
@@ -46,7 +47,9 @@ async function fetchData(urlstrings) {
       epsestimate.push({x: eps_est[idx]["date"], y: eps_est[idx]["estimatedEpsAvg"]});
     });
 
-
+    quarterly_eps_est.forEach((val, idx) => {
+      quarterlyepsestimate.push({x: quarterly_eps_est[idx]["date"], y: quarterly_eps_est[idx]["estimatedEpsAvg"]});
+    });
 
     var data_series = [
       {name: 'PE', points: pe,type:'line',yAxis: 'leftAxis'},
@@ -59,7 +62,6 @@ async function fetchData(urlstrings) {
       //{name: 'PEG', points: peg,type:'line',yAxis: 'rightAxis'},
 
     ];
-
 
     renderChart(data_series,'stockchartdiv','Stock Price');
     
@@ -76,6 +78,13 @@ async function fetchData(urlstrings) {
     ];
 
     renderChart(data_series,'epsestchartdiv','EPS EST');
+
+    var data_series = [
+      {name: 'Quarterly EPS Estimates', points: quarterlyepsestimate,type:'column',yAxis: 'leftAxis'},
+
+    ];
+
+    renderChart(data_series,'quartepsestchartdiv','QUART EPS EST');
 
 
 

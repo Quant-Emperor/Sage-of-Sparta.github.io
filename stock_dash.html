@@ -178,6 +178,8 @@
 							var url3 = "https://financialmodelingprep.com/api/v4/company-outlook?symbol=" + ticker + "&apikey=c01b3c8e189822588988574a0c3957dd"
 							var url4 = "https://financialmodelingprep.com/api/v3/analyst-estimates/" + ticker + "?limit=30&apikey=c01b3c8e189822588988574a0c3957dd"
 
+							var url5 = "https://financialmodelingprep.com/api/v3/analyst-estimates/" + ticker + "?period=quarter&limit=10&apikey=c01b3c8e189822588988574a0c3957dd"
+
 							
 							
 							const urls = [
@@ -185,6 +187,7 @@
 							  url2,
 							  url3,
 							  url4,
+							  url5,
 							]
 
 							fetchData(urls);
@@ -293,7 +296,7 @@
             <div id="stockchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>
             <div id="pegchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>  
 			<div id="epsestchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>  
-
+			<div id="quartepsestchartdiv" style="width:80%; height:500px; margin:0 auto;"></div> 
 
 
 		    <table id="table" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Enterprise Values</strong></caption> </table>  
