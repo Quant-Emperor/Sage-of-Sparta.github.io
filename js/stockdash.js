@@ -71,7 +71,7 @@ async function fetchData(urlstrings) {
     renderChart(data_series,'pegchartdiv','PEG');
 
     var data_series = [
-      {name: 'EPS Estimates', points: epsestimate,type:'line',yAxis: 'leftAxis'},
+      {name: 'Annual EPS Estimates', points: epsestimate,type:'line',yAxis: 'leftAxis'},
 
     ];
 
