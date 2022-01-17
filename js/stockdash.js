@@ -24,23 +24,28 @@ async function fetchData(urlstrings) {
     var ratios = response[0];
     var hist_price = response[1].historical;
     var profile = response[2].profile;
+    var eps_est = response[3];
 
     //console.log(profile["symbol"]);
 
-    let pe = [], stockadjcloseprice = [], peg = [];
+    let pe = [], stockadjcloseprice = [], peg = [], epsestimate = [];
 
 
     ratios.forEach((val, idx) => {
       pe.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsRatio"]});
       peg.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsToGrowthRatio"]});
+
+
     });
 
-    
     hist_price.forEach((val, idx) => {
-      
       stockadjcloseprice.push({x: hist_price[idx]["date"], y: hist_price[idx]["adjClose"]});
-
     });
+
+    eps_est.forEach((val, idx) => {
+      epsestimate.push({x: eps_est[idx]["date"], y: eps_est[idx]["estimatedEpsAvg"]});
+    });
+
 
 
     var data_series = [
@@ -64,6 +69,14 @@ async function fetchData(urlstrings) {
     ];
 
     renderChart(data_series,'pegchartdiv','PEG');
+
+    var data_series = [
+      {name: 'EPS Estimates', points: epsestimate,type:'line',yAxis: 'leftAxis'},
+
+    ];
+
+    renderChart(data_series,'epsestchartdiv','EPS EST');
+
 
 
     var column_list = [

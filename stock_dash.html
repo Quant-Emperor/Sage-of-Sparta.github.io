@@ -176,12 +176,15 @@
 							var url1 = "https://financialmodelingprep.com/api/v3/ratios/" + ticker + "?limit=40&apikey=c01b3c8e189822588988574a0c3957dd"
 							var url2 = "https://financialmodelingprep.com/api/v3/historical-price-full/" + ticker + "?apikey=c01b3c8e189822588988574a0c3957dd"
 							var url3 = "https://financialmodelingprep.com/api/v4/company-outlook?symbol=" + ticker + "&apikey=c01b3c8e189822588988574a0c3957dd"
+							var url4 = "https://financialmodelingprep.com/api/v3/analyst-estimates/" + ticker + "?limit=30&apikey=c01b3c8e189822588988574a0c3957dd"
+
+							
 							
 							const urls = [
 							  url1,
 							  url2,
 							  url3,
-							  
+							  url4,
 							]
 
 							fetchData(urls);
@@ -289,6 +292,9 @@
             <div id="epschartdiv" style="width:80%; height:500px; margin:0 auto;"></div> 
             <div id="stockchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>
             <div id="pegchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>  
+			<div id="epsestchartdiv" style="width:80%; height:500px; margin:0 auto;"></div>  
+
+
 
 		    <table id="table" class="display" width="40%"> <caption style="text-align:center;font-size:40px"><strong>Enterprise Values</strong></caption> </table>  
 		    <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
