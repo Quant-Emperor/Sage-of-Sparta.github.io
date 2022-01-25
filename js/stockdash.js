@@ -26,17 +26,14 @@ async function fetchData(urlstrings) {
     var profile = response[2].profile;
     var eps_est = response[3];
     var quarterly_eps_est = response[4];
+    var hist_price_2 = response[5].historical;
 
-    //console.log(profile["symbol"]);
-
-    let pe = [], stockadjcloseprice = [], peg = [], epsestimate = [], quarterlyepsestimate = [];
+    let pe = [], stockadjcloseprice = [], peg = [], epsestimate = [], quarterlyepsestimate = [], pairscloseprice = [];
 
 
     ratios.forEach((val, idx) => {
       pe.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsRatio"]});
       peg.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsToGrowthRatio"]});
-
-
     });
 
     hist_price.forEach((val, idx) => {
@@ -51,11 +48,16 @@ async function fetchData(urlstrings) {
       quarterlyepsestimate.push({x: quarterly_eps_est[idx]["date"], y: quarterly_eps_est[idx]["estimatedEpsAvg"]});
     });
 
+    hist_price_2.forEach((val, idx) => {
+      pairscloseprice.push({x: hist_price_2[idx]["date"], y: hist_price_2[idx]["adjClose"]});
+    });
+
+
     var data_series = [
       {name: 'PE', points: pe,type:'line',yAxis: 'leftAxis'},
     ];
 
-    renderChart(data_series,'epschartdiv','EPS');
+    renderChart(data_series,'epschartdiv','EPS','red');
 
     var data_series = [
       {name: 'Stock Close', points: stockadjcloseprice,type:'line',yAxis: 'leftAxis'},
@@ -63,28 +65,37 @@ async function fetchData(urlstrings) {
 
     ];
 
-    renderChart(data_series,'stockchartdiv','Stock Price');
-    
+    renderChart(data_series,'stockchartdiv','Stock Price','green');
+  
+
+    var data_series = [
+      {name: 'Stock Pairs Close', points: pairscloseprice,type:'line',yAxis: 'leftAxis'},
+      //{name: 'PEG', points: peg,type:'line',yAxis: 'rightAxis'},
+
+    ];
+
+    renderChart(data_series,'stockchartdiv2','Stock Price','yellow');
+
     var data_series = [
       {name: 'PEG', points: peg,type:'line',yAxis: 'leftAxis'},
 
     ];
 
-    renderChart(data_series,'pegchartdiv','PEG');
+    renderChart(data_series,'pegchartdiv','PEG','black');
 
     var data_series = [
       {name: 'Annual EPS Estimates', points: epsestimate,type:'line',yAxis: 'leftAxis'},
 
     ];
 
-    renderChart(data_series,'epsestchartdiv','EPS EST');
+    renderChart(data_series,'epsestchartdiv','EPS EST','purple');
 
     var data_series = [
       {name: 'Quarterly EPS Estimates', points: quarterlyepsestimate,type:'column',yAxis: 'leftAxis'},
 
     ];
 
-    renderChart(data_series,'quartepsestchartdiv','QUART EPS EST');
+    renderChart(data_series,'quartepsestchartdiv','QUART EPS EST','blue');
 
 
 
@@ -148,7 +159,7 @@ var dataSet = [
 }
 
 
-function renderChart(series,jscchartname,title) {
+function renderChart(series,jscchartname,title,colorvar) {
 
 var chart = JSC.Chart(jscchartname, {
     //title_label_text: title,
@@ -192,7 +203,8 @@ var chart = JSC.Chart(jscchartname, {
   
   defaultSeries: { 
       line_width: 1.5, 
-      legendEntry_icon_name: 'circle'
+      legendEntry_icon_name: 'circle',
+      color: colorvar,
     }, 
 
 
