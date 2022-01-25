@@ -38,6 +38,18 @@ async function fetchData(urlstrings) {
 
     hist_price.forEach((val, idx) => {
       stockadjcloseprice.push({x: hist_price[idx]["date"], y: hist_price[idx]["adjClose"]});
+
+
+
+      date_row = hist_price_2.filter(x => (x.date === hist_price[idx]["date"]));
+
+      if (date_row.length > 0) {
+
+        //console.log(date_row);
+        pairscloseprice.push({x: date_row[0]["date"], y: hist_price[idx]["adjClose"]/date_row[0]["adjClose"]});
+      }
+
+
     });
 
     eps_est.forEach((val, idx) => {
@@ -48,9 +60,9 @@ async function fetchData(urlstrings) {
       quarterlyepsestimate.push({x: quarterly_eps_est[idx]["date"], y: quarterly_eps_est[idx]["estimatedEpsAvg"]});
     });
 
-    hist_price_2.forEach((val, idx) => {
-      pairscloseprice.push({x: hist_price_2[idx]["date"], y: hist_price_2[idx]["adjClose"]});
-    });
+    //hist_price_2.forEach((val, idx) => {
+      
+    //});
 
 
     var data_series = [
@@ -74,7 +86,7 @@ async function fetchData(urlstrings) {
 
     ];
 
-    renderChart(data_series,'stockchartdiv2','Stock Price','yellow');
+    renderChart(data_series,'stockchartdiv2','Stock Price','pink');
 
     var data_series = [
       {name: 'PEG', points: peg,type:'line',yAxis: 'leftAxis'},
