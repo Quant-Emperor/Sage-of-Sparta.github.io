@@ -47,7 +47,7 @@
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <div class="container">
-                        <ul class="nav navbar-nav menu-right">
+                        <ul class="nav navbar-nav menu-center">
 
                             <!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
                             <li><a href="#hero">Home</a></li>
@@ -56,6 +56,8 @@
                             <li><a href="#table2">Wall Street Journal</a></li>
                             <li><a href="#table4">Bloomberg</a></li>
                             <li><a href="#table3">Crypto News</a></li>
+                            <li><a href="#table5">FMP Articles</a></li>
+
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
                                 <ul class="dropdown-menu fullwidth">
@@ -214,7 +216,7 @@
                                         { title: "Link", "data": "url" 
 
                                         ,"render": function(data){
-                                                   return '<a href="' + data + '">Click here</a>';
+                                                   return '<a href="' + data + '" target="_blank">Click here</a>';
                                                  }
                                     },
                                     ];
@@ -244,6 +246,54 @@
 
                     });
                 
+                ///////////////////////////////////////
+                    var column_list5 = [
+                                        { title: "Ticker", "data": "tickers" },
+                                        { title: "Date", "data": "date", "render": function(publishedAt) {
+
+                                            const date = new Date(publishedAt).toLocaleDateString("en-US");
+                                            const time = new Date(publishedAt).toLocaleTimeString("en-US");
+
+                                            return date + ' ' + time;} },
+                                        { title: "Title", "data": "title" },
+                                       // { title: "Source Name", "data": "site" },
+                                        { title: "News", "data": "content", "width": "50%" },
+                                        { title: "Link", "data": "link" 
+
+                                        ,"render": function(data){
+                                                   return '<a href="' + data + '" target="_blank">Click here</a>';
+                                                 }
+                                    },
+                                    ];
+
+                var table5 = $('#table5').DataTable();
+                var urlstring5 = "https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=100&apikey=c01b3c8e189822588988574a0c3957dd"
+
+                
+                    table.destroy();
+                      
+                    $(document).ready(function () {
+                        table5 = $('#table5').DataTable({
+                            retrieve: true,
+                            
+                            "ajax": {
+                                "url": urlstring5,
+                                "dataSrc": "content"
+                            },
+                            "pageLength": 5,
+                            "columns": column_list5
+                        });
+
+                        setInterval( function () {
+                        table.ajax.reload(); // user paging is not reset on reload
+
+                        }, 30000 );
+
+                    });
+
+                ////////////////////////////////        
+
+
                 var table2 = $('#table2').DataTable();
                 var urlstring2 = 'https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e'
                 var urlstring2 = "http://api.allorigins.win/get?url=https%3A//newsapi.org/v2/everything%3Fdomains%3Dwsj.com%26sortBy%3Dpopularity%26apiKey%3Db9fc211659cb431aabc01c5b5f5ccd4e&callback=?"
@@ -300,7 +350,7 @@
                     { title: "description", "width": "50%"},
                     //{ title: "content"},
                     { title: "Link", "url": "url", "render": function(url){
-                                                   return '<a href="' + url + '">Click here</a>';
+                                                   return '<a href="' + url + '" target="_blank">Click here</a>';
                                                  }
                                     },
 
@@ -394,6 +444,8 @@
             <table id="table3" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Crypto News</strong></caption> </table>  
             <table id="table4" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Bloomberg News</strong></caption> </table>   
             
+            <table id="table5" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Financial Modelling Prep Articles</strong></caption> </table>  
+
 
         </section>
         <!-- End Project -->
