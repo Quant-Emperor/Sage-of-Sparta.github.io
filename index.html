@@ -16,6 +16,13 @@
         <link href="css/colors/purple.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+         <!-- Added these here to try and get export buttons working on datatables -->
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
+
+
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
 
@@ -275,11 +282,12 @@
                     $(document).ready(function () {
                         table5 = $('#table5').DataTable({
                             retrieve: true,
-                            
                             "ajax": {
                                 "url": urlstring5,
                                 "dataSrc": "content"
                             },
+                            dom: 'Bfrtip',
+                            buttons: 'csv',
                             "pageLength": 5,
                             "columns": column_list5
                         });
