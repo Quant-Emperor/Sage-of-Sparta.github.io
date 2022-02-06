@@ -211,13 +211,7 @@
 
                 var column_list2 = [
                                         { title: "Ticker", "data": "symbol" },
-                                        { title: "Date", "data": "publishedDate", "render": function(publishedAt) {
-
-                                            const date = new Date(publishedAt).toLocaleDateString("en-US");
-                                            const time = new Date(publishedAt).toLocaleTimeString("en-US");
-
-                                            return date + ' ' + time;} },
-                                       // { title: "Title", "data": "title" },
+                                        { title: "Date", "data": "publishedDate"},
                                         { title: "Source Name", "data": "site" },
                                         { title: "News", "data": "text", "width": "50%" },
                                         { title: "Link", "data": "url" 
