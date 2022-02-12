@@ -8,6 +8,9 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
   .then(text => {
     let data = JSC.csv2Json(text);
     let PMI = [], newOrder = [], manEmpl = [], manProd = [], manDeliv = [], manInvent = [],manCustInv = [], manPrices = [], manBacklog = [], manExports=[], manImports=[];
+
+    let NMI = [], nmiBusAct = [], nonmanNewOrd = [], nonmanEmpl = [], nonmanDeliv = [], nonmanInv = [], nonmanInvSent = [], nonmanBackLog = [], nonmanPrices = [], nonmanImports = [], nonmanExports = [];
+
     data.forEach((val,idx) => {
 
       if (val['Date'] > Date.parse(2020)) {
@@ -28,6 +31,19 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
         manBacklog.push({x: 'Order Backlog', y: disp_date, z: val['MAN_BACKLOG']});
         manExports.push({x: 'Exports', y: disp_date, z: val['MAN_EXPORTS']});
         manImports.push({x: 'Imports', y: disp_date, z: val['MAN_IMPORTS']});
+
+        NMI.push({x: 'NMI', y: disp_date, z: val['NONMAN_NMI']});
+        nmiBusAct.push({x: 'Business Act', y: disp_date, z: val['NONMAN_BUSACT']});       
+        nonmanNewOrd.push({x: 'New Orders', y: disp_date, z: val['NONMAN_NEWORD']});
+        nonmanEmpl.push({x: 'Employment', y: disp_date, z: val['NONMAN_EMPL']});
+        nonmanDeliv.push({x: 'Deliveries', y: disp_date, z: val['NONMAN_DELIV']});
+        nonmanInv.push({x: 'Inventories', y: disp_date, z: val['NONMAN_INVENT']});
+        nonmanInvSent.push({x: 'Inv Sentiment', y: disp_date, z: val['NONMAN_INVSENT']});
+        nonmanBackLog.push({x: 'Backlog', y: disp_date, z: val['NONMAN_BACKLOG']});   
+        nonmanPrices.push({x: 'Prices', y: disp_date, z: val['NONMAN_PRICES']});
+        nonmanExports.push({x: 'Imports', y: disp_date, z: val['NONMAN_IMPORTS']});
+        nonmanImports.push({x: 'Exports', y: disp_date, z: val['NONMAN_EXPORTS']});
+
       }
     });
     
@@ -85,7 +101,66 @@ JSC.fetch("https://raw.githubusercontent.com/Sage-of-Sparta/Sage-of-Sparta.githu
       {name: 'Imports', points: manImports}
     ];
     renderHeatMap2(data_series,'chartDiv15','Imports',false);
+  //});
+
+   var data_series = [
+      {name: 'NMI', points: NMI}
+    ];
+    renderHeatMap2(data_series,'chartDiv16','NMI',true);
+
+    var data_series = [
+      {name: 'Business Activity', points: nmiBusAct}
+    ];
+    renderHeatMap2(data_series,'chartDiv17','Bus Act',false);
+
+    var data_series = [
+      {name: 'New Orders', points: nonmanNewOrd}
+    ];
+    renderHeatMap2(data_series,'chartDiv18','Production',false);
+
+    var data_series = [
+      {name: 'Employment', points: nonmanEmpl}
+    ];
+    renderHeatMap2(data_series,'chartDiv19','Employment',false);
+
+    var data_series = [
+      {name: 'Deliveries', points: nonmanDeliv}
+    ];
+    renderHeatMap2(data_series,'chartDiv20','Deliveries',false);
+
+    var data_series = [
+      {name: 'Inventories', points: nonmanInv}
+    ];
+    renderHeatMap2(data_series,'chartDiv21','Inventories',false);
+
+   var data_series = [
+      {name: 'Inventories Sentiment', points: nonmanInvSent}
+    ];
+    renderHeatMap2(data_series,'chartDiv22','Invent Sent',false);
+
+   var data_series = [
+      {name: 'Prices', points: nonmanPrices}
+    ];
+    renderHeatMap2(data_series,'chartDiv23','Prices',false);
+
+   var data_series = [
+      {name: 'Backlog', points: nonmanBackLog}
+    ];
+    renderHeatMap2(data_series,'chartDiv24','Order Backlog',false);
+
+   var data_series = [
+      {name: 'Exports', points: nonmanExports}
+    ];
+    renderHeatMap2(data_series,'chartDiv25','Exports',false);
+
+   var data_series = [
+      {name: 'Imports', points: nonmanImports}
+    ];
+    renderHeatMap2(data_series,'chartDiv26','Imports',false);
   });
+
+
+
 
 
 function renderHeatMap2(series,jscchartname,title,dispy) {
