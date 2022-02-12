@@ -127,11 +127,11 @@ df = get_ism_data(api_url,api_url_2)
 df.to_csv("ism.csv")
 
 # UNCOMMENT TO GET UMCSI DATA
-#get_umsci_data()
+get_umsci_data()
 
-#get_gdp_data()
+get_gdp_data()
 
-#get_quarterly_gdp()
+get_quarterly_gdp()
 
 get_building_permits_starts_comp()
 
