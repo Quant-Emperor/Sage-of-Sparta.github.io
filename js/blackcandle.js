@@ -141,7 +141,16 @@ async function fetchData(urlstrings) {
               //paging: false,
               data:data_val2,
               pageLength: 5,
-              columns : column_list2
+              columns : column_list2,
+              dom: 'Bfrtip',
+              buttons: [
+                  {
+                      text: 'My button',
+                      action: function ( e, dt, node, config ) {
+                          alert( 'Button activated' );
+                      }
+                  }
+              ]
           });         
           
   });
