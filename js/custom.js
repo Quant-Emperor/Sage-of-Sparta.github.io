@@ -14,8 +14,13 @@ for (let i = 0; i < numBalls; i++) {
   ball.style.width = `${Math.random()}em`;
   ball.style.height = ball.style.width;
   
-  balls.push(ball);
-  document.body.append(ball);
+ // if (ball != null) {
+    // your code here.
+    balls.push(ball);
+    document.body.append(ball);
+
+ // }
+
 }
 
 // Keyframes
