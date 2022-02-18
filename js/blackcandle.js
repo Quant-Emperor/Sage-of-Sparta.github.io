@@ -145,7 +145,12 @@ async function fetchData(urlstrings) {
               data:data_val2,
               pageLength: 5,
               columns : column_list2,
-              buttons: [ 'copy', 'excel']
+              buttons: [ 
+              {
+                extend: 'excelHtml5',
+                title: 'Data export'
+              }
+            ]
           }); 
 
           dataTables.buttons().container()
