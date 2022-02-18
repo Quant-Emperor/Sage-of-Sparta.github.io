@@ -15,18 +15,12 @@
         <link href="css/custom.css" rel="stylesheet" type="text/css">
         <link href="css/colors/purple.css" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
+        
+
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-
-         <!-- Added these here to try and get export buttons working on datatables -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
-
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"> 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-
-        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/datatables.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
 
        <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>  -->
 
@@ -35,7 +29,8 @@
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
         <script src="js/jquery.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.11.2/dataRender/datetime.js"></script>
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.11.2/dataRender/datetime.js"></script> -
+
 
 
     </head>
@@ -283,7 +278,7 @@
                 var urlstring5 = "https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=100&apikey=c01b3c8e189822588988574a0c3957dd"
 
                 
-                    table.destroy();
+                    table5.destroy();
                       
                     $(document).ready(function () {
                         table5 = $('#table5').DataTable({
@@ -292,16 +287,19 @@
                                 "url": urlstring5,
                                 "dataSrc": "content"
                             },
-                            dom: 'Bfrtip',
-                            buttons: 'csv',
                             "pageLength": 5,
-                            "columns": column_list5
+                            "columns": column_list5,
+                            buttons: [ 'excel' ]
                         });
 
                         setInterval( function () {
-                        table.ajax.reload(); // user paging is not reset on reload
+                        table5.ajax.reload(); // user paging is not reset on reload
+                        
 
                         }, 30000 );
+
+                        //table5.buttons().container()
+                         //           .insertBefore( '#table5_filter' );
 
                     });
 
@@ -386,7 +384,8 @@
                           //paging: false,
                           data:data_val,
                           pageLength: 5,
-                          columns : column_list
+                          columns : column_list,
+                          buttons: [ 'excel' ]
                       });
 
 
