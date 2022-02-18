@@ -119,7 +119,6 @@ async function fetchData(urlstrings) {
               columns : column_list
           });
 
-
       var column_list2 = [
         { title: "Ticker"},
         { title: "Name"},
@@ -142,17 +141,9 @@ async function fetchData(urlstrings) {
               data:data_val2,
               pageLength: 5,
               columns : column_list2,
-              dom: 'Bfrtip',
-              buttons: [
-                  {
-                      text: 'My button',
-                      action: function ( e, dt, node, config ) {
-                          alert( 'Button activated' );
-                      }
-                  }
-              ]
-          });         
-          
+              buttons: [ 'copy', 'excel']
+          }); 
+
   });
 
 
