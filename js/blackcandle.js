@@ -116,8 +116,12 @@ async function fetchData(urlstrings) {
               //paging: false,
               data:data_val,
               pageLength: 5,
-              columns : column_list
+              columns : column_list,
+              buttons: [ 'copy', 'excel']
           });
+
+
+          
 
       var column_list2 = [
         { title: "Ticker"},
@@ -143,6 +147,11 @@ async function fetchData(urlstrings) {
               columns : column_list2,
               buttons: [ 'copy', 'excel']
           }); 
+
+          dataTables.buttons().container()
+                                    .insertBefore( '#table_filter' );
+          dataTables2.buttons().container()
+                                    .insertBefore( '#table2_filter' );
 
   });
 
