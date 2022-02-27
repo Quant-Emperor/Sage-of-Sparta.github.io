@@ -17,78 +17,88 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
         
 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"> 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>  
+
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/datatables.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
         <script src="https://code.jscharting.com/latest/jscharting.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
-        <script src="js/jquery.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.11.2/dataRender/datetime.js"></script> 
+
+
+  
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 
 
 
     </head>
-    <body data-fade-in="true">
+    <body>
 
-        <div class="pre-loader"><div></div></div>
+
 
         <!-- Start Header -->
-        <nav class="navbar nav-down" data-fullwidth="true" data-menu-style="transparent" data-animation="shrink">
+        <nav class="navbar nav-down" data-fullwidth="true" data-menu-style="light" data-animation="shrink">
                                         <!-- Styles: light, dark, transparent, transparent-to-dark | Animation: hiding, shrink -->
             <div class="container">
 
-                <!-- <div class="navbar-header">
+                <div class="navbar-header">
                     <div class="container">
-                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar top-bar"></span>
                             <span class="icon-bar middle-bar"></span>
                             <span class="icon-bar bottom-bar"></span>
                         </button>
-                         <a class="navbar-brand to-top" href="#"><img src="img/assets/logo-dark-.png" class="logo-light" alt="#"><img src="img/assets/logo-dark-.png" class="logo-dark" alt="#"></a> 
-                        <ul class="nav navbar-nav menu-left">
-                            <li id="fearvaltext"><a href="index.html"></a></li>
-                            <li id="fearval"><a href="index.html" ></a></li>
-                        </ul> 
+                    
                     </div>
-                </div> -->
+                </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <div class="container">
                         <ul class="nav navbar-nav menu-center">
 
                             <!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
-                            <li><a href="#hero">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a href="#table">Stock News</a></li>
-                            <li><a href="#table2">Wall Street Journal</a></li>
-                            <li><a href="#table4">Bloomberg</a></li>
-                            <li><a href="#table3">Crypto News</a></li>
-                            <li><a href="#table5">FMP Articles</a></li>
-
+                            <li><a href="index.html" target="_top">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
+                            <li><a href="index.html#table">Stock News</a></li>
+                            <li><a href="index.html#table2">Wall Street Journal</a></li>
+                            <li><a href="index.html#table4">Bloomberg</a></li>
+                            <li><a href="index.html#table3">Crypto News</a></li>
+                            <li><a href="index.html#table5">FMP Articles</a></li>
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
                                 <ul class="dropdown-menu fullwidth">
                                     <li class="megamenu-content withdesc">
                                         <div class="col-md-3 mg-col">
                                             <ul>
-                                                <li><a href="stocks.html">Equities</a></li>
-                                                <li><a href="gdp.html">GDP</a></li>
-                                                <li><a href="umcsi.html">UMCSI</a></li>
-                                                <li><a href="housing.html">Housing</a></li>
-                                                <li><a href="screener.html">Stock Screener</a></li>
+                                                <li><a href="stocks.html" target="_top">Equities</a></li>
+                                                <li><a href="gdp.html" target="_top">GDP</a></li>
+                                                <li><a href="umcsi.html" target="_top">UMCSI</a></li>
+                                                <li><a href="housing.html" target="_top">Housing</a></li>
+                                                <li><a href="screener.html" target="_top">Stock Screener</a></li>
                                                 <li><a href="black_candle.html" target="_top">Secrets of the Candlestick</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-md-3 mg-col">
                                             <ul>
-                                                <li><a href="ism.html">ISM Manufacturing</a></li>
-                                                <li><a href="ism-services.html">ISM Services</a></li>
-                                                <li><a href="ism-heatmaps.html">ISM Heatmaps</a></li>
-                                                <li><a href="stock_dash.html">Stock Dashboard</a></li>
+                                                <li><a href="ism.html" target="_top">ISM Manufacturing</a></li>
+                                                <li><a href="ism-services.html" target="_top">ISM Services</a></li>
+                                                <li><a href="ism-heatmaps.html" target="_top">ISM Heatmaps</a></li>
+                                                <li><a href="stock_dash.html" target="_top">Stock Dashboard</a></li>
                                                 <li><a href="bitmex_calc.html" target="_top">Bitmex Crypto Calculator</a></li>
                                             </ul>
                                         </div>
@@ -96,122 +106,19 @@
                                 </ul>
                             </li>
                             
-
-                            <script>
-
-
-                                $(document).ready(function () {
-
-                                    
-
-                                    fetchgreed();
-
-                                    //console.log(document.getElementById('fearvaltext').innerText);
-                                    //console.log(document.getElementById('fearval').innerText);
-                                });
-
-                            </script>
-
-
                         </ul>
-
+                        
                     </div>
                 </div>
             </div>
         </nav>
         <!-- End Header -->
 
-        <!-- Hero B99ABC-->
-        <section id="hero" class="hero-fullscreen parallax" data-overlay-dark="0">
-
-            <div class="container">
-                <div class="row">
-
-                    <div class="hero-content-slider mt20" data-autoplay="true" data-speed="4000">
-
-                        <div>
-                            <h1>Courage<br><strong>Something You Love</strong></h1>
-                            <p class="lead">Find your vision!!!</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">We're Creative</a>
-                        </div>
-
-                        <div>
-                            <h1>Unwavering<br><strong>Believe the impossible</strong></h1>
-                            <p class="lead">Aim high</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">What we do</a>
-                        </div>
-
-                        <div>
-                            <h1>Winning<br><strong>Champions</strong></h1>
-                            <p class="lead">Never give up on yourself! Ignore the naysayers</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                        <div>
-                            <h1>Sacrifice<br><strong>Take action</strong></h1>
-                            <p class="lead">If you do what is easy, life will be difficult</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                        <div>
-                            <h1>Honesty<br><strong>Be true to yourself</strong></h1>
-                            <p class="lead">You will never know if you don't try!</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                        <div>
-                            <h1>Accountability<br><strong>Take action</strong></h1>
-                            <p class="lead">If you do what is easy, life will be difficult</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!-- End Hero -->
-
-
-<!-- About Us -->
-        <section id="about" class="pt100 pb90">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-12 text-center pb20">
-                        <h2>Quantitative Finance</h2>
-
-                        <p class="lead" style="font-style: italic;"><span class="color">"You can't win if you don't try"</span></p>
-
-                        <p class="lead">The <span class="color" style="font-style: italic;">Love of Quant</span> website is created with the intention of giving you a consolidated view of all the data required to make <br> optimal trading decisions in our global financial markets. The data consists of:</p>
-
-                        <div id="wrapper" style="display: table; margin: 0 auto; text-align: left; font-size:18px; ">
-                            <ul>
-                              <li>• Leading macro-economic indicators such as ISM Manufacturing, bla bla</li>
-                              <li>• Order flow</li>
-                              <li>• Financial News</li>
-                              <li>• Company specific info such as financial ratios and earnings</li>
-                            </ul>  
-                        </div>
-                        
-                        
-                        <p>All amazing data provided by <a href="https://financialmodelingprep.com/developer/docs/" target="_blank"><span class="color">Financial Modeling Prep</span></a>
-                        and beautiful charts created using <a href="https://jscharting.com/tutorials/creating-js-charts/" target="_blank"><span class="color">JSCharting</span></a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End About Us -->
-
-
 
         <!-- Project -->
         <section class="pt140 pb50">
 
             <script>
-
-
-
 
                 var column_list2 = [
                                         { title: "Ticker", "data": "symbol" },
@@ -236,16 +143,22 @@
                         table = $('#table').DataTable({
                             retrieve: true,
                             
-                            "ajax": {
-                                "url": urlstring,
-                                "dataSrc": ""
+                            
+                            ajax: {
+                                url: urlstring,
+                                dataSrc: ""
                             },
-                            "pageLength": 5,
-                            "columns": column_list2
+                            pageLength: 5,
+                            columns: column_list2,
+                            buttons: [ 'excel' ]
+
                         });
+                        table.buttons().container().insertBefore( '#table_filter' );
+                        
 
                         setInterval( function () {
-                        table.ajax.reload(); // user paging is not reset on reload
+                        //table.ajax.reload(); // user paging is not reset on reload
+
 
                         }, 30000 );
 
@@ -289,6 +202,9 @@
                             buttons: [ 'excel' ]
                         });
 
+                        table5.buttons().container()
+                                    .insertBefore( '#table5_filter' );
+
                         setInterval( function () {
                         table5.ajax.reload(); // user paging is not reset on reload
                         
@@ -307,9 +223,6 @@
                 var urlstring2 = 'https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e'
                 var urlstring2 = "http://api.allorigins.win/get?url=https%3A//newsapi.org/v2/everything%3Fdomains%3Dwsj.com%26sortBy%3Dpopularity%26apiKey%3Db9fc211659cb431aabc01c5b5f5ccd4e&callback=?"
 
-                //var url = "https://newsapi.org/v2/everything?domains=wsj.com&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
-                //var url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
-                
                 var url = "https://newsapi.org/v2/everything?domains=wsj.com&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
 
                 var urlbit = "https://newsapi.org/v2/everything?q=(bitcoin OR crypto)&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
@@ -385,6 +298,9 @@
                           buttons: [ 'excel' ]
                       });
 
+                    dataTables.buttons().container()
+                                    .insertBefore( '#table2_filter' );
+
 
                    let data2 = [];
 
@@ -403,8 +319,12 @@
                           //paging: false,
                           data:data_val2,
                           pageLength: 5,
-                          columns : column_list
+                          columns : column_list,
+                          buttons: [ 'excel' ]
                       });
+
+                    dataTables2.buttons().container()
+                                    .insertBefore( '#table3_filter' );
 
                     // BLOOMBERG.COM
                    let data3 = [];
@@ -424,9 +344,12 @@
                           //paging: false,
                           data:data_val3,
                           pageLength: 5,
-                          columns : column_list
+                          columns : column_list,
+                          buttons: [ 'excel' ]
                       });
 
+                    dataTables3.buttons().container()
+                                    .insertBefore( '#table4_filter' );
 
                       
               });
@@ -461,14 +384,6 @@
         <!-- End Project -->
 
 
-        <!-- Map -->
-        <section class="vossen-map">
-            <!-- Paste your map iframe here -->
-            <iframe height="900" src="https://maps.google.com/maps?q=Bermuda%Triangle&amp;t=&amp;z=3&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" border="0" marginwidth="0" marginheight="0"></iframe>
-
-        </section>
-        <!-- End Map -->
-
         <!-- Start Footer -->
         <footer id="footer" class="footer style-1 dark">
 
@@ -478,11 +393,6 @@
         </footer>
         <!-- End Footer -->
 
-        <script src="js/init.js"></script> 
-        <script src="js/scripts.js"></script> 
-        <script src="js/custom.js"></script>
-
-       
     </body>
 
 </html>
