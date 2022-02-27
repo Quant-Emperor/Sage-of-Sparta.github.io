@@ -109,6 +109,15 @@ async function fetchData(urlstrings) {
 
       ];
 
+
+      var currentDate = new Date()
+      var day = currentDate.getDate()
+      var month = currentDate.getMonth() + 1
+      var year = currentDate.getFullYear()
+      var time = currentDate.getHours() + "" + currentDate.getMinutes();
+
+      var timename = year + "-" + month + "-" + day + "_" + time;
+
       var data_val = data.map(el => Object.values(el));
 
           var dataTables = $('#table').DataTable ({
@@ -117,7 +126,10 @@ async function fetchData(urlstrings) {
               data:data_val,
               pageLength: 5,
               columns : column_list,
-              buttons: [ 'copy', 'excel']
+              buttons: [{
+                          extend: 'excelHtml5',
+                          title: 'blackcandle_' + timename
+                          }]
           });
 
 
@@ -145,12 +157,10 @@ async function fetchData(urlstrings) {
               data:data_val2,
               pageLength: 5,
               columns : column_list2,
-              buttons: [ 
-              {
-                extend: 'excelHtml5',
-                title: 'Data export'
-              }
-            ]
+              buttons: [{
+                          extend: 'excelHtml5',
+                          title: 'stockvolume_' + timename
+                          }]
           }); 
 
           dataTables.buttons().container()
