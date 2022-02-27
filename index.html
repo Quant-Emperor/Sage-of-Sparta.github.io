@@ -63,11 +63,11 @@
                             <!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
                             <li><a href="#hero">Home</a></li>
                             <li><a href="#about">About</a></li>
-                            <li><a href="#table">Stock News</a></li>
-                            <li><a href="#table2">Wall Street Journal</a></li>
-                            <li><a href="#table4">Bloomberg</a></li>
-                            <li><a href="#table3">Crypto News</a></li>
-                            <li><a href="#table5">FMP Articles</a></li>
+                            <li><a href="#table_news">Stock News</a></li>
+                            <li><a href="#table_wsj">Wall Street Journal</a></li>
+                            <li><a href="#table_bloomberg">Bloomberg</a></li>
+                            <li><a href="#table_crypto">Crypto News</a></li>
+                            <li><a href="#table_fmp">FMP Articles</a></li>
 
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
@@ -227,14 +227,14 @@
                                     },
                                     ];
 
-                var table = $('#table').DataTable();
+                var table_news = $('#table_news').DataTable();
                 var urlstring = "https://financialmodelingprep.com/api/v3/stock_news?limit=50&apikey=c01b3c8e189822588988574a0c3957dd"
 
                 
-                    table.destroy();
+                    table_news.destroy();
                       
                     $(document).ready(function () {
-                        table = $('#table').DataTable({
+                        table_news = $('#table_news').DataTable({
                             retrieve: true,
                             
                             "ajax": {
@@ -246,7 +246,7 @@
                         });
 
                         setInterval( function () {
-                        table.ajax.reload(); // user paging is not reset on reload
+                        table_news.ajax.reload(); // user paging is not reset on reload
 
                         }, 30000 );
 
@@ -272,14 +272,14 @@
                                     },
                                     ];
 
-                var table5 = $('#table5').DataTable();
+                var table_fmp = $('#table_fmp').DataTable();
                 var urlstring5 = "https://financialmodelingprep.com/api/v3/fmp/articles?page=0&size=100&apikey=c01b3c8e189822588988574a0c3957dd"
 
                 
-                    table5.destroy();
+                    table_fmp.destroy();
                       
                     $(document).ready(function () {
-                        table5 = $('#table5').DataTable({
+                        table_fmp = $('#table_fmp').DataTable({
                             retrieve: true,
                             "ajax": {
                                 "url": urlstring5,
@@ -287,30 +287,27 @@
                             },
                             "pageLength": 5,
                             "columns": column_list5,
-                            buttons: [ 'excel' ]
+
                         });
 
+
                         setInterval( function () {
-                        table5.ajax.reload(); // user paging is not reset on reload
+                        table_fmp.ajax.reload(); // user paging is not reset on reload
                         
 
                         }, 30000 );
 
-                        //table5.buttons().container()
-                         //           .insertBefore( '#table5_filter' );
+                        
 
                     });
 
                 ////////////////////////////////        
 
 
-                var table2 = $('#table2').DataTable();
+                var table_wsj = $('#table_wsj').DataTable();
                 var urlstring2 = 'https://newsapi.org/v2/everything?domains=wsj.com&sortBy=popularity&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e'
                 var urlstring2 = "http://api.allorigins.win/get?url=https%3A//newsapi.org/v2/everything%3Fdomains%3Dwsj.com%26sortBy%3Dpopularity%26apiKey%3Db9fc211659cb431aabc01c5b5f5ccd4e&callback=?"
 
-                //var url = "https://newsapi.org/v2/everything?domains=wsj.com&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
-                //var url = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
-                
                 var url = "https://newsapi.org/v2/everything?domains=wsj.com&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
 
                 var urlbit = "https://newsapi.org/v2/everything?q=(bitcoin OR crypto)&pageSize=50&sortBy=publishedAt&apiKey=b9fc211659cb431aabc01c5b5f5ccd4e"
@@ -377,7 +374,7 @@
 
                     var data_val = data.map(el => Object.values(el));
 
-                    var dataTables = $('#table2').DataTable ({
+                    var dataTables = $('#table_wsj').DataTable ({
                           retrieve: true,
                           //paging: false,
                           data:data_val,
@@ -393,13 +390,12 @@
 
                       data2.push({publishedAt: jsonobj2.articles[idx]["publishedAt"],title: jsonobj2.articles[idx]["title"],description: jsonobj2.articles[idx]["description"],url: jsonobj2.articles[idx]["url"]  });
 
-                      //console.log(jsonobj.articles[idx]);
                     });
 
                     var data_val2 = data2.map(el => Object.values(el));
 
 
-                    var dataTables2 = $('#table3').DataTable ({
+                    var dataTables2 = $('#table_crypto').DataTable ({
                           retrieve: true,
                           //paging: false,
                           data:data_val2,
@@ -420,7 +416,7 @@
                     var data_val3 = data3.map(el => Object.values(el));
 
 
-                    var dataTables3 = $('#table4').DataTable ({
+                    var dataTables3 = $('#table_bloomberg').DataTable ({
                           retrieve: true,
                           //paging: false,
                           data:data_val3,
@@ -449,13 +445,13 @@
 
             </div>
 
-            <table id="table" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
-            <table id="table2" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Wall Street Journal</strong></caption> </table>
+            <table id="table_news" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>News</strong></caption> </table> 
+            <table id="table_wsj" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Wall Street Journal</strong></caption> </table>
 
-            <table id="table3" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Crypto News</strong></caption> </table>  
-            <table id="table4" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Bloomberg News</strong></caption> </table>   
+            <table id="table_crypto" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Crypto News</strong></caption> </table>  
+            <table id="table_bloomberg" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Bloomberg News</strong></caption> </table>   
             
-            <table id="table5" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Financial Modelling Prep Articles</strong></caption> </table>  
+            <table id="table_fmp" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Financial Modelling Prep Articles</strong></caption> </table>  
 
 
         </section>
