@@ -92,11 +92,11 @@ def get_building_permits_starts_comp():
         tmp = quandl.get("FRED/PERMIT")
         tmp = tmp.rename(columns={'Value':'building_permits'})
 
-        print(tmp.head())
+        print(tmp.tail())
         df = tmp
         tmp = quandl.get("FRED/HOUST")
         tmp = tmp.rename(columns={'Value':'housing_starts'})
-        print(tmp.head())
+        print(tmp.tail())
         df = df.merge(tmp, on='Date', how='left')
 
         tmp = quandl.get("FRED/COMPUTSA")
