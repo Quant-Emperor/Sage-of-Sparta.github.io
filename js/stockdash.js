@@ -28,13 +28,18 @@ async function fetchData(urlstrings) {
     var quarterly_eps_est = response[4];
     var hist_price_2 = response[5].historical;
 
-    let pe = [], stockadjcloseprice = [], peg = [], epsestimate = [], quarterlyepsestimate = [], pairscloseprice = [];
+    let pe = [], stockadjcloseprice = [], stockadjcloseprice2 = [], peg = [], epsestimate = [], quarterlyepsestimate = [], pairscloseprice = [];
 
 
     ratios.forEach((val, idx) => {
       pe.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsRatio"]});
       peg.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsToGrowthRatio"]});
     });
+
+    hist_price_2.forEach((val, idx) => {
+      stockadjcloseprice2.push({x: hist_price_2[idx]["date"], y: hist_price_2[idx]["adjClose"]});
+    });
+
 
     hist_price.forEach((val, idx) => {
       stockadjcloseprice.push({x: hist_price[idx]["date"], y: hist_price[idx]["adjClose"]});
@@ -71,14 +76,28 @@ async function fetchData(urlstrings) {
 
     renderChart(data_series,'epschartdiv','EPS','red');
 
+
+    var x = document.getElementById("frm1");
+    var ticker = x.elements[0].value
+
     var data_series = [
-      {name: 'Stock Close', points: stockadjcloseprice,type:'line',yAxis: 'leftAxis'},
+      {name: ticker.concat(' Stock Close'), points: stockadjcloseprice,type:'line',yAxis: 'leftAxis'},
+      //{name: 'PEG', points: peg,type:'line',yAxis: 'rightAxis'},
+    ];
+
+    var y = document.getElementById("frm2");
+    var ticker2 = y.elements[0].value
+
+    renderChart(data_series,'stockchartdiv','Stock Price','green');
+
+    var data_series = [
+      {name: ticker2.concat(' Stock Close'), points: stockadjcloseprice2,type:'line',yAxis: 'leftAxis'},
       //{name: 'PEG', points: peg,type:'line',yAxis: 'rightAxis'},
 
     ];
 
-    renderChart(data_series,'stockchartdiv','Stock Price','green');
-  
+    renderChart(data_series,'stock2chartdiv','Stock Price','yellow');
+
 
     var data_series = [
       {name: 'Stock Pairs Close', points: pairscloseprice,type:'line',yAxis: 'leftAxis'},
@@ -165,9 +184,15 @@ var dataSet = [
 
 
 
+
   } catch (error) {
     console.log("Error", error)
   }
+
+
+
+
+
 }
 
 
