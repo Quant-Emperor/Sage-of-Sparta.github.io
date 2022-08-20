@@ -27,11 +27,36 @@ async function fetchData(urlstrings) {
     var eps_est = response[3];
     var quarterly_eps_est = response[4];
     var hist_price_2 = response[5].historical;
+    var geographic_revenue = response[6];
 
     let pe = [], stockadjcloseprice = [], 
     stockadjcloseprice2 = [], peg = [], epsestimate = [], quarterlyepsestimate = [], pairscloseprice = [],
-    ebitdaavgest = [], estimatedRevenueAvg=[], estimatedSgaExpenseAvg = [];
+    ebitdaavgest = [], estimatedRevenueAvg=[], estimatedSgaExpenseAvg = [], geography_rev = [];
 
+    /*
+    geographic_revenue.forEach((val, idx) => {
+        var datekey = Object.keys(geographic_revenue[idx]);
+        //date
+        //console.log(datekey[0]);
+        var vals = Object.values(geographic_revenue[idx]);
+        //array of vals
+        var geographies = Object.keys(vals[0]);
+        //console.log(geographies);
+        var geographies_val = Object.values(vals[0]);
+        //console.log(geographies_val);
+
+        col1 = geographies[0]
+
+        if (Date.parse(datekey[0]) > Date.parse(2017)) {
+          geography_rev.push({x: datekey[0], [geographies[0]]: geographies_val[0], [geographies[1]]: geographies_val[1]
+            , [geographies[2]]: geographies_val[2], [geographies[3]]: geographies_val[3], [geographies[4]]: geographies_val[4]
+            , [geographies[5]]: geographies_val[5], [geographies[6]]: geographies_val[6], [geographies[7]]: geographies_val[7]});
+        }
+
+
+    });
+    console.log(geography_rev);
+  */
 
     ratios.forEach((val, idx) => {
       pe.push({x: ratios[idx]["date"], y: ratios[idx]["priceEarningsRatio"]});

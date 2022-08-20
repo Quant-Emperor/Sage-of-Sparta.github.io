@@ -202,7 +202,7 @@
 
 							var url5 = "https://financialmodelingprep.com/api/v3/analyst-estimates/" + ticker + "?period=quarter&limit=10&apikey=c01b3c8e189822588988574a0c3957dd"
 							var url6 = "https://financialmodelingprep.com/api/v3/historical-price-full/" + ticker2 + "?apikey=c01b3c8e189822588988574a0c3957dd"
-							
+							var url7 = "https://financialmodelingprep.com/api/v4/revenue-geographic-segmentation?symbol=" + ticker + "&structure=flat&apikey=c01b3c8e189822588988574a0c3957dd"
 							
 							const urls = [
 							  url1,
@@ -211,6 +211,7 @@
 							  url4,
 							  url5,
 							  url6,
+							  url7,
 							]
 
 							fetchData(urls);
