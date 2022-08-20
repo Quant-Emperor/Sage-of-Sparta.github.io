@@ -68,17 +68,17 @@ async function fetchData(urlstrings) {
     //hist_price_2.forEach((val, idx) => {
       
     //});
+    var x = document.getElementById("frm1");
+    var ticker = x.elements[0].value
 
 
     var data_series = [
-      {name: 'PE', points: pe,type:'line',yAxis: 'leftAxis'},
+      {name: ticker.concat(' PE'), points: pe,type:'line',yAxis: 'leftAxis'},
     ];
 
     renderChart(data_series,'epschartdiv','EPS','red');
 
 
-    var x = document.getElementById("frm1");
-    var ticker = x.elements[0].value
 
     var data_series = [
       {name: ticker.concat(' Stock Close'), points: stockadjcloseprice,type:'line',yAxis: 'leftAxis'},
@@ -100,7 +100,7 @@ async function fetchData(urlstrings) {
 
 
     var data_series = [
-      {name: 'Stock Pairs Close', points: pairscloseprice,type:'line',yAxis: 'leftAxis'},
+      {name: ticker.concat('/',ticker2,' Stock Pairs Close'), points: pairscloseprice,type:'line',yAxis: 'leftAxis'},
       //{name: 'PEG', points: peg,type:'line',yAxis: 'rightAxis'},
 
     ];
@@ -108,21 +108,21 @@ async function fetchData(urlstrings) {
     renderChart(data_series,'stockchartdiv2','Stock Price','pink');
 
     var data_series = [
-      {name: 'PEG', points: peg,type:'line',yAxis: 'leftAxis'},
+      {name: ticker.concat(' PEG'), points: peg,type:'line',yAxis: 'leftAxis'},
 
     ];
 
     renderChart(data_series,'pegchartdiv','PEG','black');
 
     var data_series = [
-      {name: 'Annual EPS Estimates', points: epsestimate,type:'line',yAxis: 'leftAxis'},
+      {name: ticker.concat(' Annual EPS Estimates'), points: epsestimate,type:'line',yAxis: 'leftAxis'},
 
     ];
 
     renderChart(data_series,'epsestchartdiv','EPS EST','purple');
 
     var data_series = [
-      {name: 'Quarterly EPS Estimates', points: quarterlyepsestimate,type:'column',yAxis: 'leftAxis'},
+      {name: ticker.concat(' Quarterly EPS Estimates'), points: quarterlyepsestimate,type:'column',yAxis: 'leftAxis'},
 
     ];
 
