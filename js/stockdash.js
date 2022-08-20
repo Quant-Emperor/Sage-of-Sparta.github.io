@@ -28,7 +28,9 @@ async function fetchData(urlstrings) {
     var quarterly_eps_est = response[4];
     var hist_price_2 = response[5].historical;
 
-    let pe = [], stockadjcloseprice = [], stockadjcloseprice2 = [], peg = [], epsestimate = [], quarterlyepsestimate = [], pairscloseprice = [];
+    let pe = [], stockadjcloseprice = [], 
+    stockadjcloseprice2 = [], peg = [], epsestimate = [], quarterlyepsestimate = [], pairscloseprice = [],
+    ebitdaavgest = [], estimatedRevenueAvg=[], estimatedSgaExpenseAvg = [];
 
 
     ratios.forEach((val, idx) => {
@@ -57,8 +59,17 @@ async function fetchData(urlstrings) {
 
     });
 
+
     eps_est.forEach((val, idx) => {
       epsestimate.push({x: eps_est[idx]["date"], y: eps_est[idx]["estimatedEpsAvg"]});
+
+      if (Date.parse(eps_est[idx]["date"]) > Date.parse(2017)) {
+        ebitdaavgest.push({x: 'EST EBITDA AVG', y: eps_est[idx]["date"], z: eps_est[idx]["estimatedEbitdaAvg"]});
+estimatedRevenueAvg
+        estimatedRevenueAvg.push({x: 'EST REVENUE AVG', y: eps_est[idx]["date"], z: eps_est[idx]["estimatedRevenueAvg"]});
+        estimatedSgaExpenseAvg.push({x: 'EST EXPENSE AVG', y: eps_est[idx]["date"], z: eps_est[idx]["estimatedSgaExpenseAvg"]});
+      }
+
     });
 
     quarterly_eps_est.forEach((val, idx) => {
@@ -127,6 +138,21 @@ async function fetchData(urlstrings) {
     ];
 
     renderChart(data_series,'quartepsestchartdiv','QUART EPS EST','blue');
+
+    var data_series = [
+      {name: 'EST EBITDA AVG', points: ebitdaavgest}
+    ];
+    renderHeatMap2(data_series,'heatmapDiv','EST EBITDA AVG',true);
+
+    var data_series = [
+      {name: 'EST REVENUE AVG', points: estimatedRevenueAvg}
+    ];
+    renderHeatMap2(data_series,'heatmapDiv2','EST REVENUE AVG',false);
+
+    var data_series = [
+      {name: 'EST EXPENSE AVG', points: estimatedSgaExpenseAvg}
+    ];
+    renderHeatMap2(data_series,'heatmapDiv3','EST EXPENSE AVG',false);
 
 
 
@@ -303,3 +329,45 @@ function applyZoom(range) {
 } 
 
 
+function renderHeatMap2(series,jscchartname,title,dispy) {
+    var chart = JSC.chart(jscchartname, { 
+    //debug: true, 
+    type: 'heatmap', 
+    toolbar_visible: false, 
+    //title_label_text: title, 
+    palette: { 
+      colors: ['red','yellow','green',], 
+      pointValue: '{%zValue}'
+    }, 
+    defaultPoint: { 
+      tooltip: 
+        '<b>%yValue</b><br> %xValue</b><br> %zValue', 
+      label_text: '%zValue', 
+      outline_width: 0 
+    }, 
+    defaultAxis: { 
+      defaultTick: { 
+        line_visible: false, 
+        gridLine_visible: false
+      }, 
+      line_visible: false
+    }, 
+
+    //yAxis_scale_type: 'time', 
+    yAxis: {
+          scale_minorInterval: { unit: 'month', multiplier: 1 },
+          formatString: 'd',
+          visible: dispy, 
+          //scale_type: 'time',
+        },
+
+        xAxis: {
+          visible: true, 
+          position: 'top',
+        },
+  legend: { 
+        visible: false, 
+      }, 
+      series: series,
+  }); 
+}
