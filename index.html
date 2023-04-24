@@ -348,11 +348,12 @@
                   //console.log(data);
                   var column_list = [
                    { title: "Time", "render": function(publishedAt) {
-
-                    const date = new Date(publishedAt).toLocaleDateString("en-US");
+                    //var options = { year: "numeric", month: "numeric", day: "numeric" };
+                    const date = new Date(publishedAt).toLocaleDateString("en-US", {timeZone: "Australia/Sydney"});
                         const time = new Date(publishedAt).toLocaleTimeString("en-US");
 
-                        return date + ' ' + time;}},
+                        //return date + ' ' + time;}},
+                        return date;}},
                     //{ title: "author"},
                     { title: "title", "width": "25%"},
                     { title: "description", "width": "50%"},
@@ -401,7 +402,10 @@
                           //paging: false,
                           data:data_val2,
                           pageLength: 5,
-                          columns : column_list
+                          columns : column_list,
+                          columnDefs: [ { type: 'date', 'targets': [0] } ],
+                          order: [[ 0, 'asc' ]]
+
                       });
 
                     // BLOOMBERG.COM
