@@ -2,8 +2,19 @@
 
 import glob
 import os
-import pandas as pd   
-df = pd.concat(map(pd.read_csv, glob.glob(os.path.join('', "D:/Trading/Data/zacks stock screener/input/*.csv"))))
+import pandas as pd
+from datetime import datetime   
+#df = pd.concat(map(pd.read_csv, glob.glob(os.path.join('', "D:/Trading/Data/zacks stock screener/input/*.csv"))))
+
+# Navigate to https://www.zacks.com/screening/stock-screener
+# Market cap (mil)
+# Run screen
+# Press CSV
+
+
+df = pd.concat(map(pd.read_csv, glob.glob(os.path.join('', "all_sectors_2023-07-18.csv"))))
+
+file_time = datetime.now().strftime("%Y%m%d")
 
 print(len(df))
 print(df.columns)
@@ -59,39 +70,39 @@ print(final_df.head())
 # Filter forward peg ratios greater then 1
 # Discretion to play to sort the companies by EPS Growth and check whether F1 or F2 is closer to month of fiscal year
 
-output_1 = final_df[['Company Name','Ticker','Exchange','Sector','Industry','Market Cap (mil)','Month of Fiscal Yr End','P/E (Trailing 12 Months)','P/E (F1)','P/E (F2)','F0 Consensus Est.','F1 Consensus Est.', 'F2 Consensus Est.','EPS Growth F1','EPS Growth F2','F1 PEG','F2 PEG','PEG Ratio']]
-output_2 = missing_df[['Company Name','Ticker','Exchange','Sector','Industry','Market Cap (mil)','Month of Fiscal Yr End','P/E (Trailing 12 Months)','P/E (F1)','P/E (F2)','F0 Consensus Est.','F1 Consensus Est.', 'F2 Consensus Est.','PEG Ratio']]
+output_1 = final_df[['Company Name','Ticker','Exchange','Sector','Industry','Optionable','Last Close','Beta','Market Cap (mil)','Month of Fiscal Yr End','P/E (Trailing 12 Months)','P/E (F1)','P/E (F2)','F0 Consensus Est.','F1 Consensus Est.', 'F2 Consensus Est.','EPS Growth F1','EPS Growth F2','F1 PEG','F2 PEG','PEG Ratio']]
+output_2 = missing_df[['Company Name','Ticker','Exchange','Sector','Industry','Optionable','Last Close','Beta','Market Cap (mil)','Month of Fiscal Yr End','P/E (Trailing 12 Months)','P/E (F1)','P/E (F2)','F0 Consensus Est.','F1 Consensus Est.', 'F2 Consensus Est.','PEG Ratio']]
 
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Auto-Tires-Trucks')]
-tmpdf.to_csv('./usa_stocks/us_sector_auto.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_auto_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Computer and Technology')]
-tmpdf.to_csv('./usa_stocks/us_sector_technology.csv',index=False)
+tmpdf.to_csv('./usa_stocks/us_sector_technology_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Finance')]
-tmpdf.to_csv('./usa_stocks/us_sector_finance.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_finance_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Consumer Discretionary')]
-tmpdf.to_csv('./usa_stocks/us_sector_consumer_disc.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_consumer_disc_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Consumer Staples')]
-tmpdf.to_csv('./usa_stocks/us_sector_consumer_stap.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_consumer_stap_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Medical')]
-tmpdf.to_csv('./usa_stocks/us_sector_medical.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_medical_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Industrial Products')]
-tmpdf.to_csv('./usa_stocks/us_sector_industrial.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_industrial_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Basic Materials')]
-tmpdf.to_csv('./usa_stocks/us_sector_materials.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_materials_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC') & (output_1['Sector']=='Transportation')]
-tmpdf.to_csv('./usa_stocks/us_sector_transportation.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_transportation_' + file_time + '.csv',index=False)
 
 tmpdf = output_1[(output_1['Exchange']!='OTC')]
-tmpdf.to_csv('./usa_stocks/us_sector_equities.csv',index=False,header=False)
+tmpdf.to_csv('./usa_stocks/us_sector_equities_' + file_time + '.csv',index=False)
 
 
 
