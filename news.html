@@ -17,197 +17,104 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRaleway:400,100,200,300%7CHind:400,300" rel="stylesheet" type="text/css">
         
 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"> 
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css">
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
+        <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.1/papaparse.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.3/jquery.csv.min.js"></script>  
+
+
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.11.4/af-2.3.7/b-2.2.2/b-colvis-2.2.2/b-html5-2.2.2/datatables.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+
         <script src="https://code.jscharting.com/latest/jscharting.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/types.js"></script>
         <script type="text/javascript" src="https://code.jscharting.com/latest/modules/toolbar.js"></script>
-        <script src="js/jquery.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/plug-ins/1.11.2/dataRender/datetime.js"></script> 
+
+
+  
+        <script src="https://code.jscharting.com/latest/jscharting.js"></script>
 
 
 
     </head>
-    <body data-fade-in="true">
+    <body>
 
-        <div class="pre-loader"><div></div></div>
+
 
         <!-- Start Header -->
-        <nav class="navbar nav-down" data-fullwidth="true" data-menu-style="transparent" data-animation="shrink">
+        <nav class="navbar nav-down" data-fullwidth="true" data-menu-style="light" data-animation="shrink">
                                         <!-- Styles: light, dark, transparent, transparent-to-dark | Animation: hiding, shrink -->
             <div class="container">
 
-                <!-- <div class="navbar-header">
+                <div class="navbar-header">
                     <div class="container">
-                         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar top-bar"></span>
                             <span class="icon-bar middle-bar"></span>
                             <span class="icon-bar bottom-bar"></span>
                         </button>
-                         <a class="navbar-brand to-top" href="#"><img src="img/assets/logo-dark-.png" class="logo-light" alt="#"><img src="img/assets/logo-dark-.png" class="logo-dark" alt="#"></a> 
-                        <ul class="nav navbar-nav menu-left">
-                            <li id="fearvaltext"><a href="index.html"></a></li>
-                            <li id="fearval"><a href="index.html" ></a></li>
-                        </ul> 
+                    
                     </div>
-                </div> -->
+                </div>
 
                 <div id="navbar" class="navbar-collapse collapse">
                     <div class="container">
                         <ul class="nav navbar-nav menu-center">
 
                             <!-- Each section must have corresponding ID ( #hero -> id="hero" ) -->
-                            <li><a href="#hero">Home</a></li>
-                            <li><a href="#about">About</a></li>
+                            <li><a href="index.html" target="_top">Home</a></li>
+                            <li><a href="index.html#about">About</a></li>
                             <li><a href="#table_news">Stock News</a></li>
                             <li><a href="#table_wsj">Wall Street Journal</a></li>
                             <li><a href="#table_bloomberg">Bloomberg</a></li>
                             <li><a href="#table_crypto">Crypto News</a></li>
                             <li><a href="#table_fmp">FMP Articles</a></li>
-
                             <li class="dropdown megamenu vos">
                                 <a class="dropdown-toggle">Data<i class="ion-ios-arrow-down"></i></a>
                                 <ul class="dropdown-menu fullwidth">
                                     <li class="megamenu-content withdesc">
                                         <div class="col-md-3 mg-col">
                                             <ul>
-                                                <li><a href="stocks.html">Equities</a></li>
-                                                <li><a href="gdp.html">GDP</a></li>
-                                                <li><a href="umcsi.html">UMCSI</a></li>
-                                                <li><a href="housing.html">Housing</a></li>
-                                                <li><a href="screener.html">Stock Screener</a></li>
+                                                <li><a href="stocks.html" target="_top">Equities</a></li>
+                                                <li><a href="gdp.html" target="_top">GDP</a></li>
+                                                <li><a href="umcsi.html" target="_top">UMCSI</a></li>
+                                                <li><a href="housing.html" target="_top">Housing</a></li>
+                                                <li><a href="screener.html" target="_top">Stock Screener</a></li>
                                                 <li><a href="black_candle.html" target="_top">Secrets of the Candlestick</a></li>
                                                 <li><a href="resources.html">Resources</a></li>
                                             </ul>
                                         </div>
                                         <div class="col-md-3 mg-col">
                                             <ul>
-                                                <li><a href="ism.html">ISM Manufacturing</a></li>
-                                                <li><a href="ism-services.html">ISM Services</a></li>
-                                                <li><a href="ism-heatmaps.html">ISM Heatmaps</a></li>
-                                                <li><a href="stock_dash.html">Stock Dashboard</a></li>
+                                                <li><a href="ism.html" target="_top">ISM Manufacturing</a></li>
+                                                <li><a href="ism-services.html" target="_top">ISM Services</a></li>
+                                                <li><a href="ism-heatmaps.html" target="_top">ISM Heatmaps</a></li>
+                                                <li><a href="stock_dash.html" target="_top">Stock Dashboard</a></li>
                                                 <li><a href="bitmex_calc.html" target="_top">Bitmex Crypto Calculator</a></li>
                                                 <li><a href="news.html">News</a></li>
-                                                <li><a href="python_icecream.html">Python Icecream</a></li>
-                                                <li><a href="python_clustering.html">Python Clustering</a></li>
-
                                             </ul>
                                         </div>
                                     </li>
                                 </ul>
                             </li>
                             
-
-                            <script>
-
-
-                                $(document).ready(function () {
-
-                                    
-
-                                    fetchgreed();
-
-                                    //console.log(document.getElementById('fearvaltext').innerText);
-                                    //console.log(document.getElementById('fearval').innerText);
-                                });
-
-                            </script>
-
-
                         </ul>
-
+                        
                     </div>
                 </div>
             </div>
         </nav>
         <!-- End Header -->
-
-        <!-- Hero B99ABC-->
-        <section id="hero" class="hero-fullscreen parallax" data-overlay-dark="0">
-
-            <div class="container">
-                <div class="row">
-
-                    <div class="hero-content-slider mt20" data-autoplay="true" data-speed="4000">
-
-                        <div>
-                            <h1>Courage<br><strong>Something You Love</strong></h1>
-                            <p class="lead">Find your vision!!!</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">We're Creative</a>
-                        </div>
-
-                        <div>
-                            <h1>Unwavering<br><strong>Believe the impossible</strong></h1>
-                            <p class="lead">Aim high</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">What we do</a>
-                        </div>
-
-                        <div>
-                            <h1>Winning<br><strong>Champions</strong></h1>
-                            <p class="lead">Never give up on yourself! Ignore the naysayers</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                        <div>
-                            <h1>Sacrifice<br><strong>Take action</strong></h1>
-                            <p class="lead">If you do what is easy, life will be difficult</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                        <div>
-                            <h1>Honesty<br><strong>Be true to yourself</strong></h1>
-                            <p class="lead">You will never know if you don't try!</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                        <div>
-                            <h1>Accountability<br><strong>Take action</strong></h1>
-                            <p class="lead">If you do what is easy, life will be difficult</p>
-                            <a href="#about" class="btn btn-lg btn-primary btn-scroll">Made with <i class="ion-heart"></i></a>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-        </section>
-        <!-- End Hero -->
-
-
-<!-- About Us -->
-        <section id="about" class="pt100 pb90">
-            <div class="container">
-                <div class="row">
-
-                    <div class="col-md-12 text-center pb20">
-                        <h2>Quantitative Finance</h2>
-
-                        <p class="lead" style="font-style: italic;"><span class="color">"You can't win if you don't try"</span></p>
-
-                        <p class="lead">The <span class="color" style="font-style: italic;">Love of Quant</span> website is created with the intention of giving you a consolidated view of all the data required to make <br> optimal trading decisions in our global financial markets. The data consists of:</p>
-
-                        <div id="wrapper" style="display: table; margin: 0 auto; text-align: left; font-size:18px; ">
-                            <ul>
-                              <li>• Leading macro-economic indicators such as ISM Manufacturing, bla bla</li>
-                              <li>• Order flow</li>
-                              <li>• Financial News</li>
-                              <li>• Company specific info such as financial ratios and earnings</li>
-                            </ul>  
-                        </div>
-                        
-                        
-                        <p>All amazing data provided by <a href="https://financialmodelingprep.com/developer/docs/" target="_blank"><span class="color">Financial Modeling Prep</span></a>
-                        and beautiful charts created using <a href="https://jscharting.com/tutorials/creating-js-charts/" target="_blank"><span class="color">JSCharting</span></a></p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End About Us -->
-
 
 
         <!-- Project -->
@@ -215,20 +122,13 @@
 
             <script>
 
-
-
-
-                var column_list2 = [
+                var table_news_col = [
                                         { title: "Ticker", "data": "symbol" },
                                         { title: "Date", "data": "publishedDate"},
                                         { title: "Source Name", "data": "site" },
                                         { title: "News", "data": "text", "width": "50%" },
-                                        { title: "Link", "data": "url" 
-
-                                        ,"render": function(data){
-                                                   return '<a href="' + data + '" target="_blank">Click here</a>';
-                                                 }
-                                    },
+                                        { title: "Link", "data": "url"}
+                                    ,
                                     ];
 
                 var table_news = $('#table_news').DataTable();
@@ -240,24 +140,28 @@
                     $(document).ready(function () {
                         table_news = $('#table_news').DataTable({
                             retrieve: true,
-                            
-                            "ajax": {
-                                "url": urlstring,
-                                "dataSrc": ""
+                            ajax: {
+                                url: urlstring,
+                                dataSrc: ""
                             },
-                            "pageLength": 5,
-                            "columns": column_list2
+                            pageLength: 5,
+                            columns: table_news_col,
+                            buttons: [ 'excel' ]
+
                         });
+                        table_news.buttons().container().insertBefore( '#table_news_filter' );
+                        
 
                         setInterval( function () {
-                        table_news.ajax.reload(); // user paging is not reset on reload
+                        //table.ajax.reload(); // user paging is not reset on reload
+
 
                         }, 30000 );
 
                     });
                 
                 ///////////////////////////////////////
-                    var column_list5 = [
+                    var table_fmp_col = [
                                         { title: "Ticker", "data": "tickers" },
                                         { title: "Date", "data": "date", "render": function(publishedAt) {
 
@@ -268,12 +172,8 @@
                                         { title: "Title", "data": "title" },
                                        // { title: "Source Name", "data": "site" },
                                         { title: "News", "data": "content", "width": "50%" },
-                                        { title: "Link", "data": "link" 
-
-                                        ,"render": function(data){
-                                                   return '<a href="' + data + '" target="_blank">Click here</a>';
-                                                 }
-                                    },
+                                        { title: "Link", "data": "link"}
+                                    ,
                                     ];
 
                 var table_fmp = $('#table_fmp').DataTable();
@@ -290,10 +190,12 @@
                                 "dataSrc": "content"
                             },
                             "pageLength": 5,
-                            "columns": column_list5,
-
+                            "columns": table_fmp_col,
+                            buttons: [ 'excel' ]
                         });
 
+                        table_fmp.buttons().container()
+                                    .insertBefore( '#table_fmp_filter' );
 
                         setInterval( function () {
                         table_fmp.ajax.reload(); // user paging is not reset on reload
@@ -351,19 +253,16 @@
                   //console.log(data);
                   var column_list = [
                    { title: "Time", "render": function(publishedAt) {
-                    //var options = { year: "numeric", month: "numeric", day: "numeric" };
-                    const date = new Date(publishedAt).toLocaleDateString("en-US", {timeZone: "Australia/Sydney"});
+
+                    const date = new Date(publishedAt).toLocaleDateString("en-US");
                         const time = new Date(publishedAt).toLocaleTimeString("en-US");
 
-                        //return date + ' ' + time;}},
-                        return date;}},
+                        return date + ' ' + time;}},
                     //{ title: "author"},
                     { title: "title", "width": "25%"},
                     { title: "description", "width": "50%"},
                     //{ title: "content"},
-                    { title: "Link", "url": "url", "render": function(url){
-                                                   return '<a href="' + url + '" target="_blank">Click here</a>';
-                                                 }
+                    { title: "Link", "url": "url"
                                     },
 
                   ];
@@ -379,14 +278,32 @@
 
                     var data_val = data.map(el => Object.values(el));
 
+                    var currentDate = new Date()
+                    var day = currentDate.getDate()
+                    var month = currentDate.getMonth() + 1
+                    var year = currentDate.getFullYear()
+                    var time = currentDate.getHours() + "" + currentDate.getMinutes();
+
+                    var timename = year + "-" + month + "-" + day + "_" + time;
+
                     var dataTables = $('#table_wsj').DataTable ({
                           retrieve: true,
                           //paging: false,
                           data:data_val,
                           pageLength: 5,
                           columns : column_list,
-                          buttons: [ 'excel' ]
+                          buttons: [{
+                                    extend: 'excelHtml5',
+                                    title: 'wsj_' + timename
+                                    }]
+
+
+
+
                       });
+
+                    dataTables.buttons().container()
+                                    .insertBefore( '#table_wsj_filter' );
 
 
                    let data2 = [];
@@ -395,6 +312,7 @@
 
                       data2.push({publishedAt: jsonobj2.articles[idx]["publishedAt"],title: jsonobj2.articles[idx]["title"],description: jsonobj2.articles[idx]["description"],url: jsonobj2.articles[idx]["url"]  });
 
+                      //console.log(jsonobj.articles[idx]);
                     });
 
                     var data_val2 = data2.map(el => Object.values(el));
@@ -406,10 +324,11 @@
                           data:data_val2,
                           pageLength: 5,
                           columns : column_list,
-                          columnDefs: [ { type: 'date', 'targets': [0] } ],
-                          order: [[ 0, 'asc' ]]
-
+                          buttons: [ 'excel' ]
                       });
+
+                    dataTables2.buttons().container()
+                                    .insertBefore( '#table_crypto_filter' );
 
                     // BLOOMBERG.COM
                    let data3 = [];
@@ -429,9 +348,12 @@
                           //paging: false,
                           data:data_val3,
                           pageLength: 5,
-                          columns : column_list
+                          columns : column_list,
+                          buttons: [ 'excel' ]
                       });
 
+                    dataTables3.buttons().container()
+                                    .insertBefore( '#table_bloomberg_filter' );
 
                       
               });
@@ -461,18 +383,8 @@
             
             <table id="table_fmp" class="display" width="80%"> <caption style="text-align:center;font-size:40px"><strong>Financial Modelling Prep Articles</strong></caption> </table>  
 
-
         </section>
         <!-- End Project -->
-
-
-        <!-- Map -->
-        <section class="vossen-map">
-            <!-- Paste your map iframe here -->
-            <iframe height="900" src="https://maps.google.com/maps?q=Bermuda%Triangle&amp;t=&amp;z=3&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" border="0" marginwidth="0" marginheight="0"></iframe>
-
-        </section>
-        <!-- End Map -->
 
         <!-- Start Footer -->
         <footer id="footer" class="footer style-1 dark">
@@ -483,11 +395,6 @@
         </footer>
         <!-- End Footer -->
 
-        <script src="js/init.js"></script> 
-        <script src="js/scripts.js"></script> 
-        <script src="js/custom.js"></script>
-
-       
     </body>
 
 </html>
